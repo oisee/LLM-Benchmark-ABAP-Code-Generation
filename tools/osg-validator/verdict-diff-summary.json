@@ -1,0 +1,24 @@
+{
+  "answers": 4817,
+  "baseline": "previous adapter recorded-answer replay",
+  "fields": [
+    "sap_syntax_pass",
+    "sap_activation_pass",
+    "unit_syntax_pass",
+    "unit_pass",
+    "osg_stage",
+    "error_stage"
+  ],
+  "answers_with_any_verdict_difference": 0,
+  "per_field_differences": {
+    "sap_syntax_pass": 0,
+    "sap_activation_pass": 0,
+    "unit_syntax_pass": 0,
+    "unit_pass": 0,
+    "osg_stage": 0,
+    "error_stage": 0
+  },
+  "before_verdict_sha256": "0e3991ae79f35e2d3f384d857180072fac09f2f4bd2ea4fcbaf7ac429cdd0e81",
+  "after_verdict_sha256": "0e3991ae79f35e2d3f384d857180072fac09f2f4bd2ea4fcbaf7ac429cdd0e81",
+  "examples": {}
+}

@@ -47,6 +47,10 @@ gate pass. Only passing canonicals provide meaningful mutation baselines.
 
 Audits use three compiler workers by default (`--workers` changes this). Full
 answer replays and a source-keyed SQLite cache remain under ignored `osg-results/`.
+Use `compare_replays.py BEFORE_REPLAY AFTER_REPLAY --output SUMMARY` for an
+exact nullable verdict comparison, including failed-stage fields and stable
+SHA-256 digests. It exits nonzero on a difference or mismatched answer identifiers.
+
 The tracked JSON files contain compact summaries and at most 20 examples per
 stage and disagreement direction, plus one example per false-accept cause.
 The cache key covers engine source, compatibility contents, the library pin, Python adapter, task,
@@ -172,7 +176,8 @@ and table empty/missing/reordered-row templates found in the corpus. The pinned
 assertion implementation still decides failure; observers only format errors.
 
 Remaining differences: abaplint/transpiler **wording remains their own**, and
-abaplint can report a different number of errors. Activation is a transpiler
+abaplint can report a different number of errors. The configured rules emit E
+entries; SAP warning semantics are not emulated. Activation is a transpiler
 exception, without SAP's full activation transport/HTTP text (no corpus evidence).
 The exact SAP DDIC/class-pool qualified type names, byte lengths of all composite
 and Unicode types, packed/floating numeric locale edge cases, string-diagnostic
@@ -272,6 +277,16 @@ See the checked-in `gate-summary.json`, `excluded.json`, `calibration-summary.js
 and `subset.json` under `tools/osg-validator/` for machine-readable details.
 
 <!-- OSG_RESULTS -->
+
+Feedback-format revalidation: the complete fresh gate is green (162/180
+canonicals, 673/673 counted mutants, all expected-stage checks). All **4,817**
+recorded answers (2,648 unique task/source pairs) were replayed with the 60-second
+unit limit. `verdict-diff-summary.json` proves **zero per-answer differences**
+against the preceding adapter replay, comparing all four nullable stage verdicts
+and both failure-stage fields. Before/after verdict hashes match. Calibration
+wall time was 486.045 seconds; gate wall time was 146.570 seconds. Feedback
+wording can change heuristic diagnostic buckets without changing any verdict.
+
 
 Canonical exclusions fell from **30/180 (16.67%) to 18/180 (10%)**. The canonical
 threshold now passes. The six behavioral survivors were then reviewed by hand
@@ -421,7 +436,8 @@ Representative recorded answers (see summary for the actual feedback):
 - `erp_008.txt:5:R4`: SAP declaration or activation check.
 - `17.txt:1:R0`: Runtime or assertion difference.
 
-False-reject cause counts after the adapter changes (automated first-error heuristics):
+False-reject cause counts with the current feedback (automated first-error heuristics;
+wording changes can move buckets):
 
 - syntax: DB difference: 104, missing library class/method/type or unresolved name: 25.
 - activation: DB difference: 104, missing library class/method/type or unresolved name: 34, runtime or semantic difference (manual review needed): 1.

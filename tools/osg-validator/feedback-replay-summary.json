@@ -1,0 +1,12 @@
+{
+  "recorded_answer_unit_failure_messages": 668,
+  "entries_by_kind": {
+    "failedAssertion": 946,
+    "runtimeAbortion": 1418,
+    "exception": 94,
+    "warning": 48,
+    "abortion": 325
+  },
+  "malformed_entries": 0,
+  "JS_stack_or_object_dumps": 0
+}
