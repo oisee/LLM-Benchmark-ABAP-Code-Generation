@@ -44,3 +44,43 @@ test('canonical, syntax/type mutants, assertion failure, and fresh answers', asy
   assert.equal((await validate({...db,source:db.source.replace('FROM zstock','FROM z_missing')})).stage,'syntax');
   assert.equal((await validate({...db,source:db.source.replace('SUM( stock )','SUM( missing_field )')})).stage,'unit');
 });
+
+test('each compat object fails without the adapter and preserves assertions', async()=>{
+  const baseline=await createEngine({compat:false});
+  const adapter=await createEngine();
+  const source=`CLASS z_compat DEFINITION PUBLIC.
+    PUBLIC SECTION. ENDCLASS. CLASS z_compat IMPLEMENTATION. ENDCLASS.`;
+  const wrap=body=>`CLASS ltc DEFINITION FOR TESTING DURATION SHORT RISK LEVEL HARMLESS.
+    PRIVATE SECTION. METHODS check FOR TESTING. ENDCLASS.
+    CLASS ltc IMPLEMENTATION. METHOD check. ${body} ENDMETHOD. ENDCLASS.`;
+  const bodies=[
+    `DATA n TYPE i. DO 100 TIMES.
+     CALL FUNCTION 'QF05_RANDOM_INTEGER' EXPORTING ran_int_min = -2 ran_int_max = 2 IMPORTING ran_int = n.
+     cl_abap_unit_assert=>assert_equals( act = xsdbool( n >= -2 AND n <= 2 ) exp = abap_true ).
+     ENDDO. cl_abap_unit_assert=>assert_equals( act = 2 exp = 2 ).`,
+    `cl_aunit_assert=>assert_equals( act = 2 exp = 2 ).`,
+    `DATA c TYPE char50. c = repeat( val = 'x' occ = 51 ).
+     cl_abap_unit_assert=>assert_equals( act = strlen( c ) exp = 50 ).`,
+    `DATA c TYPE char100. c = repeat( val = 'x' occ = 101 ).
+     cl_abap_unit_assert=>assert_equals( act = strlen( c ) exp = 100 ).`,
+    `DATA day TYPE c LENGTH 1.
+     CALL FUNCTION 'DATE_COMPUTE_DAY' EXPORTING date = '20261019' IMPORTING day = day.
+     cl_abap_unit_assert=>assert_equals( act = day exp = '1' ).
+     CALL FUNCTION 'DATE_COMPUTE_DAY' EXPORTING date = '20261025' IMPORTING day = day.
+     cl_abap_unit_assert=>assert_equals( act = day exp = '7' ).
+     CALL FUNCTION 'DATE_COMPUTE_DAY' EXPORTING date = '20240229' IMPORTING day = day.
+     cl_abap_unit_assert=>assert_equals( act = day exp = '4' ).`
+  ];
+  for(const body of bodies) {
+    const request={name:'z_compat',source,tests:wrap(body)};
+    assert.equal((await baseline(request)).unit_syntax,false,body);
+    const result=await adapter(request);
+    assert.equal(result.unit,true,JSON.stringify(result));
+    const mutant=await adapter({...request,tests:wrap(body.replace(/exp = (?:2|50|100|'1')/, 'exp = 999'))});
+    assert.equal(mutant.stage,'unit',JSON.stringify(mutant));
+  }
+  const name='z_humaneval_007';
+  const request={name,source:fs.readFileSync(path.resolve(root,`../../dataset/abap_canonical_solution/${name}.abap`),'utf8'),tests:fs.readFileSync(path.resolve(root,`../../dataset/abap_unittests/${name}_test.abap`),'utf8')};
+  assert.equal((await baseline(request)).unit_syntax,false);
+  assert.equal((await adapter(request)).unit,true);
+});

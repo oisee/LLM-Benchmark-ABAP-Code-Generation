@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import {createHash} from 'node:crypto';
 import {spawn} from 'node:child_process';
 import * as lint from '@abaplint/core';
 import {Transpiler} from '@abaplint/transpiler';
@@ -14,13 +15,15 @@ export const clean = value => String(value).replaceAll(root, '<validator>').repl
 function files(dir) {
   return fs.readdirSync(dir,{withFileTypes:true}).flatMap(f=>f.isDirectory()?files(path.join(dir,f.name)):[path.join(dir,f.name)]);
 }
-export async function createEngine() {
+export async function createEngine({compat = true} = {}) {
   bootstrap();
   const library = files(path.join(core,'src')).filter(f=>!f.includes('.testclasses.') && /\.(abap|xml)$/.test(f)).map(f=>new lint.MemoryFile(path.basename(f),fs.readFileSync(f,'utf8')));
+  if (compat) library.push(...files(path.join(root,'compat')).filter(f=>/\.(abap|xml)$/.test(f)).map(f=>new lint.MemoryFile(path.basename(f),fs.readFileSync(f,'utf8'))));
+  const fingerprint=createHash('sha256').update(library.map(f=>f.getRaw()).join('')).digest('hex').slice(0,16);
   const tableDir = path.resolve(root,'../../dataset/abap_tables');
   const tables = fs.readdirSync(tableDir).filter(f=>f.endsWith('.abap')).map(f=>ddlToTable(fs.readFileSync(path.join(tableDir,f),'utf8')));
   // Compile the immutable library once; generated code is never evaluated here.
-  const cache = path.join(root,'.cache',`compiled-${revision}`);
+  const cache = path.join(root,'.cache',`compiled-${revision}-${fingerprint}`);
   if (!fs.existsSync(path.join(cache,'ready.json'))) {
     fs.mkdirSync(cache,{recursive:true});
     const reg = new lint.Registry().addFiles(library).addFiles(tables.map(t=>new lint.MemoryFile(t.filename,t.contents)));
