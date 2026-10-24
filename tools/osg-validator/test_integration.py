@@ -78,6 +78,49 @@ class IntegrationTests(unittest.TestCase):
         finally:
             client.close()
 
+    def test_memory_cap_rejects_allocation_mutant(self):
+        import re
+        source=(ROOT/'dataset/abap_canonical_solution/z_humaneval_000.abap').read_text()
+        allocation="DATA memory TYPE STANDARD TABLE OF string WITH EMPTY KEY. DO 10000000 TIMES. APPEND repeat( val = 'x' occ = 1000 ) TO memory. ENDDO."
+        mutant=re.sub(r'(METHOD has_close_elements\.)',lambda m:m[0]+allocation,source,flags=re.I)
+        client=OsgClient()
+        try:
+            tier,feedback=evaluate(client,'0.txt',mutant)
+            self.assertEqual(tier['error_stage'],'unit')
+            self.assertFalse(tier['unit_pass'])
+            self.assertRegex(feedback.lower(),r'memory cap|heap out of memory|signal sigabrt')
+        finally:
+            client.close()
+
+    def test_duplicate_subset_is_rejected_before_generation(self):
+        from osg_run import run
+        with tempfile.NamedTemporaryFile(mode='w',suffix='.json') as subset:
+            json.dump({'tasks':['0.txt','0.txt']},subset);subset.flush()
+            with self.assertRaisesRegex(ValueError,'Duplicate'):
+                asyncio.run(run(SimpleNamespace(subset=subset.name,output_name='fake-duplicate')))
+
+    def test_retry_preserves_the_correct_repetition(self):
+        import abap_test
+        from unittest.mock import patch
+        source=(ROOT/'dataset/abap_canonical_solution/z_humaneval_000.abap').read_text()
+        chats={'0.txt':[
+            [{'role':'assistant','content':source},{'role':'user','content':'The unit tests were successful.'}],
+            [{'role':'assistant','content':source},{'role':'user','content':'Earlier feedback'}, {'role':'assistant','content':source}],
+        ]}
+        original={'0.txt':[{'round_0':{'marker':'first','unit_pass':True}}, {'round_0':{'marker':'second','unit_pass':False}}]}
+        client=OsgClient()
+        try:
+            with patch.multiple(abap_test,_create_client=lambda:client,
+                    load_tiers=lambda _:original,load_retry_state=lambda _: {},
+                    _save_data=lambda *a:None,save_tiers=lambda *a:None,
+                    save_retry_state=lambda *a:None,log_failure=lambda **k:None):
+                abap_test.mode_retry('fake-model',chats,1,True,False,False)
+            self.assertEqual(original['0.txt'][0]['round_0']['marker'],'first')
+            self.assertEqual(original['0.txt'][1]['round_0']['marker'],'second')
+            self.assertTrue(original['0.txt'][1]['round_1']['unit_pass'])
+        finally:
+            client.close()
+
     def test_historical_rounds_are_preserved(self):
         from osg_validator import run_single_prompt
         from unittest.mock import patch

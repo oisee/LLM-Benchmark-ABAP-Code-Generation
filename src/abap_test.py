@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from abap_adt_py.adt_client import AdtClient
 import abap_interaction
+from osg_validator import OsgClient
 from abap_interaction import (
     INFRA_FEEDBACK_PREFIX,
     add_to_chat,
@@ -196,7 +197,7 @@ def mode_retry(
                 use_canonicalization=use_canonicalization,
                 use_abaplint=use_abaplint,
                 abaplint_hard_gate=abaplint_hard_gate,
-                model_name=model_name,
+                model_name="" if isinstance(client, OsgClient) else model_name,
             )
 
             # Write back
@@ -207,7 +208,12 @@ def mode_retry(
                 all_tiers[prompt_key] = [{} for _ in range(len(chats))]
             while len(all_tiers[prompt_key]) <= rep_idx:
                 all_tiers[prompt_key].append({})
-            all_tiers[prompt_key][rep_idx] = prompt_tiers[0]
+            if isinstance(client, OsgClient):
+                # A retry wraps one repetition. Merge into its original index,
+                # rather than loading repetition zero's historical OSG rounds.
+                all_tiers[prompt_key][rep_idx].update(prompt_tiers[0])
+            else:
+                all_tiers[prompt_key][rep_idx] = prompt_tiers[0]
 
             # Log the retry attempt
             last_content = chats[rep_idx][-1].get("content", "")

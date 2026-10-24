@@ -1,0 +1,132 @@
+{
+  "seed": 20261024,
+  "priority": [
+    "Date & Time Operations",
+    "String Handling",
+    "Database Operations (ABAP)",
+    "List & Array Operations",
+    "Logical Checks",
+    "Mathematical Calculations"
+  ],
+  "priority_selection": "Maximize eligible slots capped at 10 per category; ties follow CSV column order.",
+  "requested_per_category": 10,
+  "categories": {
+    "Date & Time Operations": [
+      "124.txt"
+    ],
+    "String Handling": [
+      "82.txt",
+      "119.txt",
+      "50.txt",
+      "144.txt",
+      "79.txt",
+      "95.txt",
+      "108.txt",
+      "84.txt",
+      "122.txt",
+      "14.txt"
+    ],
+    "Database Operations (ABAP)": [
+      "erp_002.txt",
+      "erp_010.txt",
+      "erp_003.txt",
+      "erp_000.txt",
+      "erp_004.txt"
+    ],
+    "List & Array Operations": [
+      "159.txt",
+      "42.txt",
+      "120.txt",
+      "96.txt",
+      "3.txt",
+      "69.txt",
+      "114.txt",
+      "94.txt",
+      "9.txt",
+      "85.txt"
+    ],
+    "Logical Checks": [
+      "102.txt",
+      "150.txt",
+      "127.txt",
+      "138.txt",
+      "77.txt",
+      "76.txt",
+      "92.txt",
+      "13.txt",
+      "24.txt",
+      "59.txt"
+    ],
+    "Mathematical Calculations": [
+      "45.txt",
+      "97.txt",
+      "63.txt",
+      "2.txt",
+      "139.txt",
+      "41.txt",
+      "83.txt",
+      "55.txt",
+      "49.txt"
+    ]
+  },
+  "eligible_per_category": {
+    "Date & Time Operations": 1,
+    "String Handling": 62,
+    "Database Operations (ABAP)": 5,
+    "List & Array Operations": 61,
+    "Logical Checks": 12,
+    "Mathematical Calculations": 9
+  },
+  "shortfalls": {
+    "Date & Time Operations": 9,
+    "Database Operations (ABAP)": 5,
+    "Mathematical Calculations": 1
+  },
+  "tasks": [
+    "124.txt",
+    "82.txt",
+    "119.txt",
+    "50.txt",
+    "144.txt",
+    "79.txt",
+    "95.txt",
+    "108.txt",
+    "84.txt",
+    "122.txt",
+    "14.txt",
+    "erp_002.txt",
+    "erp_010.txt",
+    "erp_003.txt",
+    "erp_000.txt",
+    "erp_004.txt",
+    "159.txt",
+    "42.txt",
+    "120.txt",
+    "96.txt",
+    "3.txt",
+    "69.txt",
+    "114.txt",
+    "94.txt",
+    "9.txt",
+    "85.txt",
+    "102.txt",
+    "150.txt",
+    "127.txt",
+    "138.txt",
+    "77.txt",
+    "76.txt",
+    "92.txt",
+    "13.txt",
+    "24.txt",
+    "59.txt",
+    "45.txt",
+    "97.txt",
+    "63.txt",
+    "2.txt",
+    "139.txt",
+    "41.txt",
+    "83.txt",
+    "55.txt",
+    "49.txt"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "workers": 1,
+  "tasks": [
+    "0.txt",
+    "1.txt",
+    "2.txt",
+    "3.txt",
+    "4.txt",
+    "erp_000.txt",
+    "erp_002.txt",
+    "erp_003.txt",
+    "erp_004.txt",
+    "erp_010.txt"
+  ],
+  "repetitions": 3,
+  "measured_answers": 30,
+  "all_pass": true,
+  "cold_start_answer_seconds": 3.8086,
+  "warm_wall_seconds": 21.8307,
+  "warm_answers_per_second": 1.3742,
+  "median_answer_seconds": 0.7188,
+  "max_answer_seconds": 0.8113,
+  "note": "No verdict cache; immutable compiled library cache present. Each answer still creates a fresh runtime child and SQLite database."
+}

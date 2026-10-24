@@ -15,10 +15,11 @@ compiler/unit-test feedback corrections).
 ### 1. SAP ABAP Developer Trial (Docker)
 
 The SAP/ADT tests require a running SAP ABAP instance accessible at
-`http://localhost:50000`. Start the Docker container:
+`http://localhost:50000`. Set `SAP_CONTAINER_HOST` to the hostname required by
+your SAP image, then start the Docker container:
 
 ```bash
-docker run --stop-timeout 3600 -i --name a4h -h vhcala4hci \
+docker run --stop-timeout 3600 -i --name a4h -h "$SAP_CONTAINER_HOST" \
   -p 3200:3200 -p 3300:3300 -p 8443:8443 -p 30213:30213 \
   -p 50000:50000 -p 50001:50001 \
   sapse/abap-cloud-developer-trial:2023
@@ -437,3 +438,19 @@ python src/smoke_test_abap1.py --model sap--abap-1 --message "Reply with OK."
     *   `prompt_classification.csv` – Task category labels.
 *   **`analysis/`**: Result consolidation and plotting scripts.
 *   **`plots/`**: Generated charts.
+
+## Optional OSG-js validation
+
+The default validator remains SAP/ADT. An offline OSG-js backend adds Cloud
+syntax checks, transpilation and ABAP Unit over fresh SQLite databases:
+
+```sh
+npm ci --prefix tools/osg-validator
+npm run bootstrap --prefix tools/osg-validator
+uv run python src/abap_test.py --model MODEL --mode resume --validator osg
+```
+
+Use `ABAP_VALIDATOR=osg` with the existing orchestration/parallel runners.
+[The OSG guide](docs/osg-validator.md) covers the explicit OpenAI-compatible
+endpoint/subset runner, offline gate, recorded-answer calibration, exclusions and
+comparability limits. No real model runs are needed to run the gate or calibration.

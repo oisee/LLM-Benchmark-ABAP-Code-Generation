@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "bootstrap": "node bootstrap.mjs",
+    "bootstrap": "node bootstrap.mjs && node prepare.js",
     "test": "node --test test.mjs"
   },
   "dependencies": {

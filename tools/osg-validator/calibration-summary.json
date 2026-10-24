@@ -1,0 +1,1576 @@
+{
+  "model": "claude-opus-4-6",
+  "answers": 4817,
+  "unique_answers": 2648,
+  "oracle_sources": {
+    "feedback_reconstruction": 4500,
+    "tiers": 317
+  },
+  "stage_definition": "Cumulative pass: not reached/null counts as not accepted. Also report both-observed counts; missing tier rounds reconstructed from recorded feedback.",
+  "caveat": "Later rounds were generated after SAP feedback, not OSG feedback. This is a per-answer comparison, not a comparison of feedback trajectories.",
+  "stages": {
+    "syntax": {
+      "answers": 4817,
+      "agreement": 4379,
+      "false_reject": 132,
+      "false_accept": 306,
+      "false_reject_causes": {
+        "DB difference": 104,
+        "missing library class/method/type or unresolved name": 28
+      },
+      "false_reject_examples": [
+        {
+          "answer": "erp_014.txt:0:R0",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:1:R0",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:2:R0",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:3:R0",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:4:R0",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:5:R0",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:6:R0",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:7:R0",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:8:R0",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:9:R0",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "128.txt:5:R2",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_128', 'type': 'E', 'short_text': 'parser_error: Statement does not exist in the configured ABAP version(or a parser error), \"DESCRIBE\" (line 33)'}]",
+          "sap_feedback": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_128/includes/testclasses', 'type': 'E', 'short_text': 'The result type of the functional method cannot be converted into the type of RESULT.', 'l",
+          "source_excerpt": "CLASS zcl_prod_signs DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES: BEGIN OF ty_result,\n             value   TYPE i,\n             is_null TYPE abap_bool,\n           END OF "
+        },
+        {
+          "answer": "128.txt:5:R4",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_128', 'type': 'E', 'short_text': 'parser_error: Statement does not exist in the configured ABAP version(or a parser error), \"DESCRIBE\" (line 29)'}]",
+          "sap_feedback": "The unit test failed with the following errors:\n[{'title': 'Failed due to a runtime abortion', 'kind': 'runtimeAbortion', 'severity': 'fatal', 'stack': [], 'details': ['[None cannot be interpreted as a number]']}]\n Try to fix the class, not the unit ",
+          "source_excerpt": "CLASS zcl_prod_signs DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS prod_signs\n      IMPORTING\n        arr           TYPE STANDARD TABLE\n      RETURNING\n        VALU"
+        },
+        {
+          "answer": "128.txt:5:R5",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_128', 'type': 'E', 'short_text': 'parser_error: Statement does not exist in the configured ABAP version(or a parser error), \"DESCRIBE\" (line 28)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_prod_signs DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS prod_signs\n      IMPORTING\n        arr           TYPE STANDARD TABLE\n      RETURNING\n        VALU"
+        },
+        {
+          "answer": "115.txt:1:R5",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_115', 'type': 'E', 'short_text': 'parser_error: Statement does not exist in the configured ABAP version(or a parser error), \"MOVE\" (line 35)'}]",
+          "sap_feedback": "The unit test failed with the following errors:\n[{'title': 'Failed due to a runtime abortion', 'kind': 'runtimeAbortion', 'severity': 'fatal', 'stack': [], 'details': ['[Conversion of type INT4_TABLE to type I not suppor]']}]\n Try to fix the class, n",
+          "source_excerpt": "CLASS zcl_max_fill DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS max_fill\n      IMPORTING\n        grid          TYPE ANY TABLE\n        capacity      TYPE i\n      RE"
+        },
+        {
+          "answer": "115.txt:2:R5",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_115', 'type': 'E', 'short_text': 'check_syntax: \"lv_type\" not found, findTop (line 37)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_115', 'type': 'E', 'short_text': 'parser_error: Statement does not exist in the configured ABAP version(or a parser erro",
+          "sap_feedback": "The unit test failed with the following errors:\n[{'title': 'Failed due to a runtime abortion', 'kind': 'runtimeAbortion', 'severity': 'fatal', 'stack': [], 'details': ['[Conversion of type INT4_TABLE to type I not suppor]']}]\n Try to fix the class, n",
+          "source_excerpt": "CLASS zcl_max_fill DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS max_fill\n      IMPORTING\n        grid          TYPE STANDARD TABLE\n        capacity      TYPE i\n   "
+        },
+        {
+          "answer": "erp_015.txt:0:R0",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"spfli\" not found (line 29)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 30)",
+          "sap_feedback": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015/includes/testclasses', 'type': 'E', 'short_text': 'The data object \"LS_ACTUAL\" does not have a component called \"REVENUE\".', 'line': 90, ",
+          "source_excerpt": "CLASS zcl_route_analysis DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES:\n      BEGIN OF ty_route_revenue,\n        cityfrom      TYPE spfli-cityfrom,\n        cityto        TY"
+        },
+        {
+          "answer": "erp_015.txt:0:R1",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"spfli\" not found (line 29)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 30)",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_route_analysis DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES:\n      BEGIN OF ty_route_revenue,\n        cityfrom TYPE spfli-cityfrom,\n        cityto   TYPE spfli-c"
+        },
+        {
+          "answer": "erp_015.txt:1:R0",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"spfli\" not found (line 29)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 30)",
+          "sap_feedback": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015/includes/testclasses', 'type': 'E', 'short_text': 'The data object \"LS_ACTUAL\" does not have a component called \"REVENUE\".', 'line': 90, ",
+          "source_excerpt": "CLASS zcl_route_analysis DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES:\n      BEGIN OF ty_route_revenue,\n        cityfrom      TYPE spfli-cityfrom,\n        cityto        TY"
+        },
+        {
+          "answer": "erp_015.txt:1:R1",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"spfli\" not found (line 29)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 30)",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_route_analysis DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES:\n      BEGIN OF ty_route_revenue,\n        cityfrom TYPE spfli-cityfrom,\n        cityto   TYPE spfli-c"
+        },
+        {
+          "answer": "erp_015.txt:2:R0",
+          "sap": true,
+          "osg": false,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"spfli\" not found (line 29)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 30)",
+          "sap_feedback": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015/includes/testclasses', 'type': 'E', 'short_text': 'The data object \"LS_ACTUAL\" does not have a component called \"REVENUE\".', 'line': 90, ",
+          "source_excerpt": "CLASS zcl_route_analysis DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES:\n      BEGIN OF ty_route_revenue,\n        cityfrom      TYPE spfli-cityfrom,\n        cityto        TY"
+        }
+      ],
+      "false_accept_examples": [
+        {
+          "answer": "erp_000.txt:0:R0",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\nENDCLASS.\n\nCLASS zcl_find_ceo "
+        },
+        {
+          "answer": "erp_000.txt:0:R2",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\nENDCLASS.\n\nCLASS zcl_find_ceo IMPLEMENTA"
+        },
+        {
+          "answer": "erp_000.txt:0:R4",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\nENDCLASS.\n\nCLASS zcl_find_ceo IMPLEMENTA"
+        },
+        {
+          "answer": "erp_000.txt:1:R0",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\nENDCLASS.\n\nCLASS zcl_find_ceo "
+        },
+        {
+          "answer": "erp_000.txt:1:R2",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE string.\n\nENDCLASS.\n\nCLASS zcl_find_ceo IMPLEMENTA"
+        },
+        {
+          "answer": "erp_000.txt:1:R4",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE string.\n\nENDCLASS.\n\nCLASS zcl_find_ceo IMPLEMENTA"
+        },
+        {
+          "answer": "erp_000.txt:2:R0",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nError: Void type: SELECT_todo13\\n    at file://<validator>/.runs/answer-2073964-cxKyRx/z_humaneval_erp_000.clas.mjs:28:49\\n    at z_humaneval_erp",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\n  PROTECTED SECTION.\n  PRIVATE"
+        },
+        {
+          "answer": "erp_000.txt:2:R2",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nError: Void type: SELECT_todo13\\n    at file://<validator>/.runs/answer-2073965-Lzv1d9/z_humaneval_erp_000.clas.mjs:28:49\\n    at z_humaneval_erp",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:2:R3",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:3:R0",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nReferenceError: lv_org_count is not defined\\n    at z_humaneval_erp_000.find_ceo_name (file://<validator>/.runs/answer-2073965-SZiVi9/z_humaneval",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\n  PROTECTED SECTION.\n  PRIVATE"
+        },
+        {
+          "answer": "erp_000.txt:3:R2",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:3:R3",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:3:R5",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:4:R0",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd29",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\n  PROTECTED SECTION.\n  PRIVATE"
+        },
+        {
+          "answer": "erp_000.txt:4:R2",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd29",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:4:R4",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:5:R0",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\n  PROTECTED SECTION.\n  PRIVATE"
+        },
+        {
+          "answer": "erp_000.txt:5:R2",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:5:R4",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:6:R0",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\nENDCLASS.\n\nCLASS zcl_find_ceo "
+        }
+      ],
+      "both_observed": 4817,
+      "both_observed_agree": 4379,
+      "agreement_percent": 90.907,
+      "recorded_tiers_only": {
+        "comparable_answers": 317,
+        "agreement": 276,
+        "false_reject": 14,
+        "false_accept": 27
+      }
+    },
+    "activation": {
+      "answers": 4817,
+      "agreement": 4402,
+      "false_reject": 139,
+      "false_accept": 276,
+      "false_reject_causes": {
+        "DB difference": 104,
+        "missing library class/method/type or unresolved name": 34,
+        "runtime or semantic difference (manual review needed)": 1
+      },
+      "false_reject_examples": [
+        {
+          "answer": "erp_014.txt:0:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:1:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:2:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:3:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:4:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:5:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:6:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:7:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:8:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:9:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "128.txt:5:R2",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_128', 'type': 'E', 'short_text': 'parser_error: Statement does not exist in the configured ABAP version(or a parser error), \"DESCRIBE\" (line 33)'}]",
+          "sap_feedback": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_128/includes/testclasses', 'type': 'E', 'short_text': 'The result type of the functional method cannot be converted into the type of RESULT.', 'l",
+          "source_excerpt": "CLASS zcl_prod_signs DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES: BEGIN OF ty_result,\n             value   TYPE i,\n             is_null TYPE abap_bool,\n           END OF "
+        },
+        {
+          "answer": "128.txt:5:R4",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_128', 'type': 'E', 'short_text': 'parser_error: Statement does not exist in the configured ABAP version(or a parser error), \"DESCRIBE\" (line 29)'}]",
+          "sap_feedback": "The unit test failed with the following errors:\n[{'title': 'Failed due to a runtime abortion', 'kind': 'runtimeAbortion', 'severity': 'fatal', 'stack': [], 'details': ['[None cannot be interpreted as a number]']}]\n Try to fix the class, not the unit ",
+          "source_excerpt": "CLASS zcl_prod_signs DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS prod_signs\n      IMPORTING\n        arr           TYPE STANDARD TABLE\n      RETURNING\n        VALU"
+        },
+        {
+          "answer": "128.txt:5:R5",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_128', 'type': 'E', 'short_text': 'parser_error: Statement does not exist in the configured ABAP version(or a parser error), \"DESCRIBE\" (line 28)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_prod_signs DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS prod_signs\n      IMPORTING\n        arr           TYPE STANDARD TABLE\n      RETURNING\n        VALU"
+        },
+        {
+          "answer": "115.txt:1:R5",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_115', 'type': 'E', 'short_text': 'parser_error: Statement does not exist in the configured ABAP version(or a parser error), \"MOVE\" (line 35)'}]",
+          "sap_feedback": "The unit test failed with the following errors:\n[{'title': 'Failed due to a runtime abortion', 'kind': 'runtimeAbortion', 'severity': 'fatal', 'stack': [], 'details': ['[Conversion of type INT4_TABLE to type I not suppor]']}]\n Try to fix the class, n",
+          "source_excerpt": "CLASS zcl_max_fill DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS max_fill\n      IMPORTING\n        grid          TYPE ANY TABLE\n        capacity      TYPE i\n      RE"
+        },
+        {
+          "answer": "115.txt:2:R5",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_115', 'type': 'E', 'short_text': 'check_syntax: \"lv_type\" not found, findTop (line 37)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_115', 'type': 'E', 'short_text': 'parser_error: Statement does not exist in the configured ABAP version(or a parser erro",
+          "sap_feedback": "The unit test failed with the following errors:\n[{'title': 'Failed due to a runtime abortion', 'kind': 'runtimeAbortion', 'severity': 'fatal', 'stack': [], 'details': ['[Conversion of type INT4_TABLE to type I not suppor]']}]\n Try to fix the class, n",
+          "source_excerpt": "CLASS zcl_max_fill DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS max_fill\n      IMPORTING\n        grid          TYPE STANDARD TABLE\n        capacity      TYPE i\n   "
+        },
+        {
+          "answer": "erp_015.txt:0:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"spfli\" not found (line 29)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 30)",
+          "sap_feedback": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015/includes/testclasses', 'type': 'E', 'short_text': 'The data object \"LS_ACTUAL\" does not have a component called \"REVENUE\".', 'line': 90, ",
+          "source_excerpt": "CLASS zcl_route_analysis DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES:\n      BEGIN OF ty_route_revenue,\n        cityfrom      TYPE spfli-cityfrom,\n        cityto        TY"
+        },
+        {
+          "answer": "erp_015.txt:0:R1",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"spfli\" not found (line 29)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 30)",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_route_analysis DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES:\n      BEGIN OF ty_route_revenue,\n        cityfrom TYPE spfli-cityfrom,\n        cityto   TYPE spfli-c"
+        },
+        {
+          "answer": "erp_015.txt:1:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"spfli\" not found (line 29)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 30)",
+          "sap_feedback": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015/includes/testclasses', 'type': 'E', 'short_text': 'The data object \"LS_ACTUAL\" does not have a component called \"REVENUE\".', 'line': 90, ",
+          "source_excerpt": "CLASS zcl_route_analysis DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES:\n      BEGIN OF ty_route_revenue,\n        cityfrom      TYPE spfli-cityfrom,\n        cityto        TY"
+        },
+        {
+          "answer": "erp_015.txt:1:R1",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"spfli\" not found (line 29)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 30)",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_route_analysis DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES:\n      BEGIN OF ty_route_revenue,\n        cityfrom TYPE spfli-cityfrom,\n        cityto   TYPE spfli-c"
+        },
+        {
+          "answer": "erp_015.txt:2:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"spfli\" not found (line 29)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 30)",
+          "sap_feedback": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015/includes/testclasses', 'type': 'E', 'short_text': 'The data object \"LS_ACTUAL\" does not have a component called \"REVENUE\".', 'line': 90, ",
+          "source_excerpt": "CLASS zcl_route_analysis DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES:\n      BEGIN OF ty_route_revenue,\n        cityfrom      TYPE spfli-cityfrom,\n        cityto        TY"
+        }
+      ],
+      "false_accept_examples": [
+        {
+          "answer": "erp_000.txt:0:R0",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\nENDCLASS.\n\nCLASS zcl_find_ceo "
+        },
+        {
+          "answer": "erp_000.txt:0:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\nENDCLASS.\n\nCLASS zcl_find_ceo IMPLEMENTA"
+        },
+        {
+          "answer": "erp_000.txt:0:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\nENDCLASS.\n\nCLASS zcl_find_ceo IMPLEMENTA"
+        },
+        {
+          "answer": "erp_000.txt:1:R0",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\nENDCLASS.\n\nCLASS zcl_find_ceo "
+        },
+        {
+          "answer": "erp_000.txt:1:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE string.\n\nENDCLASS.\n\nCLASS zcl_find_ceo IMPLEMENTA"
+        },
+        {
+          "answer": "erp_000.txt:1:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE string.\n\nENDCLASS.\n\nCLASS zcl_find_ceo IMPLEMENTA"
+        },
+        {
+          "answer": "erp_000.txt:2:R0",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nError: Void type: SELECT_todo13\\n    at file://<validator>/.runs/answer-2073964-cxKyRx/z_humaneval_erp_000.clas.mjs:28:49\\n    at z_humaneval_erp",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\n  PROTECTED SECTION.\n  PRIVATE"
+        },
+        {
+          "answer": "erp_000.txt:2:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nError: Void type: SELECT_todo13\\n    at file://<validator>/.runs/answer-2073965-Lzv1d9/z_humaneval_erp_000.clas.mjs:28:49\\n    at z_humaneval_erp",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:2:R3",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:3:R0",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nReferenceError: lv_org_count is not defined\\n    at z_humaneval_erp_000.find_ceo_name (file://<validator>/.runs/answer-2073965-SZiVi9/z_humaneval",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\n  PROTECTED SECTION.\n  PRIVATE"
+        },
+        {
+          "answer": "erp_000.txt:3:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:3:R3",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:3:R5",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:4:R0",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd29",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\n  PROTECTED SECTION.\n  PRIVATE"
+        },
+        {
+          "answer": "erp_000.txt:4:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd29",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:4:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:5:R0",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\n  PROTECTED SECTION.\n  PRIVATE"
+        },
+        {
+          "answer": "erp_000.txt:5:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:5:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:6:R0",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\nENDCLASS.\n\nCLASS zcl_find_ceo "
+        }
+      ],
+      "both_observed": 3270,
+      "both_observed_agree": 3263,
+      "agreement_percent": 91.385,
+      "recorded_tiers_only": {
+        "comparable_answers": 157,
+        "agreement": 142,
+        "false_reject": 15,
+        "false_accept": 0
+      }
+    },
+    "unit_syntax": {
+      "answers": 4817,
+      "agreement": 4088,
+      "false_reject": 252,
+      "false_accept": 477,
+      "false_reject_causes": {
+        "DB difference": 72,
+        "missing library class/method/type or unresolved name": 180
+      },
+      "false_reject_examples": [
+        {
+          "answer": "erp_014.txt:0:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:1:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:2:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:3:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:4:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:5:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:6:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:7:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:8:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:9:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "29.txt:0:R2",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:1:R2",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:2:R2",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:3:R2",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:4:R2",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:5:R2",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:6:R2",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:7:R2",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:8:R2",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:9:R2",
+          "sap": true,
+          "osg": false,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        }
+      ],
+      "false_accept_examples": [
+        {
+          "answer": "erp_000.txt:0:R0",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\nENDCLASS.\n\nCLASS zcl_find_ceo "
+        },
+        {
+          "answer": "erp_000.txt:0:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\nENDCLASS.\n\nCLASS zcl_find_ceo IMPLEMENTA"
+        },
+        {
+          "answer": "erp_000.txt:0:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\nENDCLASS.\n\nCLASS zcl_find_ceo IMPLEMENTA"
+        },
+        {
+          "answer": "erp_000.txt:1:R0",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\nENDCLASS.\n\nCLASS zcl_find_ceo "
+        },
+        {
+          "answer": "erp_000.txt:1:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE string.\n\nENDCLASS.\n\nCLASS zcl_find_ceo IMPLEMENTA"
+        },
+        {
+          "answer": "erp_000.txt:1:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE string.\n\nENDCLASS.\n\nCLASS zcl_find_ceo IMPLEMENTA"
+        },
+        {
+          "answer": "erp_000.txt:2:R0",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nError: Void type: SELECT_todo13\\n    at file://<validator>/.runs/answer-2073964-cxKyRx/z_humaneval_erp_000.clas.mjs:28:49\\n    at z_humaneval_erp",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\n  PROTECTED SECTION.\n  PRIVATE"
+        },
+        {
+          "answer": "erp_000.txt:2:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nError: Void type: SELECT_todo13\\n    at file://<validator>/.runs/answer-2073965-Lzv1d9/z_humaneval_erp_000.clas.mjs:28:49\\n    at z_humaneval_erp",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:2:R3",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:2:R5",
+          "sap": false,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000/includes/testclasses', 'type': 'E', 'short_text': 'The ABAP Dictionary structure or table \"ZEMP_MASTER\" is either not active or does not ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:3:R0",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nReferenceError: lv_org_count is not defined\\n    at z_humaneval_erp_000.find_ceo_name (file://<validator>/.runs/answer-2073965-SZiVi9/z_humaneval",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\n  PROTECTED SECTION.\n  PRIVATE"
+        },
+        {
+          "answer": "erp_000.txt:3:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:3:R3",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:3:R5",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\nZ_",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:4:R0",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd29",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\n  PROTECTED SECTION.\n  PRIVATE"
+        },
+        {
+          "answer": "erp_000.txt:4:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd29",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:4:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZORG_STRUCTURE\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:5:R0",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 8, 'offset': 36}]",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE zemp_master-name.\n\n  PROTECTED SECTION.\n  PRIVATE"
+        },
+        {
+          "answer": "erp_000.txt:5:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        },
+        {
+          "answer": "erp_000.txt:5:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': \"Z_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_normal_hierarchy\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_no_employees\\nZ_HUMANEVAL_ERP_000: running ltcl_test_ceo_finder->test_single_employee\\n<r",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_000', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_ceo DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_ceo_name\n      RETURNING VALUE(rv_name) TYPE char80.\n\n  PROTECTED SECTION.\n  PRIVATE SECTION.\n"
+        }
+      ],
+      "both_observed": 3263,
+      "both_observed_agree": 2832,
+      "agreement_percent": 84.866,
+      "recorded_tiers_only": {
+        "comparable_answers": 0,
+        "note": "Original tiers do not contain unit_syntax_pass; reconstructed from recorded feedback."
+      }
+    },
+    "unit": {
+      "answers": 4817,
+      "agreement": 4366,
+      "false_reject": 215,
+      "false_accept": 236,
+      "false_reject_causes": {
+        "DB difference": 45,
+        "missing library class/method/type or unresolved name": 136,
+        "runtime or semantic difference (manual review needed)": 34
+      },
+      "false_reject_examples": [
+        {
+          "answer": "erp_014.txt:0:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:1:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:2:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:3:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:4:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:5:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:6:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:7:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:8:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "erp_014.txt:9:R0",
+          "sap": true,
+          "osg": null,
+          "cause": "DB difference",
+          "osg_message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 24)'}]",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_booking_counter DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS count_bookings_for_flight\n      IMPORTING\n        iv_carrid        TYPE c\n        iv_connid "
+        },
+        {
+          "answer": "29.txt:0:R2",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:1:R2",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:2:R2",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:3:R2",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:4:R2",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:5:R2",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:6:R2",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:7:R2",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:8:R2",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        },
+        {
+          "answer": "29.txt:9:R2",
+          "sap": true,
+          "osg": null,
+          "cause": "missing library class/method/type or unresolved name",
+          "osg_message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_ass",
+          "sap_feedback": "The unit tests were successful.",
+          "source_excerpt": "CLASS zcl_filter_by_prefix DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS filter_by_prefix\n      IMPORTING\n        strings          TYPE string_table\n        prefix "
+        }
+      ],
+      "false_accept_examples": [
+        {
+          "answer": "erp_001.txt:0:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:0:R5",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:1:R1",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 18, 'offset': 31}]",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:1:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:1:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:2:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:2:R5",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:3:R1",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 18, 'offset': 31}]",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:3:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:3:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:3:R5",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:4:R1",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 18, 'offset': 31}]",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:4:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES: BEGIN OF ty_emp_master,\n             employee_id TYPE c LENGTH 20,\n             name        TYPE c L"
+        },
+        {
+          "answer": "erp_001.txt:5:R1",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 18, 'offset': 31}]",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:5:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    TYPES: BEGIN OF ty_emp_master,\n             employee_id TYPE c LENGTH 20,\n             name        TYPE c L"
+        },
+        {
+          "answer": "erp_001.txt:5:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:6:R1",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 18, 'offset': 31}]",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:6:R2",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:6:R4",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': '\"ZEMP_MASTER\" is not declared as a table, projection view, or database view in ABAP Dictionary or does not exist in ",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        },
+        {
+          "answer": "erp_001.txt:7:R1",
+          "sap": null,
+          "osg": true,
+          "cause": "SAP rejected or did not reach stage",
+          "osg_message": "",
+          "sap_feedback": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': 'Type \"ZEMP_MASTER\" is unknown.', 'line': 18, 'offset': 31}]",
+          "source_excerpt": "CLASS zcl_find_employees DEFINITION\n  PUBLIC\n  FINAL\n  CREATE PUBLIC.\n\n  PUBLIC SECTION.\n    CLASS-METHODS find_employees_without_subordinates\n      RETURNING VALUE(rt_names) TYPE string_table.\n\n  PRO"
+        }
+      ],
+      "both_observed": 1717,
+      "both_observed_agree": 1676,
+      "agreement_percent": 90.637,
+      "recorded_tiers_only": {
+        "comparable_answers": 84,
+        "agreement": 79,
+        "false_reject": 5,
+        "false_accept": 0
+      }
+    }
+  },
+  "headline": {
+    "sap": {
+      "conversations": 1800,
+      "R0_unit_pass": 665,
+      "R0_percent": 36.944,
+      "best_R0_R5_unit_pass": 1515,
+      "best_R0_R5_percent": 84.167
+    },
+    "osg": {
+      "conversations": 1800,
+      "R0_unit_pass": 672,
+      "R0_percent": 37.333,
+      "best_R0_R5_unit_pass": 1344,
+      "best_R0_R5_percent": 74.667
+    }
+  },
+  "wall_seconds": 3.19,
+  "throughput": {
+    "unique_answers": 2648,
+    "summed_worker_seconds": 1883.449,
+    "unique_answers_per_worker_second": 1.406
+  },
+  "timeout_recheck": {
+    "answers": 25,
+    "unique_answers": 16,
+    "wall_seconds": 75.081,
+    "stage_or_unit_changes": [],
+    "note": "Timeouts rechecked with no competing audit or test processes."
+  },
+  "timing_note": "Wall time below is cached summary generation after timeout rechecks. The final resumed replay took 94.713 seconds; prior cached validations are included in summed worker time. See throughput-summary.json for an uncached warm measurement.",
+  "final_resume_wall_seconds": 94.713
+}
