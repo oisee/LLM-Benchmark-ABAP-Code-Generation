@@ -6,7 +6,7 @@
     {
       "task": "10.txt",
       "stage": "unit",
-      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_010', 'type': 'E', 'short_text': 'Z_HUMANEVAL_010: running lt_test->test_empty_string\\nZ_HUMANEVAL_010: running lt_test->test_single_char\\nZ_HUMANEVAL_010: running lt_test->test_non_palindrome\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async cl_aunit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_aunit_assert.clas.mjs:34:27)\\n    at async #test_non_palindrome (file://<validator>/.runs/answer-44-PWDs0K/z_humaneval_010.clas.testclasses.mjs:37:5)\\n    at async run (file://<validator>/.runs/answer-44-PWDs0K/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 6,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: \\'xyz\\', qualifiedName: \\'STRING\\' },\\n  expected: String { value: \\'xyzyx\\', qualifiedName: \\'STRING\\' },\\n  msg: String {\\n    value: \"Expected \\'xyzyx\\', got \\'xyz\\'\",\\n    qualifiedName: \\'STRING\\'\\n  },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
+      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_010', 'type': 'E', 'short_text': 'Z_HUMANEVAL_010: running lt_test->test_empty_string\\nZ_HUMANEVAL_010: running lt_test->test_single_char\\nZ_HUMANEVAL_010: running lt_test->test_non_palindrome\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async cl_aunit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_aunit_assert.clas.mjs:34:27)\\n    at async #test_non_palindrome (file://<validator>/.runs/answer-2106891-zOkRzO/z_humaneval_010.clas.testclasses.mjs:37:5)\\n    at async run (file://<validator>/.runs/answer-2106891-zOkRzO/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 6,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: \\'xyz\\', qualifiedName: \\'STRING\\' },\\n  expected: String { value: \\'xyzyx\\', qualifiedName: \\'STRING\\' },\\n  msg: String {\\n    value: \"Expected \\'xyzyx\\', got \\'xyz\\'\",\\n    qualifiedName: \\'STRING\\'\\n  },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
     },
     {
       "task": "20.txt",
@@ -16,22 +16,22 @@
     {
       "task": "32.txt",
       "stage": "unit",
-      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_032', 'type': 'E', 'short_text': \"Z_HUMANEVAL_032: running ltcl_test_z_humaneval_032->test_case_1\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_true (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:293:32)\\n    at #test_case_1 (file://<validator>/.runs/answer-36-iurO5T/z_humaneval_032.clas.testclasses.mjs:87:47)\\n    at async run (file://<validator>/.runs/answer-36-iurO5T/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 4,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: 'CX_ROOT',\\n    RTTIName: '\\\\\\\\CLASS=CX_ROOT'\\n  },\\n  textid: Character {\\n    value: '                                ',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: '                              ',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: 'CHAR30', ddicName: 'CHAR30', description: '' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: '', qualifiedName: 'STRING' },\\n  expected: String { value: '', qualifiedName: 'STRING' },\\n  msg: String { value: 'Expected abap_true', qualifiedName: 'STRING' },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: 'cl_abap_unit_assert.clas.abap',\\n    INTERNAL_LINE: 347\\n  }\\n}\\n\"}]\n Try to fix the class, not the unit test."
+      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_032', 'type': 'E', 'short_text': \"Z_HUMANEVAL_032: running ltcl_test_z_humaneval_032->test_case_1\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_true (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:293:32)\\n    at #test_case_1 (file://<validator>/.runs/answer-2106891-911Kg6/z_humaneval_032.clas.testclasses.mjs:87:47)\\n    at async run (file://<validator>/.runs/answer-2106891-911Kg6/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 4,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: 'CX_ROOT',\\n    RTTIName: '\\\\\\\\CLASS=CX_ROOT'\\n  },\\n  textid: Character {\\n    value: '                                ',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: '                              ',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: 'CHAR30', ddicName: 'CHAR30', description: '' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: '', qualifiedName: 'STRING' },\\n  expected: String { value: '', qualifiedName: 'STRING' },\\n  msg: String { value: 'Expected abap_true', qualifiedName: 'STRING' },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: 'cl_abap_unit_assert.clas.abap',\\n    INTERNAL_LINE: 347\\n  }\\n}\\n\"}]\n Try to fix the class, not the unit test."
     },
     {
       "task": "71.txt",
       "stage": "unit",
-      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_071', 'type': 'E', 'short_text': 'Z_HUMANEVAL_071: running ltcl_triangle_area_test->test_case_1\\nError: round(), todo, handle decimals\\n    at Object.round (<validator>/node_modules/@abaplint/runtime/build/src/builtin/round.js:17:15)\\n    at z_humaneval_071.triangle_area (file://<validator>/.runs/answer-36-bVFiGA/z_humaneval_071.clas.mjs:42:29)\\n    at #test_case_1 (file://<validator>/.runs/answer-36-bVFiGA/z_humaneval_071.clas.testclasses.mjs:40:55)\\n    at run (file://<validator>/.runs/answer-36-bVFiGA/run.mjs:36:51)\\n'}]\n Try to fix the class, not the unit test."
+      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_071', 'type': 'E', 'short_text': 'Z_HUMANEVAL_071: running ltcl_triangle_area_test->test_case_1\\nError: round(), todo, handle decimals\\n    at Object.round (<validator>/node_modules/@abaplint/runtime/build/src/builtin/round.js:17:15)\\n    at z_humaneval_071.triangle_area (file://<validator>/.runs/answer-2106890-sOc8c5/z_humaneval_071.clas.mjs:42:29)\\n    at #test_case_1 (file://<validator>/.runs/answer-2106890-sOc8c5/z_humaneval_071.clas.testclasses.mjs:40:55)\\n    at run (file://<validator>/.runs/answer-2106890-sOc8c5/run.mjs:36:51)\\n'}]\n Try to fix the class, not the unit test."
     },
     {
       "task": "73.txt",
       "stage": "unit",
-      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_073', 'type': 'E', 'short_text': 'Z_HUMANEVAL_073: running ltcl_test_smallest_change->test_case_1\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async #test_case_1 (file://<validator>/.runs/answer-47-CLrJ6L/z_humaneval_073.clas.testclasses.mjs:41:5)\\n    at async run (file://<validator>/.runs/answer-47-CLrJ6L/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 4,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: \\'0\\', qualifiedName: \\'STRING\\' },\\n  expected: String { value: \\'4\\', qualifiedName: \\'STRING\\' },\\n  msg: String { value: \"Expected \\'4\\', got \\'0\\'\", qualifiedName: \\'STRING\\' },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
+      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_073', 'type': 'E', 'short_text': 'Z_HUMANEVAL_073: running ltcl_test_smallest_change->test_case_1\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async #test_case_1 (file://<validator>/.runs/answer-2106896-xAGDK2/z_humaneval_073.clas.testclasses.mjs:41:5)\\n    at async run (file://<validator>/.runs/answer-2106896-xAGDK2/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 4,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: \\'0\\', qualifiedName: \\'STRING\\' },\\n  expected: String { value: \\'4\\', qualifiedName: \\'STRING\\' },\\n  msg: String { value: \"Expected \\'4\\', got \\'0\\'\", qualifiedName: \\'STRING\\' },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
     },
     {
       "task": "132.txt",
       "stage": "unit",
-      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_132', 'type': 'E', 'short_text': 'Z_HUMANEVAL_132: running test_z_humaneval_132->test_case_1\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async #test_case_1 (file://<validator>/.runs/answer-42-di9bDk/z_humaneval_132.clas.testclasses.mjs:49:5)\\n    at async run (file://<validator>/.runs/answer-42-di9bDk/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 4,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: \\'\\', qualifiedName: \\'STRING\\' },\\n  expected: String { value: \\'X\\', qualifiedName: \\'STRING\\' },\\n  msg: String { value: \"Expected \\'X\\', got \\'\\'\", qualifiedName: \\'STRING\\' },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
+      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_132', 'type': 'E', 'short_text': 'Z_HUMANEVAL_132: running test_z_humaneval_132->test_case_1\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async #test_case_1 (file://<validator>/.runs/answer-2106891-sRMHFK/z_humaneval_132.clas.testclasses.mjs:49:5)\\n    at async run (file://<validator>/.runs/answer-2106891-sRMHFK/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 4,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: \\'\\', qualifiedName: \\'STRING\\' },\\n  expected: String { value: \\'X\\', qualifiedName: \\'STRING\\' },\\n  msg: String { value: \"Expected \\'X\\', got \\'\\'\", qualifiedName: \\'STRING\\' },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
     },
     {
       "task": "162.txt",
@@ -42,7 +42,7 @@
     {
       "task": "erp_001.txt",
       "stage": "unit",
-      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': 'Z_HUMANEVAL_ERP_001: running ltcl_test_find_employees->test_employees_wo_subordinates\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async cl_abap_unit_assert.compare_tables (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:96:9)\\n    at async cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:368:7)\\n    at async #test_employees_wo_subordinates (file://<validator>/.runs/answer-49-EbvdOA/z_humaneval_erp_001.clas.testclasses.mjs:110:5)\\n    at async run (file://<validator>/.runs/answer-49-EbvdOA/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 10,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String {\\n    value: \\'Anna                                                                            \\',\\n    qualifiedName: \\'STRING\\'\\n  },\\n  expected: String { value: \\'Anna\\', qualifiedName: \\'STRING\\' },\\n  msg: String {\\n    value: \"Expected \\'Anna\\', got \\'Anna                                                                            \\'\",\\n    qualifiedName: \\'STRING\\'\\n  },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
+      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': 'Z_HUMANEVAL_ERP_001: running ltcl_test_find_employees->test_employees_wo_subordinates\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async cl_abap_unit_assert.compare_tables (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:96:9)\\n    at async cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:368:7)\\n    at async #test_employees_wo_subordinates (file://<validator>/.runs/answer-2106890-73OXdq/z_humaneval_erp_001.clas.testclasses.mjs:110:5)\\n    at async run (file://<validator>/.runs/answer-2106890-73OXdq/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 10,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String {\\n    value: \\'Anna                                                                            \\',\\n    qualifiedName: \\'STRING\\'\\n  },\\n  expected: String { value: \\'Anna\\', qualifiedName: \\'STRING\\' },\\n  msg: String {\\n    value: \"Expected \\'Anna\\', got \\'Anna                                                                            \\'\",\\n    qualifiedName: \\'STRING\\'\\n  },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
     },
     {
       "task": "erp_005.txt",
@@ -114,7 +114,7 @@
       "expected_stage_hits": 162
     },
     "flipped_comparison": {
-      "total": 129,
+      "total": 128,
       "killed": 128,
       "expected_stage": "unit",
       "expected_stage_hits": 128
@@ -126,7 +126,7 @@
       "expected_stage_hits": 160
     },
     "off_by_one": {
-      "total": 58,
+      "total": 53,
       "killed": 53,
       "expected_stage": "unit",
       "expected_stage_hits": 53
@@ -144,53 +144,10 @@
       "expected_stage_hits": 3
     }
   },
-  "mutant_total": 679,
+  "mutant_total": 673,
   "mutant_killed": 673,
-  "kill_rate": 0.9911634756995582,
-  "unexpected_stages_or_survivors": [
-    {
-      "task": "40.txt",
-      "kind": "off_by_one",
-      "expected": "unit",
-      "actual": null,
-      "message": ""
-    },
-    {
-      "task": "43.txt",
-      "kind": "off_by_one",
-      "expected": "unit",
-      "actual": null,
-      "message": ""
-    },
-    {
-      "task": "69.txt",
-      "kind": "off_by_one",
-      "expected": "unit",
-      "actual": null,
-      "message": ""
-    },
-    {
-      "task": "147.txt",
-      "kind": "off_by_one",
-      "expected": "unit",
-      "actual": null,
-      "message": ""
-    },
-    {
-      "task": "153.txt",
-      "kind": "flipped_comparison",
-      "expected": "unit",
-      "actual": null,
-      "message": ""
-    },
-    {
-      "task": "160.txt",
-      "kind": "off_by_one",
-      "expected": "unit",
-      "actual": null,
-      "message": ""
-    }
-  ],
+  "kill_rate": 1.0,
+  "unexpected_stages_or_survivors": [],
   "dataset_weaknesses": [
     {
       "task": "21.txt",
@@ -213,11 +170,41 @@
       "reason": "No assertion in unit test"
     }
   ],
-  "wall_seconds": 100.025,
-  "red": true,
+  "equivalent_mutants": [
+    {
+      "task": "40.txt",
+      "kind": "off_by_one",
+      "reason": "extra outer DO pass has i = len + 1, so both inner WHILE loops start past len and do nothing"
+    },
+    {
+      "task": "43.txt",
+      "kind": "off_by_one",
+      "reason": "extra outer DO pass has i = size + 1, so the inner WHILE starts past size and does nothing"
+    },
+    {
+      "task": "69.txt",
+      "kind": "off_by_one",
+      "reason": "first DO only pre-fills frq; one extra trailing 0 is never read (reads stop at max_val + 1)"
+    },
+    {
+      "task": "147.txt",
+      "kind": "off_by_one",
+      "reason": "first DO builds a; one extra element at index n + 1 is never read (indices stay <= n)"
+    },
+    {
+      "task": "153.txt",
+      "kind": "flipped_comparison",
+      "reason": "flip only lowers the initial my_val of extensions[1]; the LOOP recomputes extensions[1] with the unmutated test first and restores the original state"
+    },
+    {
+      "task": "160.txt",
+      "kind": "off_by_one",
+      "reason": "DO 2 -> DO 3: the third pass matches no WHEN of CASE sy-index and does nothing"
+    }
+  ],
+  "wall_seconds": 204.324,
+  "red": false,
   "new_validations": 863,
   "timing_note": "Wall time includes verdict-cache reuse; see throughput-summary.json for uncached validation throughput.",
-  "red_reasons": [
-    "6 mutants survive or fail at the wrong stage"
-  ]
+  "red_reasons": []
 }

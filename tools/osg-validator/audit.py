@@ -163,6 +163,19 @@ def mutants(task, source):
             yield 'wrong_field', 'syntax', source[:a]+'osg_missing_field'+source[b:]
 
 
+# Mutants proved equivalent by reading the canonical solution (reviewed by hand, 2026-10-24): no input can tell
+# them from the original, so they say nothing about the tests and stay outside the kill-rate denominator. Only a
+# mutant that still passes is moved here; if one of these starts failing, it is counted again as usual.
+EQUIVALENT = {
+    ('40.txt', 'off_by_one'): 'extra outer DO pass has i = len + 1, so both inner WHILE loops start past len and do nothing',
+    ('43.txt', 'off_by_one'): 'extra outer DO pass has i = size + 1, so the inner WHILE starts past size and does nothing',
+    ('69.txt', 'off_by_one'): 'first DO only pre-fills frq; one extra trailing 0 is never read (reads stop at max_val + 1)',
+    ('147.txt', 'off_by_one'): 'first DO builds a; one extra element at index n + 1 is never read (indices stay <= n)',
+    ('153.txt', 'flipped_comparison'): 'flip only lowers the initial my_val of extensions[1]; the LOOP recomputes extensions[1] with the unmutated test first and restores the original state',
+    ('160.txt', 'off_by_one'): 'DO 2 -> DO 3: the third pass matches no WHEN of CASE sy-index and does nothing',
+}
+
+
 def gate(audit):
     sources = {task_name(p):p.read_text() for p in sorted((ROOT/'dataset/abap_canonical_solution').glob('*.abap'))}
     initial_requests=audit.requests
@@ -187,8 +200,12 @@ def gate(audit):
     kinds={}
     survivors=[]
     weaknesses=[]
+    equivalent=[]
     for ident,task,_,kind,stage in cases:
         v=killed[ident]; actual=v.get('osg_stage') or v['error_stage']
+        if v['unit_pass'] and (task,kind) in EQUIVALENT:
+            equivalent.append({'task':task,'kind':kind,'reason':EQUIVALENT[(task,kind)]})
+            continue
         if v['unit_pass'] and task in ('21.txt','34.txt') and kind in ('flipped_comparison','result_not_assigned'):
             weaknesses.append({'task':task,'kind':kind,'reason':'No cardinality assertion; empty result accepted' if task=='21.txt' else 'No assertion in unit test'})
             continue
@@ -201,7 +218,7 @@ def gate(audit):
     red |= any(kinds.get(k,{}).get('killed',0)!=kinds.get(k,{}).get('total',0) for k in ['syntax_break','unknown_type'])
     # Every mutant must also fail at its expected stage.
     red |= bool(survivors)
-    result={'canonical_total':len(sources),'canonical_pass':len(eligible),'canonical_fail':len(excluded),'excluded':excluded,'mutants':kinds,'mutant_total':total,'mutant_killed':dead,'kill_rate':dead/max(total,1),'unexpected_stages_or_survivors':survivors,'dataset_weaknesses':weaknesses,'wall_seconds':round(time.monotonic()-started,3),'red':bool(red)}
+    result={'canonical_total':len(sources),'canonical_pass':len(eligible),'canonical_fail':len(excluded),'excluded':excluded,'mutants':kinds,'mutant_total':total,'mutant_killed':dead,'kill_rate':dead/max(total,1),'unexpected_stages_or_survivors':survivors,'dataset_weaknesses':weaknesses,'equivalent_mutants':equivalent,'wall_seconds':round(time.monotonic()-started,3),'red':bool(red)}
     result['new_validations']=audit.requests-initial_requests
     result['timing_note']='Wall time includes verdict-cache reuse; see throughput-summary.json for uncached validation throughput.'
     result['red_reasons']=[]

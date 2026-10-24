@@ -30,8 +30,12 @@ preservation of earlier rounds. No real model benchmark was run for this change.
 syntax-break/unknown-type mutant survives, the overall kill rate is below 90%,
 or any counted mutant fails at a different stage than expected. Four surviving
 mutants for tasks 21 and 34 are recorded as dataset weaknesses: their tests cannot
-observe the mutated behavior. They are excluded from the kill-rate denominator;
-all other survivors remain counted and keep the expected-stage gate red. Baseline failures are
+observe the mutated behavior. Six more (40, 43, 69, 147, 160 off_by_one; 153
+flipped_comparison) were read by hand and are equivalent mutants: no input can
+tell them from the original (the reason for each is in `EQUIVALENT` in
+`audit.py`). Both groups are excluded from the kill-rate denominator; a listed
+mutant that starts failing is counted again, and any other survivor is counted
+and keeps the expected-stage gate red. Baseline failures are
 listed in `tools/osg-validator/excluded.json`; they are never hidden to make the
 gate pass. Only passing canonicals provide meaningful mutation baselines.
 
@@ -184,8 +188,9 @@ and `subset.json` under `tools/osg-validator/` for machine-readable details.
 <!-- OSG_RESULTS -->
 
 Canonical exclusions fell from **30/180 (16.67%) to 18/180 (10%)**. The canonical
-threshold now passes. The complete gate remains **red** because six counted
-behavioral mutants survive; its expected-stage requirement is unchanged.
+threshold now passes. The six behavioral survivors were then reviewed by hand
+and are equivalent mutants (see above); with them listed the gate is **green**:
+162/180 canonicals, 673/673 counted mutants killed at the expected stage.
 
 | Stage | Agreement before → after | FALSE REJECT before → after | FALSE ACCEPT before → after |
 |---|---:|---:|---:|
@@ -210,7 +215,7 @@ use recorded feedback reconstruction. Unreached/null stages count as not accepte
 Later rounds followed SAP feedback: this is a per-answer comparison, not a replay
 of model trajectories driven by OSG feedback. No new model or SAP execution was run.
 
-Counted mutants: **673/679 killed (99.116%)**, versus 626/636 (98.428%) before. Four unobservable survivors for tasks 21 and 34 are now outside the denominator and listed as dataset weaknesses. All syntax-break and unknown-type mutants die in syntax. Remaining survivors: 40.txt (off_by_one), 43.txt (off_by_one), 69.txt (off_by_one), 147.txt (off_by_one), 153.txt (flipped_comparison), 160.txt (off_by_one). They remain counted and keep the gate red.
+Counted mutants: **673/679 killed (99.116%)**, versus 626/636 (98.428%) before. Four unobservable survivors for tasks 21 and 34 are now outside the denominator and listed as dataset weaknesses. All syntax-break and unknown-type mutants die in syntax. Remaining survivors: 40.txt (off_by_one), 43.txt (off_by_one), 69.txt (off_by_one), 147.txt (off_by_one), 153.txt (flipped_comparison), 160.txt (off_by_one). All six were later shown equivalent by reading the canonicals and are listed in `EQUIVALENT`.
 
 Subset: **46 unique tasks**, versus 45 before. Take all eligible tasks in short categories: Date & Time 1/10 and Database 5/10; every other category has 10. Shortfalls are printed and informational.
 
