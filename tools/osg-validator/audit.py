@@ -44,10 +44,12 @@ class Audit:
         self.db = sqlite3.connect(output / 'answers.sqlite', timeout=120)
         self.db.execute('PRAGMA journal_mode=WAL')
         self.db.execute('CREATE TABLE IF NOT EXISTS answers (key TEXT PRIMARY KEY, value TEXT)')
-        engine_files = ('bootstrap.mjs', 'ddl.mjs', 'engine.mjs', 'worker.mjs', 'feedback.mjs')
+        engine_files = ('bootstrap.mjs', 'ddl.mjs', 'engine.mjs', 'worker.mjs', 'feedback.mjs', 'package-lock.json')
         engine = b''.join((ROOT / 'tools/osg-validator' / name).read_bytes() for name in engine_files)
         engine += b''.join(p.read_bytes() for p in sorted((ROOT / 'tools/osg-validator/compat').glob('*')) if p.is_file())
         engine += (ROOT / 'src/osg_validator.py').read_bytes()
+        engine += (ROOT / 'src/abap_interaction.py').read_bytes()
+        engine += b''.join(p.name.encode() + p.read_bytes() for p in sorted((ROOT / 'dataset/abap_tables').glob('*.abap')))
         self.fingerprint = hashlib.sha256(engine).hexdigest()
         self.requests = self.cached = 0
 
@@ -179,6 +181,7 @@ EQUIVALENT = {
 def gate(audit):
     sources = {task_name(p):p.read_text() for p in sorted((ROOT/'dataset/abap_canonical_solution').glob('*.abap'))}
     initial_requests=audit.requests
+    initial_cached=audit.cached
     started=time.monotonic()
     verdicts=audit.run([(t,t,s) for t,s in sources.items()])
     excluded=[{'task':t,'stage':v.get('osg_stage') or v['error_stage'],'message':v['error_message']} for t,v in verdicts.items() if not v['unit_pass']]
@@ -220,7 +223,8 @@ def gate(audit):
     red |= bool(survivors)
     result={'canonical_total':len(sources),'canonical_pass':len(eligible),'canonical_fail':len(excluded),'excluded':excluded,'mutants':kinds,'mutant_total':total,'mutant_killed':dead,'kill_rate':dead/max(total,1),'unexpected_stages_or_survivors':survivors,'dataset_weaknesses':weaknesses,'equivalent_mutants':equivalent,'wall_seconds':round(time.monotonic()-started,3),'red':bool(red)}
     result['new_validations']=audit.requests-initial_requests
-    result['timing_note']='Wall time includes verdict-cache reuse; see throughput-summary.json for uncached validation throughput.'
+    result['cached_validations']=audit.cached-initial_cached
+    result['timing_note']=('Wall time includes verdict-cache reuse.' if result['cached_validations'] else 'All validations were fresh; no verdict-cache reuse.')
     result['red_reasons']=[]
     if len(excluded)>len(sources)*.1:result['red_reasons'].append(f'{len(excluded)}/{len(sources)} canonical failures exceeds the 10% limit')
     if dead/max(total,1)<.9:result['red_reasons'].append('Overall mutation kill rate below 90%')

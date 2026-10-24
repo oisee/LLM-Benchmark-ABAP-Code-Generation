@@ -1,0 +1,59 @@
+{
+  "checks": [
+    {
+      "mutant": "lost-worker-ownership",
+      "test": "test_compiler_crash_cleans_runtime_before_replacement",
+      "control_passed": true,
+      "detected": true
+    },
+    {
+      "mutant": "no-retries",
+      "test": "test_startup_failure_retries_bounded_without_verdict",
+      "control_passed": true,
+      "detected": true
+    },
+    {
+      "mutant": "fabricated-eof-verdict",
+      "test": "test_persistent_crash_retains_known_stages",
+      "control_passed": true,
+      "detected": true
+    },
+    {
+      "mutant": "discard-progress",
+      "test": "test_persistent_crash_retains_known_stages",
+      "control_passed": true,
+      "detected": true
+    },
+    {
+      "mutant": "consume-round",
+      "test": "test_runner_checkpoints_without_feedback_or_next_request",
+      "control_passed": true,
+      "detected": true
+    },
+    {
+      "mutant": "wrong-infra-marker",
+      "test": "test_benchmark_seam_uses_infra_retry_state",
+      "control_passed": true,
+      "detected": true
+    },
+    {
+      "mutant": "old-verdict-key",
+      "test": "test_verdict_fingerprint_covers_all_inputs",
+      "control_passed": true,
+      "detected": true
+    },
+    {
+      "mutant": "scrub-values",
+      "test": "test_value_paths_and_truncation",
+      "control_passed": true,
+      "detected": true
+    },
+    {
+      "mutant": "ignore-ddl-and-lock",
+      "test": "compiled cache changes for every DDL input and dependency lock",
+      "control_passed": true,
+      "detected": true
+    }
+  ],
+  "all_detected": true
+}

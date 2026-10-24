@@ -17,31 +17,46 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 
 
+class InfrastructureError(RuntimeError):
+    """No answer verdict is available; retain any stages already observed."""
+    def __init__(self, message, progress=None):
+        super().__init__(message)
+        self.progress = dict(progress or {})
+        self.tier = None
+
+
 class OsgClient:
-    def __init__(self):
+    def __init__(self, retries=2):
         self.process = None
         self.responses = queue.Queue()
         self.progress = {}
         self.threads = []
+        self.retries = retries
         atexit.register(self.close)
 
     def close(self):
-        if self.process is not None:
+        process = self.process
+        if process is not None:
             try:
-                os.killpg(self.process.pid, signal.SIGKILL)
+                os.killpg(process.pid, signal.SIGKILL)
             except ProcessLookupError:
                 pass
-            self.process.wait()
+            process.wait()
+            # Killing the entire group closes inherited pipes too. Join readers
+            # before releasing ownership or removing their scratch directories.
             for thread in self.threads:
-                thread.join(timeout=2)
-            for stream in (self.process.stdin, self.process.stdout, self.process.stderr):
+                thread.join()
+            for stream in (process.stdin, process.stdout, process.stderr):
                 stream.close()
-            for directory in (ROOT / "tools/osg-validator/.runs").glob(f"answer-{self.process.pid}-*"):
-                shutil.rmtree(directory, ignore_errors=True)
+            for directory in (ROOT / "tools/osg-validator/.runs").glob(f"answer-{process.pid}-*"):
+                shutil.rmtree(directory)
             self.process = None
+            self.threads = []
 
     def _start(self):
+        self.close()
         self.responses = queue.Queue()
+        self.progress = {}
         self.process = subprocess.Popen(
             ["node", "--max-old-space-size=1024", str(ROOT / "tools/osg-validator/worker.mjs")],
             cwd=ROOT, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
@@ -49,24 +64,23 @@ class OsgClient:
             # Do not pass model/SAP credentials to compiler or generated code.
             env={"PATH": os.environ["PATH"]},
         )
-        process, responses = self.process, self.responses
+        process, responses, progress = self.process, self.responses, self.progress
 
         def read_results():
             for line in process.stdout:
                 try:
                     responses.put(json.loads(line))
                 except ValueError:
-                    continue
-            responses.put({"stage": "unit", "unit": False,
-                           "errors": ["Validator worker terminated (memory cap or initialization failure)"]})
+                    responses.put({"infrastructure_error": "Invalid validator JSON response"})
+            responses.put({"infrastructure_error": "Validator worker terminated (startup or compiler failure)"})
 
         def read_progress():
             for line in process.stderr:
                 try:
                     event = json.loads(line)
-                    if "progress" in event:
-                        self.progress = event["progress"]
-                except ValueError:
+                    if isinstance(event.get("progress"), dict):
+                        progress.update(event["progress"])
+                except (ValueError, AttributeError):
                     pass
 
         self.threads = [threading.Thread(target=read_results, daemon=True),
@@ -74,34 +88,55 @@ class OsgClient:
         for thread in self.threads:
             thread.start()
 
-    def validate(self, name, source, tests):
-        if self.process is None or self.process.poll() is not None:
-            self._start()
-        self.progress = {}
+    def _validate_once(self, name, source, tests):
         start = time.monotonic()
-        self.process.stdin.write(json.dumps({"name": name, "source": source, "tests": tests}) + "\n")
-        self.process.stdin.flush()
-        while True:
-            try:
-                result = self.responses.get(timeout=0.1)
-                break
-            except queue.Empty:
-                reason = None
-                if time.monotonic() - start >= 90:
-                    reason = "Validator exceeded 90 s wall timeout"
+        try:
+            if self.process is None or self.process.poll() is not None:
+                self._start()
+            self.progress.clear()
+            self.process.stdin.write(json.dumps({"name": name, "source": source, "tests": tests}) + "\n")
+            self.process.stdin.flush()
+            while True:
                 try:
-                    status = Path(f"/proc/{self.process.pid}/status").read_text()
-                    rss = next(int(line.split()[1]) for line in status.splitlines() if line.startswith("VmRSS:"))
-                    if rss > 1536 * 1024:
-                        reason = "Validator exceeded 1536 MiB resident memory cap"
-                except (OSError, StopIteration):
-                    pass
-                if reason:
-                    self.close()
-                    result = {**self.progress, "stage": "unit", "unit": False, "errors": [reason]}
-                    break
-        result["elapsed_seconds"] = round(time.monotonic() - start, 4)
-        return result
+                    result = self.responses.get(timeout=0.1)
+                    if not isinstance(result, dict):
+                        raise InfrastructureError("Invalid validator response")
+                    if result.get("infrastructure_error"):
+                        raise InfrastructureError(result["infrastructure_error"])
+                    stage = result.get("stage")
+                    if stage not in (None, "syntax", "activation", "unit_syntax", "unit") or not all(
+                        result.get(key) in (True, False, None) for key in ("syntax", "activation", "unit_syntax", "unit")
+                    ) or (stage is None and result.get("unit") is not True) or (
+                        stage is not None and result.get(stage) is not False
+                    ):
+                        raise InfrastructureError("Invalid validator verdict protocol")
+                    result["elapsed_seconds"] = round(time.monotonic() - start, 4)
+                    return result
+                except queue.Empty:
+                    if time.monotonic() - start >= 90:
+                        raise InfrastructureError("Validator exceeded 90 s wall timeout")
+                    try:
+                        status = Path(f"/proc/{self.process.pid}/status").read_text()
+                        rss = next(int(line.split()[1]) for line in status.splitlines() if line.startswith("VmRSS:"))
+                        if rss > 1536 * 1024:
+                            raise InfrastructureError("Compiler exceeded 1536 MiB resident memory cap")
+                    except (OSError, StopIteration):
+                        pass
+        except (OSError, ValueError, InfrastructureError) as exc:
+            self.close()
+            raise InfrastructureError(str(exc), self.progress) from exc
+
+    def validate(self, name, source, tests):
+        known = {}
+        for attempt in range(self.retries + 1):
+            try:
+                return self._validate_once(name, source, tests)
+            except InfrastructureError as exc:
+                known.update({k: v for k, v in exc.progress.items() if v is not None})
+                if attempt == self.retries:
+                    raise InfrastructureError(
+                        f"OSG infrastructure failure after {attempt + 1} attempts: {exc}", known
+                    ) from exc
 
 
 def evaluate(client, prompt_file, source, canonicalize=True):
@@ -123,7 +158,15 @@ def evaluate(client, prompt_file, source, canonicalize=True):
         match = re.search(r"CLASS\s+(\w+)\s+DEFINITION", source, re.I)
         if match:
             source = re.sub(rf"\b{re.escape(match[1])}\b", contract["class_name"], source, flags=re.I)
-    result = client.validate(contract["class_name"], source, (ROOT / contract["unittest_file"]).read_text())
+    try:
+        result = client.validate(contract["class_name"], source, (ROOT / contract["unittest_file"]).read_text())
+    except InfrastructureError as exc:
+        for key, field in (("syntax", "sap_syntax_pass"), ("activation", "sap_activation_pass"),
+                           ("unit_syntax", "unit_syntax_pass"), ("unit", "unit_pass")):
+            tier[field] = exc.progress.get(key)
+        tier.update(error_stage="infra", error_message=str(exc))
+        exc.tier = tier
+        raise
     tier.update(sap_syntax_pass=result.get("syntax"), sap_activation_pass=result.get("activation"),
                 unit_syntax_pass=result.get("unit_syntax"), unit_pass=result.get("unit"),
                 osg_stage=result.get("stage"), elapsed_seconds=result.get("elapsed_seconds"),
@@ -171,7 +214,11 @@ def run_single_prompt(client, prompt_file, chats, canonicalize, model_name):
         if not chat or chat[-1]["role"] != "assistant":
             continue
         round_number = get_round_number(chat)
-        tier, feedback = evaluate(client, prompt_file, chat[-1]["content"], canonicalize)
+        try:
+            tier, feedback = evaluate(client, prompt_file, chat[-1]["content"], canonicalize)
+        except InfrastructureError as exc:
+            from chat_state import INFRA_FEEDBACK_PREFIX
+            tier, feedback = exc.tier, f"{INFRA_FEEDBACK_PREFIX}: {exc}"
         chat.append({"role": "user", "content": feedback})
         tiers[i][f"round_{round_number}"] = tier
     return chats, tiers

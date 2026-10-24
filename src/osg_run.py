@@ -12,7 +12,7 @@ import re
 
 from generate_llm_answers import SYSTEM_PROMPT
 from generate_llm_answers_openai_direct import ask_openai_direct
-from osg_validator import OsgClient, ROOT, evaluate
+from osg_validator import InfrastructureError, OsgClient, ROOT, evaluate
 import openai
 
 
@@ -60,7 +60,13 @@ async def run(args):
                         code = await ask_openai_direct(client, model, chat, request_metadata=metadata, force_temperature=True)
                         round_results[f'round_{round_number}'] = metadata
                         chat.append({'role':'assistant','content':code})
-                        tier, feedback = evaluate(validator, task, code)
+                        try:
+                            tier, feedback = evaluate(validator, task, code)
+                        except InfrastructureError as exc:
+                            # Save the answer and observed stages, with no model feedback.
+                            # Its assistant tail remains NeedsSAPTest for the resume CLI.
+                            result[f'round_{round_number}'] = exc.tier
+                            raise
                         chat.append({'role':'user','content':feedback})
                         result[f'round_{round_number}'] = tier
                         for dest,data in [(out,conversations),(tiers_out,tiers),(result_out,results)]:
@@ -68,7 +74,13 @@ async def run(args):
                         if tier['unit_pass']:
                             break
     finally:
-        validator.close()
+        try:
+            for dest, data in [(out, conversations), (tiers_out, tiers), (result_out, results)]:
+                tmp = dest.with_suffix('.tmp')
+                tmp.write_text(json.dumps(data, indent=2))
+                tmp.replace(dest)
+        finally:
+            validator.close()
 
 
 def main():

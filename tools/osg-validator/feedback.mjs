@@ -5,6 +5,10 @@ export function safeText(value) {
     .replace(/(?:file:\/\/\/|\/)[\w.@%+\-/]+\.(?:m?js|abap)(?::\d+(?::\d+)?)?/g,'<source>')
     .replace(/(?:\/[^\s:'"<>]+){2,}/g,'<source>').slice(0,2500);
 }
+function displayValue(value) {
+  const text=String(value);
+  return text.length>2500 ? text.slice(0,2500)+'[truncated]' : text;
+}
 export function abapValue(value, depth = 0) {
   if (depth > 8) return '...';
   if (value == null) return '';
@@ -18,7 +22,7 @@ export function abapValue(value, depth = 0) {
   if (value.get) return abapValue(value.get(),depth+1);
   if (typeof value === 'object') return Object.values(value).map(v=>abapValue(v,depth+1)).join(', ');
   // ABAP booleans remain X/space; character padding and NUMC zeroes are preserved.
-  return typeof value==='string' && /^ +$/.test(value) ? '' : safeText(value);
+  return typeof value==='string' && /^ +$/.test(value) ? '' : displayValue(value);
 }
 function dereference(v) {return v?.getPointer ? dereference(v.getPointer()) : v;}
 function rowInfo(row) {

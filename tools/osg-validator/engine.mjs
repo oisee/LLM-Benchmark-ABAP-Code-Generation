@@ -16,13 +16,20 @@ export const clean = safeText;
 function files(dir) {
   return fs.readdirSync(dir,{withFileTypes:true}).flatMap(f=>f.isDirectory()?files(path.join(dir,f.name)):[path.join(dir,f.name)]);
 }
+export function compiledFingerprint(library, ddl, lock) {
+  return createHash('sha256').update(JSON.stringify([library,ddl,lock,
+    fs.readFileSync(new URL('./ddl.mjs',import.meta.url),'utf8'),
+    fs.readFileSync(new URL('./engine.mjs',import.meta.url),'utf8')])).digest('hex').slice(0,16);
+}
 export async function createEngine({compat = true} = {}) {
   bootstrap();
   const library = files(path.join(core,'src')).filter(f=>!f.includes('.testclasses.') && /\.(abap|xml)$/.test(f)).map(f=>new lint.MemoryFile(path.basename(f),fs.readFileSync(f,'utf8')));
   if (compat) library.push(...files(path.join(root,'compat')).filter(f=>/\.(abap|xml)$/.test(f)).map(f=>new lint.MemoryFile(path.basename(f),fs.readFileSync(f,'utf8'))));
-  const fingerprint=createHash('sha256').update(library.map(f=>f.getRaw()).join('')).digest('hex').slice(0,16);
   const tableDir = path.resolve(root,'../../dataset/abap_tables');
   const tables = fs.readdirSync(tableDir).filter(f=>f.endsWith('.abap')).map(f=>ddlToTable(fs.readFileSync(path.join(tableDir,f),'utf8')));
+  const fingerprint=compiledFingerprint(library.map(f=>[f.getFilename(),f.getRaw()]),
+    fs.readdirSync(tableDir).filter(f=>f.endsWith('.abap')).sort().map(f=>[f,fs.readFileSync(path.join(tableDir,f),'utf8')]),
+    fs.readFileSync(path.join(root,'package-lock.json'),'utf8'));
   // Compile the immutable library once; generated code is never evaluated here.
   const cache = path.join(root,'.cache',`compiled-${revision}-${fingerprint}`);
   if (!fs.existsSync(path.join(cache,'ready.json'))) {
@@ -96,9 +103,10 @@ const failures=[]; let completed=0;`)
             if(Number(status.match(/VmRSS:\s+(\d+)/)?.[1])>384*1024){killedReason='Answer exceeded 384 MiB resident memory cap';child.kill('SIGKILL');}
           } catch {} // Child already exited.
         },100);
-        child.on('error',e=>{clearTimeout(timer);clearInterval(memory);resolve({code:1,output:e.message});});
+        child.on('error',e=>{clearTimeout(timer);clearInterval(memory);resolve({infrastructure_error:e.message});});
         child.on('close',(code,signal)=>{clearTimeout(timer);clearInterval(memory);resolve({code,output:signal?(killedReason || 'Answer terminated by signal '+signal):output});});
       });
+      if(run.infrastructure_error) throw new Error('Runtime startup failure: '+run.infrastructure_error);
       if(run.code!==0) {
         let feedback=[];
         try {feedback=JSON.parse(fs.readFileSync(path.join(dir,'feedback.json'),'utf8'));} catch {}

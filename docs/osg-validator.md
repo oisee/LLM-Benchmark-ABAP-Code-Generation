@@ -13,8 +13,9 @@ then use Node 22 or newer:
 npm ci --prefix tools/osg-validator
 npm run bootstrap --prefix tools/osg-validator
 npm test --prefix tools/osg-validator
-uv run python tools/osg-validator/test_integration.py
+uv run python -m unittest discover -s tools/osg-validator -p 'test_*.py'
 uv run python tools/osg-validator/check_feedback_mutants.py
+uv run python tools/osg-validator/check_recovery_mutants.py
 uv run python tools/osg-validator/audit.py gate
 uv run python tools/osg-validator/audit.py calibrate
 uv run python tools/osg-validator/audit.py subset
@@ -24,7 +25,9 @@ uv run python tools/osg-validator/throughput.py
 The mutation check temporarily changes adapter files and restores them in `finally`;
 run it separately from other local tests. It detects eight deliberate feedback,
 configuration, dry-run and timeout regressions; the compact results are in
-`feedback-mutation-summary.json`.
+`feedback-mutation-summary.json`. The recovery checker uses an isolated temporary
+copy and a passing control for each injected defect; its results are in
+`recovery-mutation-summary.json`.
 
 The integration tests use only a loopback Python HTTP server. It returns a
 canonical solution and then a broken solution through the existing direct OpenAI
@@ -53,8 +56,9 @@ SHA-256 digests. It exits nonzero on a difference or mismatched answer identifie
 
 The tracked JSON files contain compact summaries and at most 20 examples per
 stage and disagreement direction, plus one example per false-accept cause.
-The cache key covers engine source, compatibility contents, the library pin, Python adapter, task,
-answer and unit-test source; audit-only reporting
+The cache key covers engine source, compatibility contents, the library pin,
+dependency lockfile, every table DDL, Python adapter, canonicalization/contract
+extraction code, task, answer and unit-test source; audit-only reporting
 changes can reuse verdicts. Remove the cache to measure a completely fresh run.
 
 ## Select the backend
@@ -156,7 +160,8 @@ All five unit kinds use keys in this exact order:
 `title,kind,severity,stack,details`. Assertion and exception `stack` is the stable
 string `'<Element stack>'`; SAP's `<Element 'stack' at 0x...>` is a Python-client
 artifact, not useful stack content. Runtime/timeout stacks remain `[]`. No JS
-stack frames, dependency object fields or internal paths reach feedback.
+stack frames, dependency object fields or internal execution paths reach diagnostics.
+Assertion values retain their own path and URL content.
 
 Unit execution catches each failing test method and continues, returning one
 entry per failure. Test methods are ordered by name, matching the corpus; setup
@@ -187,7 +192,7 @@ we do not invent a SAP type-error verdict. Generic ABAP exceptions use available
 runtime text (class plus a stable fallback if no meaningful text exists); only the
 recorded missing-row exception has an exactly reconstructed message. Runtime-gap
 messages remain OSG's. Parent wall/memory guards are additional infrastructure
-limits, reported as runtime abortions. These limits still constrain feedback
+limits, retried without an answer verdict; answer runtime limits remain unit failures. These limits still constrain feedback
 comparability despite matching the recorded outer shapes.
 
 ## Toolchain, stages and isolation
@@ -218,7 +223,8 @@ guard, including worker startup/compilation, and kills the process group on expi
 1536 MiB and each runtime child at 384 MiB; V8 heap limits are 1024 and 256 MiB,
 respectively. A V8 heap exhaustion can appear as `SIGABRT`. Limits are per process,
 not a security sandbox against hostile JavaScript. Runtime children inherit only
-`PATH`. Scratch directories are removed after success, failure, or parent timeout.
+`PATH`. Scratch directories are removed after success, failure, parent timeout,
+or compiler death, before any replacement worker starts.
 
 ## Tables and MANDT
 
@@ -316,7 +322,7 @@ use recorded feedback reconstruction. Unreached/null stages count as not accepte
 Later rounds followed SAP feedback: this is a per-answer comparison, not a replay
 of model trajectories driven by OSG feedback. No new model or SAP execution was run.
 
-Counted mutants: **673/679 killed (99.116%)**, versus 626/636 (98.428%) before. Four unobservable survivors for tasks 21 and 34 are now outside the denominator and listed as dataset weaknesses. All syntax-break and unknown-type mutants die in syntax. Remaining survivors: 40.txt (off_by_one), 43.txt (off_by_one), 69.txt (off_by_one), 147.txt (off_by_one), 153.txt (flipped_comparison), 160.txt (off_by_one). All six were later shown equivalent by reading the canonicals and are listed in `EQUIVALENT`.
+Pre-equivalence job-18 result: counted mutants: **673/679 killed (99.116%)**, versus 626/636 (98.428%) before. Four unobservable survivors for tasks 21 and 34 are now outside the denominator and listed as dataset weaknesses. All syntax-break and unknown-type mutants die in syntax. Remaining survivors: 40.txt (off_by_one), 43.txt (off_by_one), 69.txt (off_by_one), 147.txt (off_by_one), 153.txt (flipped_comparison), 160.txt (off_by_one). All six were later shown equivalent by reading the canonicals and are listed in `EQUIVALENT`.
 
 Subset: **46 unique tasks**, versus 45 before. Take all eligible tasks in short categories: Date & Time 1/10 and Database 5/10; every other category has 10. Shortfalls are printed and informational.
 
@@ -443,3 +449,19 @@ wording changes can move buckets):
 - activation: DB difference: 104, missing library class/method/type or unresolved name: 34, runtime or semantic difference (manual review needed): 1.
 - unit_syntax: DB difference: 72, missing library class/method/type or unresolved name: 24.
 - unit: DB difference: 45, missing library class/method/type or unresolved name: 6, runtime or semantic difference (manual review needed): 34.
+
+
+Worker infrastructure failures are retried on the same answer twice (three attempts
+in total). EOF, startup errors, broken pipes, malformed protocol, and compiler
+watchdog failures never become model verdicts. Persistent failures stop the subset
+runner after checkpointing its assistant answer and any observed stages; no user
+feedback is appended and no correction round is consumed. Resume with the testing
+CLI before generating corrections. The benchmark testing seam uses the existing
+`[INFRA]` retry state. Answer runtime timeouts, memory exhaustion, and aborts remain
+unit failures. Every replacement first kills and reaps the previous process group,
+joins its readers, and removes its answer scratch directories.
+
+Assertion values preserve URLs and paths. Scalar values longer than 2,500
+characters have a visible `[truncated]` suffix; execution diagnostics alone undergo
+path scrubbing. Cache keys include the dependency lockfile and every table DDL;
+the verdict cache also includes canonicalization/contract extraction code.
