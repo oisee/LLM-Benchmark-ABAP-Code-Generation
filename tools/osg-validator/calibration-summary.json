@@ -1734,10 +1734,10 @@
       "best_R0_R5_percent": 81.889
     }
   },
-  "wall_seconds": 486.045,
+  "wall_seconds": 983.164,
   "throughput": {
     "unique_answers": 2648,
-    "summed_worker_seconds": 3463.186,
-    "unique_answers_per_worker_second": 0.765
+    "summed_worker_seconds": 2937.17,
+    "unique_answers_per_worker_second": 0.902
   }
 }

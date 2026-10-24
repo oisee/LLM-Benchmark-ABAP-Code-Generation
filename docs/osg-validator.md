@@ -284,7 +284,21 @@ and `subset.json` under `tools/osg-validator/` for machine-readable details.
 
 <!-- OSG_RESULTS -->
 
-Feedback-format revalidation: the complete fresh gate is green (162/180
+Recovery and fingerprint revalidation: the final fresh gate is green with
+**162/180 canonicals**, **673/673 counted mutants killed at the expected stage**,
+six equivalent exemptions and four dataset-weakness exemptions. All **863** gate
+validations were fresh (zero cached verdicts); wall time was 468.525 seconds.
+The full saved-answer calibration was also fresh: **4,817 answers / 2,648 unique
+validations**, 983.164 seconds. Exact comparison with the previous feedback
+adapter finds **zero changes** across all four nullable verdicts and both failure
+stage fields; see `verdict-diff-summary.json`. Infrastructure failures now retry
+without a model verdict; no scoring predicate for a healthy answer changed.
+The final Python suite passes 17 tests, the Node suite passes six, and all nine
+isolated recovery/fingerprint mutants are detected after passing controls.
+Audit timings overlap other offline verification and are not a dedicated
+throughput comparison. No model generation or SAP execution was performed.
+
+Historical job-19 feedback-format revalidation: the complete fresh gate is green (162/180
 canonicals, 673/673 counted mutants, all expected-stage checks). All **4,817**
 recorded answers (2,648 unique task/source pairs) were replayed with the 60-second
 unit limit. `verdict-diff-summary.json` proves **zero per-answer differences**

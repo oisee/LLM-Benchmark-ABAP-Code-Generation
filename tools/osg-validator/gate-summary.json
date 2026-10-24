@@ -202,9 +202,10 @@
       "reason": "DO 2 -> DO 3: the third pass matches no WHEN of CASE sy-index and does nothing"
     }
   ],
-  "wall_seconds": 146.57,
+  "wall_seconds": 468.525,
   "red": false,
   "new_validations": 863,
-  "timing_note": "Wall time includes verdict-cache reuse; see throughput-summary.json for uncached validation throughput.",
+  "cached_validations": 0,
+  "timing_note": "All validations were fresh; no verdict-cache reuse.",
   "red_reasons": []
 }
