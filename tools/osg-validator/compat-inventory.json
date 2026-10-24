@@ -1,0 +1,453 @@
+{
+  "usage": {
+    "classic_assert_methods": {
+      "ASSERT_EQUALS": {
+        "occurrences": 46,
+        "sources": {
+          "dataset/abap_unittests/z_humaneval_006_test.abap": 3,
+          "dataset/abap_unittests/z_humaneval_010_test.abap": 5,
+          "dataset/abap_unittests/z_humaneval_012_test.abap": 3,
+          "dataset/abap_unittests/z_humaneval_016_test.abap": 5,
+          "dataset/abap_unittests/z_humaneval_017_test.abap": 5,
+          "dataset/abap_unittests/z_humaneval_018_test.abap": 4,
+          "dataset/abap_unittests/z_humaneval_027_test.abap": 3,
+          "dataset/abap_unittests/z_humaneval_028_test.abap": 3,
+          "dataset/abap_unittests/z_humaneval_029_test.abap": 2,
+          "dataset/abap_unittests/z_humaneval_030_test.abap": 1,
+          "dataset/abap_unittests/z_humaneval_031_test.abap": 12
+        }
+      }
+    },
+    "classic_assert_inheritance": {
+      "CL_AUNIT_ASSERT": {
+        "occurrences": 1,
+        "sources": {
+          "dataset/abap_unittests/z_humaneval_007_test.abap": 1
+        }
+      }
+    },
+    "ddic_character_and_hash": {
+      "CHAR1": {
+        "occurrences": 44,
+        "sources": {
+          "dataset/abap_canonical_solution/z_humaneval_erp_008.abap": 2,
+          "54.txt:1:R0": 1,
+          "54.txt:2:R0": 1,
+          "54.txt:3:R0": 1,
+          "54.txt:4:R0": 1,
+          "54.txt:5:R0": 1,
+          "54.txt:8:R0": 1,
+          "54.txt:9:R0": 1,
+          "93.txt:2:R2": 5,
+          "93.txt:3:R2": 6,
+          "93.txt:3:R3": 2,
+          "93.txt:3:R4": 2,
+          "93.txt:4:R2": 5,
+          "93.txt:7:R2": 5,
+          "93.txt:8:R2": 5,
+          "118.txt:0:R1": 5
+        }
+      },
+      "CHAR100": {
+        "occurrences": 5,
+        "sources": {
+          "dataset/abap_canonical_solution/z_humaneval_erp_008.abap": 5
+        }
+      },
+      "CHAR2": {
+        "occurrences": 4,
+        "sources": {
+          "dataset/abap_canonical_solution/z_humaneval_erp_008.abap": 3,
+          "160.txt:3:R2": 1
+        }
+      },
+      "CHAR20": {
+        "occurrences": 259,
+        "sources": {
+          "dataset/abap_canonical_solution/z_humaneval_erp_002.abap": 1,
+          "dataset/abap_canonical_solution/z_humaneval_erp_003.abap": 3,
+          "dataset/abap_canonical_solution/z_humaneval_erp_004.abap": 1,
+          "dataset/abap_canonical_solution/z_humaneval_erp_006.abap": 1,
+          "dataset/abap_canonical_solution/z_humaneval_erp_011.abap": 4,
+          "dataset/abap_unittests/z_humaneval_erp_011_test.abap": 2,
+          "erp_000.txt:2:R3": 1,
+          "erp_000.txt:2:R4": 1,
+          "erp_000.txt:2:R5": 1,
+          "erp_000.txt:4:R5": 1,
+          "erp_000.txt:5:R2": 1,
+          "erp_000.txt:5:R3": 1,
+          "erp_000.txt:5:R4": 1,
+          "erp_000.txt:5:R5": 1,
+          "erp_003.txt:0:R0": 3,
+          "erp_003.txt:0:R1": 3,
+          "erp_003.txt:0:R2": 3,
+          "erp_003.txt:0:R3": 3,
+          "erp_003.txt:0:R4": 3,
+          "erp_003.txt:0:R5": 2,
+          "erp_003.txt:1:R0": 3,
+          "erp_003.txt:1:R1": 3,
+          "erp_003.txt:1:R2": 3,
+          "erp_003.txt:1:R3": 3,
+          "erp_003.txt:1:R4": 3,
+          "erp_003.txt:1:R5": 3,
+          "erp_003.txt:2:R0": 3,
+          "erp_003.txt:2:R1": 3,
+          "erp_003.txt:2:R2": 3,
+          "erp_003.txt:2:R3": 5,
+          "erp_003.txt:2:R4": 3,
+          "erp_003.txt:2:R5": 2,
+          "erp_003.txt:3:R0": 3,
+          "erp_003.txt:3:R1": 3,
+          "erp_003.txt:3:R2": 3,
+          "erp_003.txt:3:R3": 3,
+          "erp_003.txt:3:R4": 3,
+          "erp_003.txt:3:R5": 2,
+          "erp_003.txt:4:R0": 3,
+          "erp_003.txt:4:R1": 3,
+          "erp_003.txt:4:R2": 3,
+          "erp_003.txt:4:R3": 3,
+          "erp_003.txt:4:R4": 3,
+          "erp_003.txt:4:R5": 3,
+          "erp_003.txt:5:R0": 3,
+          "erp_003.txt:5:R1": 3,
+          "erp_003.txt:5:R2": 3,
+          "erp_003.txt:5:R3": 3,
+          "erp_003.txt:5:R4": 3,
+          "erp_003.txt:5:R5": 3,
+          "erp_003.txt:6:R0": 3,
+          "erp_003.txt:6:R1": 3,
+          "erp_003.txt:6:R2": 3,
+          "erp_003.txt:6:R3": 3,
+          "erp_003.txt:6:R4": 3,
+          "erp_003.txt:6:R5": 3,
+          "erp_003.txt:7:R0": 3,
+          "erp_003.txt:7:R1": 3,
+          "erp_003.txt:7:R2": 3,
+          "erp_003.txt:7:R3": 3,
+          "erp_003.txt:7:R4": 3,
+          "erp_003.txt:7:R5": 3,
+          "erp_003.txt:8:R0": 3,
+          "erp_003.txt:8:R1": 3,
+          "erp_003.txt:8:R2": 3,
+          "erp_003.txt:8:R3": 3,
+          "erp_003.txt:8:R4": 3,
+          "erp_003.txt:8:R5": 3,
+          "erp_003.txt:9:R0": 3,
+          "erp_003.txt:9:R1": 3,
+          "erp_003.txt:9:R2": 3,
+          "erp_003.txt:9:R3": 3,
+          "erp_003.txt:9:R4": 3,
+          "erp_003.txt:9:R5": 3,
+          "erp_002.txt:0:R0": 1,
+          "erp_002.txt:0:R1": 1,
+          "erp_002.txt:0:R2": 1,
+          "erp_002.txt:0:R3": 1,
+          "erp_002.txt:0:R4": 1,
+          "erp_002.txt:0:R5": 1,
+          "erp_002.txt:1:R0": 1,
+          "erp_002.txt:1:R1": 1,
+          "erp_002.txt:1:R2": 1,
+          "erp_002.txt:1:R3": 1,
+          "erp_002.txt:1:R4": 1,
+          "erp_002.txt:1:R5": 1,
+          "erp_002.txt:2:R0": 1,
+          "erp_002.txt:2:R1": 1,
+          "erp_002.txt:2:R2": 1,
+          "erp_002.txt:2:R3": 1,
+          "erp_002.txt:2:R4": 1,
+          "erp_002.txt:2:R5": 1,
+          "erp_002.txt:3:R0": 1,
+          "erp_002.txt:3:R1": 1,
+          "erp_002.txt:3:R2": 1,
+          "erp_002.txt:3:R3": 1,
+          "erp_002.txt:3:R4": 1,
+          "erp_002.txt:3:R5": 1,
+          "erp_002.txt:4:R0": 1,
+          "erp_002.txt:4:R1": 1,
+          "erp_002.txt:4:R2": 1,
+          "erp_002.txt:4:R3": 1,
+          "erp_002.txt:4:R4": 1,
+          "erp_002.txt:4:R5": 1,
+          "erp_002.txt:5:R0": 1,
+          "erp_002.txt:5:R1": 1,
+          "erp_002.txt:5:R2": 1,
+          "erp_002.txt:5:R3": 1,
+          "erp_002.txt:5:R4": 1,
+          "erp_002.txt:5:R5": 1,
+          "erp_002.txt:6:R0": 1,
+          "erp_002.txt:6:R1": 1,
+          "erp_002.txt:6:R2": 1,
+          "erp_002.txt:6:R3": 1,
+          "erp_002.txt:6:R4": 1,
+          "erp_002.txt:6:R5": 1,
+          "erp_002.txt:7:R0": 1,
+          "erp_002.txt:7:R1": 1,
+          "erp_002.txt:7:R2": 1,
+          "erp_002.txt:7:R3": 1,
+          "erp_002.txt:7:R4": 1,
+          "erp_002.txt:7:R5": 1,
+          "erp_002.txt:8:R0": 1,
+          "erp_002.txt:8:R1": 1,
+          "erp_002.txt:8:R2": 1,
+          "erp_002.txt:8:R3": 1,
+          "erp_002.txt:8:R4": 1,
+          "erp_002.txt:8:R5": 1,
+          "erp_002.txt:9:R0": 1,
+          "erp_002.txt:9:R1": 1,
+          "erp_002.txt:9:R2": 1,
+          "erp_002.txt:9:R3": 1,
+          "erp_002.txt:9:R4": 1,
+          "erp_002.txt:9:R5": 1
+        }
+      },
+      "CHAR3": {
+        "occurrences": 1,
+        "sources": {
+          "dataset/abap_canonical_solution/z_humaneval_erp_014.abap": 1
+        }
+      },
+      "CHAR30": {
+        "occurrences": 4,
+        "sources": {
+          "dataset/abap_canonical_solution/z_humaneval_erp_008.abap": 4
+        }
+      },
+      "CHAR4": {
+        "occurrences": 3,
+        "sources": {
+          "dataset/abap_canonical_solution/z_humaneval_erp_008.abap": 3
+        }
+      },
+      "CHAR40": {
+        "occurrences": 2,
+        "sources": {
+          "dataset/abap_canonical_solution/z_humaneval_erp_011.abap": 1,
+          "dataset/abap_unittests/z_humaneval_erp_011_test.abap": 1
+        }
+      },
+      "CHAR50": {
+        "occurrences": 4,
+        "sources": {
+          "dataset/abap_canonical_solution/z_humaneval_erp_008.abap": 4
+        }
+      },
+      "CHAR80": {
+        "occurrences": 28,
+        "sources": {
+          "erp_000.txt:0:R2": 1,
+          "erp_000.txt:0:R3": 1,
+          "erp_000.txt:0:R4": 1,
+          "erp_000.txt:0:R5": 1,
+          "erp_000.txt:2:R2": 1,
+          "erp_000.txt:2:R3": 1,
+          "erp_000.txt:2:R4": 1,
+          "erp_000.txt:2:R5": 1,
+          "erp_000.txt:3:R2": 1,
+          "erp_000.txt:3:R3": 1,
+          "erp_000.txt:3:R4": 1,
+          "erp_000.txt:3:R5": 1,
+          "erp_000.txt:4:R2": 1,
+          "erp_000.txt:4:R3": 1,
+          "erp_000.txt:4:R4": 1,
+          "erp_000.txt:4:R5": 1,
+          "erp_000.txt:5:R2": 1,
+          "erp_000.txt:5:R3": 1,
+          "erp_000.txt:5:R4": 1,
+          "erp_000.txt:5:R5": 1,
+          "erp_000.txt:6:R2": 1,
+          "erp_000.txt:6:R3": 1,
+          "erp_000.txt:6:R4": 1,
+          "erp_000.txt:6:R5": 1,
+          "erp_000.txt:9:R2": 1,
+          "erp_000.txt:9:R3": 1,
+          "erp_000.txt:9:R4": 1,
+          "erp_000.txt:9:R5": 1
+        }
+      },
+      "HASH160": {
+        "occurrences": 11,
+        "sources": {
+          "dataset/abap_canonical_solution/z_humaneval_162.abap": 1,
+          "162.txt:0:R0": 1,
+          "162.txt:1:R0": 1,
+          "162.txt:2:R0": 1,
+          "162.txt:3:R0": 1,
+          "162.txt:4:R0": 1,
+          "162.txt:5:R0": 1,
+          "162.txt:6:R0": 1,
+          "162.txt:7:R0": 1,
+          "162.txt:8:R0": 1,
+          "162.txt:9:R0": 1
+        }
+      }
+    },
+    "function_modules": {
+      "CALCULATE_HASH_FOR_CHAR": {
+        "occurrences": 1,
+        "sources": {
+          "dataset/abap_canonical_solution/z_humaneval_162.abap": 1
+        }
+      },
+      "DATE_COMPUTE_DAY": {
+        "occurrences": 43,
+        "sources": {
+          "dataset/abap_canonical_solution/z_humaneval_erp_007.abap": 1,
+          "erp_007.txt:0:R0": 1,
+          "erp_007.txt:0:R1": 1,
+          "erp_007.txt:0:R2": 1,
+          "erp_007.txt:0:R3": 1,
+          "erp_007.txt:0:R4": 1,
+          "erp_007.txt:0:R5": 1,
+          "erp_007.txt:1:R0": 1,
+          "erp_007.txt:1:R1": 1,
+          "erp_007.txt:1:R2": 1,
+          "erp_007.txt:1:R3": 1,
+          "erp_007.txt:1:R4": 1,
+          "erp_007.txt:1:R5": 1,
+          "erp_007.txt:3:R0": 1,
+          "erp_007.txt:3:R1": 1,
+          "erp_007.txt:3:R2": 1,
+          "erp_007.txt:3:R3": 1,
+          "erp_007.txt:3:R4": 1,
+          "erp_007.txt:3:R5": 1,
+          "erp_007.txt:4:R0": 1,
+          "erp_007.txt:4:R1": 1,
+          "erp_007.txt:4:R2": 1,
+          "erp_007.txt:4:R3": 1,
+          "erp_007.txt:4:R4": 1,
+          "erp_007.txt:4:R5": 1,
+          "erp_007.txt:5:R0": 1,
+          "erp_007.txt:5:R1": 1,
+          "erp_007.txt:5:R2": 1,
+          "erp_007.txt:5:R3": 1,
+          "erp_007.txt:5:R4": 1,
+          "erp_007.txt:5:R5": 1,
+          "erp_007.txt:8:R0": 1,
+          "erp_007.txt:8:R1": 1,
+          "erp_007.txt:8:R2": 1,
+          "erp_007.txt:8:R3": 1,
+          "erp_007.txt:8:R4": 1,
+          "erp_007.txt:8:R5": 1,
+          "erp_007.txt:9:R0": 1,
+          "erp_007.txt:9:R1": 1,
+          "erp_007.txt:9:R2": 1,
+          "erp_007.txt:9:R3": 1,
+          "erp_007.txt:9:R4": 1,
+          "erp_007.txt:9:R5": 1
+        }
+      },
+      "DAY_IN_WEEK": {
+        "occurrences": 18,
+        "sources": {
+          "erp_007.txt:2:R0": 1,
+          "erp_007.txt:2:R1": 1,
+          "erp_007.txt:2:R2": 1,
+          "erp_007.txt:2:R3": 1,
+          "erp_007.txt:2:R4": 1,
+          "erp_007.txt:2:R5": 1,
+          "erp_007.txt:6:R0": 1,
+          "erp_007.txt:6:R1": 1,
+          "erp_007.txt:6:R2": 1,
+          "erp_007.txt:6:R3": 1,
+          "erp_007.txt:6:R4": 1,
+          "erp_007.txt:6:R5": 1,
+          "erp_007.txt:7:R0": 1,
+          "erp_007.txt:7:R1": 1,
+          "erp_007.txt:7:R2": 1,
+          "erp_007.txt:7:R3": 1,
+          "erp_007.txt:7:R4": 1,
+          "erp_007.txt:7:R5": 1
+        }
+      },
+      "GENERAL_GET_RANDOM_INT": {
+        "occurrences": 2,
+        "sources": {
+          "dataset/abap_unittests/z_humaneval_050_test.abap": 2
+        }
+      },
+      "QF05_RANDOM_INTEGER": {
+        "occurrences": 2,
+        "sources": {
+          "dataset/abap_unittests/z_humaneval_053_test.abap": 2
+        }
+      }
+    },
+    "missing_scanned_ddic": [
+      "CHAR100",
+      "CHAR50",
+      "HASH160"
+    ]
+  },
+  "prior_missing_library_false_reject_answers_by_stage": {
+    "unit_syntax": 180,
+    "unit": 136,
+    "syntax": 28,
+    "activation": 34
+  },
+  "sap_accepted_unescaped_select_evidence": {
+    "erp_006.txt": [],
+    "erp_011.txt": [],
+    "erp_014.txt": []
+  },
+  "prior_false_reject_names_by_stage": {
+    "syntax": {
+      "TT_FLIGHT_RESULT": 21,
+      "TY_FLIGHT_RESULT": 21,
+      "TY_ROUTE_REVENUE": 20,
+      "TY_ROUTE_REVENUE_TAB": 20,
+      "TT_AIRLINE_REVENUE": 11,
+      "TY_AIRLINE_REVENUE": 11,
+      "DATE_COMPUTE_DAY": 3,
+      "TT_FLIGHTS": 2,
+      "TY_FLIGHT": 2,
+      "DAY_IN_WEEK": 1
+    },
+    "activation": {
+      "TT_FLIGHT_RESULT": 21,
+      "TY_FLIGHT_RESULT": 21,
+      "TY_ROUTE_REVENUE": 20,
+      "TY_ROUTE_REVENUE_TAB": 20,
+      "TT_AIRLINE_REVENUE": 11,
+      "TY_AIRLINE_REVENUE": 11,
+      "DATE_COMPUTE_DAY": 3,
+      "TT_FLIGHTS": 2,
+      "TY_FLIGHT": 2,
+      "DAY_IN_WEEK": 1
+    },
+    "unit_syntax": {
+      "CL_AUNIT_ASSERT": 146,
+      "TY_ROUTE_REVENUE": 10,
+      "TY_ROUTE_REVENUE_TAB": 10,
+      "TT_AIRLINE_REVENUE": 10,
+      "TY_AIRLINE_REVENUE": 10,
+      "QF05_RANDOM_INTEGER": 10,
+      "TT_FLIGHTS": 2,
+      "TY_FLIGHT": 2
+    },
+    "unit": {
+      "CL_AUNIT_ASSERT": 120,
+      "TY_ROUTE_REVENUE": 10,
+      "TY_ROUTE_REVENUE_TAB": 10,
+      "TT_AIRLINE_REVENUE": 10,
+      "TY_AIRLINE_REVENUE": 10,
+      "QF05_RANDOM_INTEGER": 10,
+      "TT_FLIGHTS": 1,
+      "TY_FLIGHT": 1
+    }
+  },
+  "example_answers": {
+    "CL_AUNIT_ASSERT": "29.txt:0:R2",
+    "TY_ROUTE_REVENUE": "erp_015.txt:0:R0",
+    "TY_ROUTE_REVENUE_TAB": "erp_015.txt:0:R0",
+    "TT_AIRLINE_REVENUE": "erp_012.txt:0:R0",
+    "TY_AIRLINE_REVENUE": "erp_012.txt:0:R0",
+    "DATE_COMPUTE_DAY": "erp_007.txt:1:R3",
+    "DAY_IN_WEEK": "erp_007.txt:2:R5",
+    "TT_FLIGHTS": "erp_013.txt:2:R1",
+    "TY_FLIGHT": "erp_013.txt:2:R1",
+    "TT_FLIGHT_RESULT": "erp_011.txt:0:R0",
+    "TY_FLIGHT_RESULT": "erp_011.txt:0:R0",
+    "QF05_RANDOM_INTEGER": "53.txt:0:R0"
+  },
+  "note": "Unresolved methods and local TY_* names may be dataset contract mismatches, not missing SAP APIs. No such local names are supplied."
+}

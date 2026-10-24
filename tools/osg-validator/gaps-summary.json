@@ -1,0 +1,58 @@
+[
+  {
+    "file": "gaps/z_gap_aggregate.clas.abap",
+    "expected_stage": "unit",
+    "observed_stage": "unit",
+    "errors": [
+      "Z_GAP_AGGREGATE: running ltc->check\n<ref *1> cx_sy_dynamic_osql_semantics [Error]\n    at SQLiteDatabaseClient.select (<validator>/node_modules/@abaplint/database-sqlite/build/index\n...\n     ',\n    constant: false,\n    length: 32,\n    extra: {}\n  },\n  kernel_errid: Character {\n    value: '                              ',\n    constant: false,\n    length: 30,\n    extra: { qualifiedName: 'CHAR30', ddicName: 'CHAR30', description: '' }\n  },\n  get_longtext: [AsyncFunction: if_message$get_longtext],\n  get_text: [AsyncFunction: if_message$get_text],\n  sqlmsg: String {\n    value: 'no such column: osg_missing_field',\n    qualifiedName: 'STRING'\n  },\n  unknown_table_name: Character {\n    value: '11111111111111111111111111111111',\n    constant: false,\n    length: 32,\n    extra: {\n      qualifiedName: 'SOTR_CONC',\n      ddicName: 'SOTR_CONC',\n      description: 'SOTR_CONC'\n    }\n  }\n}\n"
+    ]
+  },
+  {
+    "file": "gaps/z_gap_char_padding.clas.abap",
+    "expected_stage": "unit",
+    "observed_stage": "unit",
+    "errors": [
+      "Z_GAP_CHAR_PADDING: running ltc->check\n<ref *1> kernel_cx_assert [Error]\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedb\n...\n    constant: false,\n    length: 30,\n    extra: { qualifiedName: 'CHAR30', ddicName: 'CHAR30', description: '' }\n  },\n  get_longtext: [AsyncFunction: if_message$get_longtext],\n  get_text: [AsyncFunction: if_message$get_text],\n  actual: String {\n    value: 'Ada                                                                             ',\n    qualifiedName: 'STRING'\n  },\n  expected: String { value: 'Ada', qualifiedName: 'STRING' },\n  msg: String {\n    value: \"Expected 'Ada', got 'Ada                                                                             '\",\n    qualifiedName: 'STRING'\n  },\n  EXTRA_CX: {\n    INTERNAL_FILENAME: 'cl_abap_unit_assert.clas.abap',\n    INTERNAL_LINE: 460\n  }\n}\n"
+    ]
+  },
+  {
+    "file": "gaps/z_gap_do_count.clas.abap",
+    "expected_stage": "unit",
+    "observed_stage": "unit",
+    "errors": [
+      "Z_GAP_DO_COUNT: running ltc->check\n<ref *1> kernel_cx_assert [Error]\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291\n...\nter {\n    value: '                                ',\n    constant: false,\n    length: 32,\n    extra: {}\n  },\n  kernel_errid: Character {\n    value: '                              ',\n    constant: false,\n    length: 30,\n    extra: { qualifiedName: 'CHAR30', ddicName: 'CHAR30', description: '' }\n  },\n  get_longtext: [AsyncFunction: if_message$get_longtext],\n  get_text: [AsyncFunction: if_message$get_text],\n  actual: String { value: '0', qualifiedName: 'STRING' },\n  expected: String { value: '4', qualifiedName: 'STRING' },\n  msg: String { value: \"Expected '4', got '0'\", qualifiedName: 'STRING' },\n  EXTRA_CX: {\n    INTERNAL_FILENAME: 'cl_abap_unit_assert.clas.abap',\n    INTERNAL_LINE: 460\n  }\n}\n"
+    ]
+  },
+  {
+    "file": "gaps/z_gap_infer.clas.abap",
+    "expected_stage": "activation",
+    "observed_stage": "activation",
+    "errors": [
+      "TypeNameOrInfer, type not found: #, Z_GAP_INFER, z_gap_infer.clas.abap line 7"
+    ]
+  },
+  {
+    "file": "gaps/z_gap_reverse_step.clas.abap",
+    "expected_stage": "unit",
+    "observed_stage": "unit",
+    "errors": [
+      "Z_GAP_REVERSE_STEP: running ltc->check\n<ref *1> kernel_cx_assert [Error]\n    at cl_abap_unit_assert.compare_tables (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bed\n...\n                        ',\n    constant: false,\n    length: 32,\n    extra: {}\n  },\n  kernel_errid: Character {\n    value: '                              ',\n    constant: false,\n    length: 30,\n    extra: { qualifiedName: 'CHAR30', ddicName: 'CHAR30', description: '' }\n  },\n  get_longtext: [AsyncFunction: if_message$get_longtext],\n  get_text: [AsyncFunction: if_message$get_text],\n  actual: String { value: '', qualifiedName: 'STRING' },\n  expected: String { value: '', qualifiedName: 'STRING' },\n  msg: String {\n    value: 'Expected table to contain 3 rows, got 0',\n    qualifiedName: 'STRING'\n  },\n  EXTRA_CX: {\n    INTERNAL_FILENAME: 'cl_abap_unit_assert.clas.abap',\n    INTERNAL_LINE: 195\n  }\n}\n"
+    ]
+  },
+  {
+    "file": "gaps/z_gap_round.clas.abap",
+    "expected_stage": "unit",
+    "observed_stage": "unit",
+    "errors": [
+      "Z_GAP_ROUND: running ltc->check\nError: round(), todo, handle decimals\n    at Object.round (<validator>/node_modules/@abaplint/runtime/build/src/builtin/round.js:17:15)\n    at z_gap_round.run (file://<validator>/.runs/<answer>/z_gap_round.clas.mjs:25:28)\n    at #check (file://<validator>/.runs/<answer>/z_gap_round.clas.testclasses.mjs:23:39)\n    at run (file://<validator>/.runs/<answer>/run.mjs:36:51)\n"
+    ]
+  },
+  {
+    "file": "gaps/z_gap_sql_upper.clas.abap",
+    "expected_stage": "activation",
+    "observed_stage": "activation",
+    "errors": [
+      "SQL Condition, transpiler todo2, upper( country_name ) = 'GERMANY'"
+    ]
+  }
+]

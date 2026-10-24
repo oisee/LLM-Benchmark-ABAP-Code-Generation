@@ -1,42 +1,12 @@
 {
   "canonical_total": 180,
-  "canonical_pass": 150,
-  "canonical_fail": 30,
+  "canonical_pass": 162,
+  "canonical_fail": 18,
   "excluded": [
     {
-      "task": "6.txt",
-      "stage": "unit_syntax",
-      "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_006/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 27)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_006/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 46)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_006/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 62)'}]\nTry to fix the class, not the unit test."
-    },
-    {
-      "task": "7.txt",
-      "stage": "unit_syntax",
-      "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_007/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Super class \"cl_aunit_assert\" not found or contains errors (line 1)'}]\nTry to fix the class, not the unit test."
-    },
-    {
       "task": "10.txt",
-      "stage": "unit_syntax",
-      "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_010/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 17)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_010/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 23)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_010/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 29)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_010/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 35)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_010/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 41)'}]\nTry to fix the class, not the unit test."
-    },
-    {
-      "task": "12.txt",
-      "stage": "unit_syntax",
-      "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_012/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_012/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 36)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_012/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 55)'}]\nTry to fix the class, not the unit test."
-    },
-    {
-      "task": "16.txt",
-      "stage": "unit_syntax",
-      "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_016/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 22)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_016/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 31)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_016/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 40)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_016/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 49)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_016/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 58)'}]\nTry to fix the class, not the unit test."
-    },
-    {
-      "task": "17.txt",
-      "stage": "unit_syntax",
-      "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_017/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 21)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_017/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 27)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_017/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 33)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_017/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 39)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_017/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 45)'}]\nTry to fix the class, not the unit test."
-    },
-    {
-      "task": "18.txt",
-      "stage": "unit_syntax",
-      "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_018/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_018/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 27)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_018/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 34)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_018/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 41)'}]\nTry to fix the class, not the unit test."
+      "stage": "unit",
+      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_010', 'type': 'E', 'short_text': 'Z_HUMANEVAL_010: running lt_test->test_empty_string\\nZ_HUMANEVAL_010: running lt_test->test_single_char\\nZ_HUMANEVAL_010: running lt_test->test_non_palindrome\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async cl_aunit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_aunit_assert.clas.mjs:34:27)\\n    at async #test_non_palindrome (file://<validator>/.runs/answer-44-PWDs0K/z_humaneval_010.clas.testclasses.mjs:37:5)\\n    at async run (file://<validator>/.runs/answer-44-PWDs0K/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 6,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: \\'xyz\\', qualifiedName: \\'STRING\\' },\\n  expected: String { value: \\'xyzyx\\', qualifiedName: \\'STRING\\' },\\n  msg: String {\\n    value: \"Expected \\'xyzyx\\', got \\'xyz\\'\",\\n    qualifiedName: \\'STRING\\'\\n  },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
     },
     {
       "task": "20.txt",
@@ -44,69 +14,41 @@
       "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_020/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Method parameter type not compatible, NUMBERS (line 39)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_020/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Method parameter type not compatible, NUMBERS (line 62)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_020/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Method parameter type not compatible, NUMBERS (line 84)'}]\nTry to fix the class, not the unit test."
     },
     {
-      "task": "27.txt",
-      "stage": "unit_syntax",
-      "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_027/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 18)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_027/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 24)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_027/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 30)'}]\nTry to fix the class, not the unit test."
-    },
-    {
-      "task": "28.txt",
-      "stage": "unit_syntax",
-      "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_028/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 18)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_028/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 26)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_028/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 34)'}]\nTry to fix the class, not the unit test."
-    },
-    {
-      "task": "29.txt",
-      "stage": "unit_syntax",
-      "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_029/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 45)'}]\nTry to fix the class, not the unit test."
-    },
-    {
-      "task": "30.txt",
-      "stage": "unit_syntax",
-      "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_030/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 59)'}]\nTry to fix the class, not the unit test."
-    },
-    {
-      "task": "31.txt",
-      "stage": "unit_syntax",
-      "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_031/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 28)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_031/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 34)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_031/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 40)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_031/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 46)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_031/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 52)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_031/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 58)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_031/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 64)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_031/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 70)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_031/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 76)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_031/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 82)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_031/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 88)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_031/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Class cl_aunit_assert not found (line 94)'}]\nTry to fix the class, not the unit test."
-    },
-    {
       "task": "32.txt",
       "stage": "unit",
-      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_032', 'type': 'E', 'short_text': \"Z_HUMANEVAL_032: running ltcl_test_z_humaneval_032->test_case_1\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_true (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58/cl_abap_unit_assert.clas.mjs:293:32)\\n    at #test_case_1 (file://<validator>/.runs/answer-2074762-083rX8/z_humaneval_032.clas.testclasses.mjs:87:47)\\n    at async run (file://<validator>/.runs/answer-2074762-083rX8/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 4,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: 'CX_ROOT',\\n    RTTIName: '\\\\\\\\CLASS=CX_ROOT'\\n  },\\n  textid: Character {\\n    value: '                                ',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: '                              ',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: 'CHAR30', ddicName: 'CHAR30', description: '' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: '', qualifiedName: 'STRING' },\\n  expected: String { value: '', qualifiedName: 'STRING' },\\n  msg: String { value: 'Expected abap_true', qualifiedName: 'STRING' },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: 'cl_abap_unit_assert.clas.abap',\\n    INTERNAL_LINE: 347\\n  }\\n}\\n\"}]\n Try to fix the class, not the unit test."
-    },
-    {
-      "task": "53.txt",
-      "stage": "unit_syntax",
-      "message": "The unittest syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_053/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Function module \"QF05_RANDOM_INTEGER\" not found/released (line 44)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_053/includes/testclasses', 'type': 'E', 'short_text': 'check_syntax: Function module \"QF05_RANDOM_INTEGER\" not found/released (line 51)'}]\nTry to fix the class, not the unit test."
+      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_032', 'type': 'E', 'short_text': \"Z_HUMANEVAL_032: running ltcl_test_z_humaneval_032->test_case_1\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_true (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:293:32)\\n    at #test_case_1 (file://<validator>/.runs/answer-36-iurO5T/z_humaneval_032.clas.testclasses.mjs:87:47)\\n    at async run (file://<validator>/.runs/answer-36-iurO5T/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 4,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: 'CX_ROOT',\\n    RTTIName: '\\\\\\\\CLASS=CX_ROOT'\\n  },\\n  textid: Character {\\n    value: '                                ',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: '                              ',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: 'CHAR30', ddicName: 'CHAR30', description: '' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: '', qualifiedName: 'STRING' },\\n  expected: String { value: '', qualifiedName: 'STRING' },\\n  msg: String { value: 'Expected abap_true', qualifiedName: 'STRING' },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: 'cl_abap_unit_assert.clas.abap',\\n    INTERNAL_LINE: 347\\n  }\\n}\\n\"}]\n Try to fix the class, not the unit test."
     },
     {
       "task": "71.txt",
       "stage": "unit",
-      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_071', 'type': 'E', 'short_text': 'Z_HUMANEVAL_071: running ltcl_triangle_area_test->test_case_1\\nError: round(), todo, handle decimals\\n    at Object.round (<validator>/node_modules/@abaplint/runtime/build/src/builtin/round.js:17:15)\\n    at z_humaneval_071.triangle_area (file://<validator>/.runs/answer-2074761-mOFQf6/z_humaneval_071.clas.mjs:42:29)\\n    at #test_case_1 (file://<validator>/.runs/answer-2074761-mOFQf6/z_humaneval_071.clas.testclasses.mjs:40:55)\\n    at run (file://<validator>/.runs/answer-2074761-mOFQf6/run.mjs:36:51)\\n'}]\n Try to fix the class, not the unit test."
+      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_071', 'type': 'E', 'short_text': 'Z_HUMANEVAL_071: running ltcl_triangle_area_test->test_case_1\\nError: round(), todo, handle decimals\\n    at Object.round (<validator>/node_modules/@abaplint/runtime/build/src/builtin/round.js:17:15)\\n    at z_humaneval_071.triangle_area (file://<validator>/.runs/answer-36-bVFiGA/z_humaneval_071.clas.mjs:42:29)\\n    at #test_case_1 (file://<validator>/.runs/answer-36-bVFiGA/z_humaneval_071.clas.testclasses.mjs:40:55)\\n    at run (file://<validator>/.runs/answer-36-bVFiGA/run.mjs:36:51)\\n'}]\n Try to fix the class, not the unit test."
     },
     {
       "task": "73.txt",
       "stage": "unit",
-      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_073', 'type': 'E', 'short_text': 'Z_HUMANEVAL_073: running ltcl_test_smallest_change->test_case_1\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async #test_case_1 (file://<validator>/.runs/answer-2074763-ghNTYR/z_humaneval_073.clas.testclasses.mjs:41:5)\\n    at async run (file://<validator>/.runs/answer-2074763-ghNTYR/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 4,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: \\'0\\', qualifiedName: \\'STRING\\' },\\n  expected: String { value: \\'4\\', qualifiedName: \\'STRING\\' },\\n  msg: String { value: \"Expected \\'4\\', got \\'0\\'\", qualifiedName: \\'STRING\\' },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
+      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_073', 'type': 'E', 'short_text': 'Z_HUMANEVAL_073: running ltcl_test_smallest_change->test_case_1\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async #test_case_1 (file://<validator>/.runs/answer-47-CLrJ6L/z_humaneval_073.clas.testclasses.mjs:41:5)\\n    at async run (file://<validator>/.runs/answer-47-CLrJ6L/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 4,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: \\'0\\', qualifiedName: \\'STRING\\' },\\n  expected: String { value: \\'4\\', qualifiedName: \\'STRING\\' },\\n  msg: String { value: \"Expected \\'4\\', got \\'0\\'\", qualifiedName: \\'STRING\\' },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
     },
     {
       "task": "132.txt",
       "stage": "unit",
-      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_132', 'type': 'E', 'short_text': 'Z_HUMANEVAL_132: running test_z_humaneval_132->test_case_1\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async #test_case_1 (file://<validator>/.runs/answer-2074762-3PBkY5/z_humaneval_132.clas.testclasses.mjs:49:5)\\n    at async run (file://<validator>/.runs/answer-2074762-3PBkY5/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 4,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: \\'\\', qualifiedName: \\'STRING\\' },\\n  expected: String { value: \\'X\\', qualifiedName: \\'STRING\\' },\\n  msg: String { value: \"Expected \\'X\\', got \\'\\'\", qualifiedName: \\'STRING\\' },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
+      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_132', 'type': 'E', 'short_text': 'Z_HUMANEVAL_132: running test_z_humaneval_132->test_case_1\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async #test_case_1 (file://<validator>/.runs/answer-42-di9bDk/z_humaneval_132.clas.testclasses.mjs:49:5)\\n    at async run (file://<validator>/.runs/answer-42-di9bDk/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 4,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String { value: \\'\\', qualifiedName: \\'STRING\\' },\\n  expected: String { value: \\'X\\', qualifiedName: \\'STRING\\' },\\n  msg: String { value: \"Expected \\'X\\', got \\'\\'\", qualifiedName: \\'STRING\\' },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
     },
     {
       "task": "162.txt",
       "stage": "syntax",
-      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_162', 'type': 'E', 'short_text': 'check_syntax: Function module \"CALCULATE_HASH_FOR_CHAR\" not found/released (line 26)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_162', 'type': 'E', 'short_text': 'unknown_types: Variable \"LV_HASH\" contains unknown: HASH160 not found, lookup (line 19)'}]"
+      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_162', 'type': 'E', 'short_text': 'check_syntax: Function module \"CALCULATE_HASH_FOR_CHAR\" not found/released (line 26)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_162', 'type': 'E', 'short_text': 'unknown_types: Variable \"LV_HASH\" contains unknown: HASH160 not found, lookup (line 19)'}]",
+      "reason": "legacy hash API contract not established by public SAP documentation: encoding, HASH160 output and error behavior"
     },
     {
       "task": "erp_001.txt",
       "stage": "unit",
-      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': 'Z_HUMANEVAL_ERP_001: running ltcl_test_find_employees->test_employees_wo_subordinates\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async cl_abap_unit_assert.compare_tables (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58/cl_abap_unit_assert.clas.mjs:96:9)\\n    at async cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58/cl_abap_unit_assert.clas.mjs:368:7)\\n    at async #test_employees_wo_subordinates (file://<validator>/.runs/answer-2074763-B6k7LO/z_humaneval_erp_001.clas.testclasses.mjs:110:5)\\n    at async run (file://<validator>/.runs/answer-2074763-B6k7LO/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 10,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String {\\n    value: \\'Anna                                                                            \\',\\n    qualifiedName: \\'STRING\\'\\n  },\\n  expected: String { value: \\'Anna\\', qualifiedName: \\'STRING\\' },\\n  msg: String {\\n    value: \"Expected \\'Anna\\', got \\'Anna                                                                            \\'\",\\n    qualifiedName: \\'STRING\\'\\n  },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
+      "message": "The unit test failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_001', 'type': 'E', 'short_text': 'Z_HUMANEVAL_ERP_001: running ltcl_test_find_employees->test_employees_wo_subordinates\\n<ref *1> kernel_cx_assert [Error]\\n    at cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:411:32)\\n    at async cl_abap_unit_assert.compare_tables (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:96:9)\\n    at async cl_abap_unit_assert.assert_equals (file://<validator>/.cache/compiled-8b397be863e805182c32e4bbb8bedbd291619f58-75badcdc742c2ba8/cl_abap_unit_assert.clas.mjs:368:7)\\n    at async #test_employees_wo_subordinates (file://<validator>/.runs/answer-49-EbvdOA/z_humaneval_erp_001.clas.testclasses.mjs:110:5)\\n    at async run (file://<validator>/.runs/answer-49-EbvdOA/run.mjs:36:9) {\\n  me: ABAPObject {\\n    value: [Circular *1],\\n    qualifiedName: undefined,\\n    RTTIName: undefined\\n  },\\n  INTERNAL_ID: 10,\\n  FRIENDS_ACCESS_INSTANCE: <ref *2> { SUPER: [Circular *2] },\\n  previous: ABAPObject {\\n    value: undefined,\\n    qualifiedName: \\'CX_ROOT\\',\\n    RTTIName: \\'\\\\\\\\CLASS=CX_ROOT\\'\\n  },\\n  textid: Character {\\n    value: \\'                                \\',\\n    constant: false,\\n    length: 32,\\n    extra: {}\\n  },\\n  kernel_errid: Character {\\n    value: \\'                              \\',\\n    constant: false,\\n    length: 30,\\n    extra: { qualifiedName: \\'CHAR30\\', ddicName: \\'CHAR30\\', description: \\'\\' }\\n  },\\n  get_longtext: [AsyncFunction: if_message$get_longtext],\\n  get_text: [AsyncFunction: if_message$get_text],\\n  actual: String {\\n    value: \\'Anna                                                                            \\',\\n    qualifiedName: \\'STRING\\'\\n  },\\n  expected: String { value: \\'Anna\\', qualifiedName: \\'STRING\\' },\\n  msg: String {\\n    value: \"Expected \\'Anna\\', got \\'Anna                                                                            \\'\",\\n    qualifiedName: \\'STRING\\'\\n  },\\n  EXTRA_CX: {\\n    INTERNAL_FILENAME: \\'cl_abap_unit_assert.clas.abap\\',\\n    INTERNAL_LINE: 460\\n  }\\n}\\n'}]\n Try to fix the class, not the unit test."
     },
     {
       "task": "erp_005.txt",
       "stage": "syntax",
-      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_005', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"zfs_data\" not found (line 54)'}]"
+      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_005', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"zfs_data\" not found (line 54)'}]",
+      "reason": "dataset defect: canonical references ZFS_DATA, but dataset supplies ZFNET_DATA"
     },
     {
       "task": "erp_006.txt",
@@ -115,13 +57,13 @@
     },
     {
       "task": "erp_007.txt",
-      "stage": "syntax",
-      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_007', 'type': 'E', 'short_text': 'check_syntax: Function module \"DATE_COMPUTE_DAY\" not found/released (line 81)'}]"
+      "stage": "activation",
+      "message": "The activation failed with the following error:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_007', 'type': 'E', 'short_text': 'TypeNameOrInfer, type not found: #, Z_HUMANEVAL_ERP_007, z_humaneval_erp_007.clas.testclasses.abap line 31'}]"
     },
     {
       "task": "erp_008.txt",
-      "stage": "syntax",
-      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_008', 'type': 'E', 'short_text': 'unknown_types: Contains unknown, CHAR50 not found, lookup (line 20)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_008', 'type': 'E', 'short_text': 'unknown_types: Variable \"IV_REGION_NAME\" contains unknown: CHAR100 not found, lookup (line 27)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_008', 'type': 'E', 'short_text': 'unknown_types: Variable \"IV_REGION_NAME\" contains unknown: CHAR100 not found, lookup (line 39)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_008', 'type': 'E', 'short_text': 'unknown_types: Variable \"COUNTRY\" contains unknown: CHAR50 not found, lookup (line 9)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_008', 'type': 'E', 'short_text': 'unknown_types: Variable \"REGION\" contains unknown: CHAR100 not found, lookup (line 10)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_008', 'type': 'E', 'short_text': 'unknown_types: Variable \"LV_COUNTRY_TRIMMED\" contains unknown: CHAR50 not found, lookup (line 53)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_008', 'type': 'E', 'short_text': 'unknown_types: Variable \"LV_REGION_TRIMMED\" contains unknown: CHAR100 not found, lookup (line 54)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_008', 'type': 'E', 'short_text': 'unknown_types: Variable \"LV_COUNTRY_UPPER\" contains unknown: CHAR50 not found, lookup (line 87)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_008', 'type': 'E', 'short_text': 'unknown_types: Variable \"LV_REGION_UPPER\" contains unknown: CHAR100 not found, lookup (line 109)'}]"
+      "stage": "activation",
+      "message": "The activation failed with the following error:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_008', 'type': 'E', 'short_text': 'SQL Condition, transpiler todo2, upper( country_name ) = @lv_country_upper'}]"
     },
     {
       "task": "erp_009.txt",
@@ -136,54 +78,58 @@
     {
       "task": "erp_012.txt",
       "stage": "syntax",
-      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"scarr\" not found (line 34)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 35)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'unknown_types: Contains unknown, SCARR not found, lookupView (line 16)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'unknown_types: Type \"TY_AIRLINE_REVENUE\" contains unknown: SCARR not found, lookupView (line 9)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'unknown_types: Type \"TT_AIRLINE_REVENUE\" contains unknown: SCARR not found, lookupView (line 13)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'unknown_types: Variable \"LT_REVENUE_DATA\" contains unknown: SCARR not found, lookupView (line 27)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'unknown_types: Variable \"LS_REVENUE_DATA\" contains unknown: SCARR not found, lookupView (line 28)'}]"
+      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"scarr\" not found (line 34)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 35)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'unknown_types: Contains unknown, SCARR not found, lookupView (line 16)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'unknown_types: Type \"TY_AIRLINE_REVENUE\" contains unknown: SCARR not found, lookupView (line 9)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'unknown_types: Type \"TT_AIRLINE_REVENUE\" contains unknown: SCARR not found, lookupView (line 13)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'unknown_types: Variable \"LT_REVENUE_DATA\" contains unknown: SCARR not found, lookupView (line 27)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_012', 'type': 'E', 'short_text': 'unknown_types: Variable \"LS_REVENUE_DATA\" contains unknown: SCARR not found, lookupView (line 28)'}]",
+      "reason": "needs the SAP flight data model, not supplied by the benchmark"
     },
     {
       "task": "erp_013.txt",
       "stage": "syntax",
-      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_013', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 47)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_013', 'type': 'E', 'short_text': 'unknown_types: Contains unknown, SFLIGHT not found, lookupView (line 21)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_013', 'type': 'E', 'short_text': 'unknown_types: Type \"TY_FLIGHT_RESULT\" contains unknown: SFLIGHT not found, lookupView (line 9)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_013', 'type': 'E', 'short_text': 'unknown_types: Type \"TT_FLIGHT_RESULTS\" contains unknown: SFLIGHT not found, lookupView (line 14)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_013', 'type': 'E', 'short_text': 'unknown_types: Variable \"IV_CARRID\" contains unknown: SFLIGHT not found, lookupView (line 19)'}]"
+      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_013', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 47)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_013', 'type': 'E', 'short_text': 'unknown_types: Contains unknown, SFLIGHT not found, lookupView (line 21)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_013', 'type': 'E', 'short_text': 'unknown_types: Type \"TY_FLIGHT_RESULT\" contains unknown: SFLIGHT not found, lookupView (line 9)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_013', 'type': 'E', 'short_text': 'unknown_types: Type \"TT_FLIGHT_RESULTS\" contains unknown: SFLIGHT not found, lookupView (line 14)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_013', 'type': 'E', 'short_text': 'unknown_types: Variable \"IV_CARRID\" contains unknown: SFLIGHT not found, lookupView (line 19)'}]",
+      "reason": "needs the SAP flight data model, not supplied by the benchmark"
     },
     {
       "task": "erp_014.txt",
       "stage": "syntax",
-      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 19)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: SELECT: \"iv_carrid\" must be escaped with @ in strict mode (line 18)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: SELECT: \"iv_connid\" must be escaped with @ in strict mode (line 18)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: SELECT: \"iv_fldate\" must be escaped with @ in strict mode (line 18)'}]"
+      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sbook\" not found (line 19)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: SELECT: \"iv_carrid\" must be escaped with @ in strict mode (line 18)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: SELECT: \"iv_connid\" must be escaped with @ in strict mode (line 18)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_014', 'type': 'E', 'short_text': 'check_syntax: SELECT: \"iv_fldate\" must be escaped with @ in strict mode (line 18)'}]",
+      "reason": "needs the SAP flight data model, not supplied by the benchmark"
     },
     {
       "task": "erp_015.txt",
       "stage": "syntax",
-      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 30)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"spfli\" not found (line 35)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'unknown_types: Variable \"LT_FLIGHT_DATA\" contains unknown: SFLIGHT not found, lookup (line 23)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'unknown_types: Variable \"LT_ROUTE_DATA\" contains unknown: SPFLI not found, lookup (line 24)'}]"
+      "message": "The syntax check failed with the following errors:\n[{'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"sflight\" not found (line 30)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'check_syntax: Database table or view \"spfli\" not found (line 35)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'unknown_types: Variable \"LT_FLIGHT_DATA\" contains unknown: SFLIGHT not found, lookup (line 23)'}, {'uri': '/sap/bc/adt/oo/classes/z_humaneval_erp_015', 'type': 'E', 'short_text': 'unknown_types: Variable \"LT_ROUTE_DATA\" contains unknown: SPFLI not found, lookup (line 24)'}]",
+      "reason": "needs the SAP flight data model, not supplied by the benchmark"
     }
   ],
   "mutants": {
     "syntax_break": {
-      "total": 150,
-      "killed": 150,
+      "total": 162,
+      "killed": 162,
       "expected_stage": "syntax",
-      "expected_stage_hits": 150
+      "expected_stage_hits": 162
     },
     "unknown_type": {
-      "total": 150,
-      "killed": 150,
+      "total": 162,
+      "killed": 162,
       "expected_stage": "syntax",
-      "expected_stage_hits": 150
+      "expected_stage_hits": 162
     },
     "flipped_comparison": {
-      "total": 124,
-      "killed": 121,
+      "total": 129,
+      "killed": 128,
       "expected_stage": "unit",
-      "expected_stage_hits": 121
+      "expected_stage_hits": 128
     },
     "result_not_assigned": {
-      "total": 150,
-      "killed": 148,
+      "total": 160,
+      "killed": 160,
       "expected_stage": "unit",
-      "expected_stage_hits": 148
+      "expected_stage_hits": 160
     },
     "off_by_one": {
-      "total": 54,
-      "killed": 49,
+      "total": 58,
+      "killed": 53,
       "expected_stage": "unit",
-      "expected_stage_hits": 49
+      "expected_stage_hits": 53
     },
     "wrong_table": {
       "total": 5,
@@ -198,38 +144,10 @@
       "expected_stage_hits": 3
     }
   },
-  "mutant_total": 636,
-  "mutant_killed": 626,
-  "kill_rate": 0.9842767295597484,
+  "mutant_total": 679,
+  "mutant_killed": 673,
+  "kill_rate": 0.9911634756995582,
   "unexpected_stages_or_survivors": [
-    {
-      "task": "21.txt",
-      "kind": "flipped_comparison",
-      "expected": "unit",
-      "actual": null,
-      "message": ""
-    },
-    {
-      "task": "21.txt",
-      "kind": "result_not_assigned",
-      "expected": "unit",
-      "actual": null,
-      "message": ""
-    },
-    {
-      "task": "34.txt",
-      "kind": "flipped_comparison",
-      "expected": "unit",
-      "actual": null,
-      "message": ""
-    },
-    {
-      "task": "34.txt",
-      "kind": "result_not_assigned",
-      "expected": "unit",
-      "actual": null,
-      "message": ""
-    },
     {
       "task": "40.txt",
       "kind": "off_by_one",
@@ -273,12 +191,33 @@
       "message": ""
     }
   ],
-  "wall_seconds": 1.952,
+  "dataset_weaknesses": [
+    {
+      "task": "21.txt",
+      "kind": "flipped_comparison",
+      "reason": "No cardinality assertion; empty result accepted"
+    },
+    {
+      "task": "21.txt",
+      "kind": "result_not_assigned",
+      "reason": "No cardinality assertion; empty result accepted"
+    },
+    {
+      "task": "34.txt",
+      "kind": "flipped_comparison",
+      "reason": "No assertion in unit test"
+    },
+    {
+      "task": "34.txt",
+      "kind": "result_not_assigned",
+      "reason": "No assertion in unit test"
+    }
+  ],
+  "wall_seconds": 100.025,
   "red": true,
-  "new_validations": 0,
+  "new_validations": 863,
   "timing_note": "Wall time includes verdict-cache reuse; see throughput-summary.json for uncached validation throughput.",
   "red_reasons": [
-    "30/180 canonical failures exceeds the 10% limit",
-    "10 mutants survive or fail at the wrong stage"
+    "6 mutants survive or fail at the wrong stage"
   ]
 }

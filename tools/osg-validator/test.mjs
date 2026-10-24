@@ -69,7 +69,13 @@ test('each compat object fails without the adapter and preserves assertions', as
      CALL FUNCTION 'DATE_COMPUTE_DAY' EXPORTING date = '20261025' IMPORTING day = day.
      cl_abap_unit_assert=>assert_equals( act = day exp = '7' ).
      CALL FUNCTION 'DATE_COMPUTE_DAY' EXPORTING date = '20240229' IMPORTING day = day.
-     cl_abap_unit_assert=>assert_equals( act = day exp = '4' ).`
+     cl_abap_unit_assert=>assert_equals( act = day exp = '4' ).
+     CALL FUNCTION 'DATE_COMPUTE_DAY' EXPORTING date = '00010101' IMPORTING day = day.
+     cl_abap_unit_assert=>assert_equals( act = day exp = '1' ).
+     CALL FUNCTION 'DATE_COMPUTE_DAY' EXPORTING date = '19000301' IMPORTING day = day.
+     cl_abap_unit_assert=>assert_equals( act = day exp = '4' ).
+     CALL FUNCTION 'DATE_COMPUTE_DAY' EXPORTING date = '20000301' IMPORTING day = day.
+     cl_abap_unit_assert=>assert_equals( act = day exp = '3' ).`
   ];
   for(const body of bodies) {
     const request={name:'z_compat',source,tests:wrap(body)};
@@ -78,6 +84,11 @@ test('each compat object fails without the adapter and preserves assertions', as
     assert.equal(result.unit,true,JSON.stringify(result));
     const mutant=await adapter({...request,tests:wrap(body.replace(/exp = (?:2|50|100|'1')/, 'exp = 999'))});
     assert.equal(mutant.stage,'unit',JSON.stringify(mutant));
+  }
+  for(const [low,high] of [[0,0],[2,1]]) {
+    const result=await adapter({name:'z_compat',source,tests:wrap(`DATA n TYPE i.
+      CALL FUNCTION 'QF05_RANDOM_INTEGER' EXPORTING ran_int_min = ${low} ran_int_max = ${high} IMPORTING ran_int = n.`)});
+    assert.equal(result.stage,'unit','Undocumented random edge cases must fail closed');
   }
   const name='z_humaneval_007';
   const request={name,source:fs.readFileSync(path.resolve(root,`../../dataset/abap_canonical_solution/${name}.abap`),'utf8'),tests:fs.readFileSync(path.resolve(root,`../../dataset/abap_unittests/${name}_test.abap`),'utf8')};

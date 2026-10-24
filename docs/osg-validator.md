@@ -28,14 +28,18 @@ preservation of earlier rounds. No real model benchmark was run for this change.
 
 `audit.py gate` exits nonzero when more than 10% of canonicals fail, a
 syntax-break/unknown-type mutant survives, the overall kill rate is below 90%,
-or any mutant fails at a different stage than expected. Baseline failures are
+or any counted mutant fails at a different stage than expected. Four surviving
+mutants for tasks 21 and 34 are recorded as dataset weaknesses: their tests cannot
+observe the mutated behavior. They are excluded from the kill-rate denominator;
+all other survivors remain counted and keep the expected-stage gate red. Baseline failures are
 listed in `tools/osg-validator/excluded.json`; they are never hidden to make the
 gate pass. Only passing canonicals provide meaningful mutation baselines.
 
 Audits use three compiler workers by default (`--workers` changes this). Full
 answer replays and a source-keyed SQLite cache remain under ignored `osg-results/`.
 The tracked JSON files contain compact summaries and at most 20 examples per
-stage and disagreement direction. The cache key covers engine source, the library pin, Python adapter, task,
+stage and disagreement direction, plus one example per false-accept cause.
+The cache key covers engine source, compatibility contents, the library pin, Python adapter, task,
 answer and unit-test source; audit-only reporting
 changes can reuse verdicts. Remove the cache to measure a completely fresh run.
 
@@ -87,7 +91,8 @@ including quoted multiline fields. It excludes every red canonical, assigns a
 multilabel task to its first category in the stored priority order, sorts and
 shuffles candidates with seed 20261024, and never duplicates a task. The priority
 maximizes available slots capped at ten per category, with deterministic CSV-order
-ties. `shortfalls` records categories that cannot supply ten tasks. The source
+ties. `shortfalls` records categories that cannot supply ten tasks. Those categories take
+all eligible tasks and print the shortfall as information; this is not a gate failure. The source
 CSV has only four date/time tasks even before exclusions; a full 60-task subset
 is impossible without changing the dataset or labels.
 
@@ -101,7 +106,7 @@ The package lock tracks transitive dependencies. The bootstrap also prepares the
 immutable compiled library before parallel workers start.
 
 Each Node compiler keeps a warm abaplint registry containing library dependencies
-and the 13 converted tables. Only the current answer's class and test include
+the adapter compatibility objects loaded after that library, and the 13 converted tables. Only the current answer's class and test include
 are installed; they are removed before the next answer. Immutable library output
 is compiled once and cached. Syntax uses `Version.Cloud`, error namespace `.`,
 and rules `parser_error`, `check_syntax`, `unknown_types`, `implement_methods`,
@@ -154,8 +159,10 @@ feedback corpus has only syntax failure, unit-syntax failure, unit failure and
 success templates, avoiding ambiguous activation-error reconstruction here.
 
 A FALSE REJECT means SAP accepted the stage while OSG did not; FALSE ACCEPT means
-the reverse. Cause labels are automated heuristics from the first OSG error, not
-independent proof of the underlying cause. Unclassified runtime/semantic cases
+the reverse. False-reject cause labels are heuristics from the first OSG error. False-accept
+categories use the earliest recorded SAP feedback and remain visible even when
+OSG passes a later stage. They are diagnostic classifications rather than
+independent proof of a compiler defect. Unclassified runtime/semantic cases
 need manual review. At most twenty excerpts per direction/stage aid that review.
 
 The headline is the benchmark's repetition-level unit pass rate: R0 and any
@@ -176,91 +183,156 @@ and `subset.json` under `tools/osg-validator/` for machine-readable details.
 
 <!-- OSG_RESULTS -->
 
-Canonical gate: **150/180 pass; 30/180 excluded (16.67%)**, exceeding the 10% limit. Mutants: **626/636 killed (98.43%)**. All syntax-break and unknown-type mutants fail in syntax. 10 behavioral mutants survive, so the stronger expected-stage check also remains red. The CLI correctly exits **1**.
+Canonical exclusions fell from **30/180 (16.67%) to 18/180 (10%)**. The canonical
+threshold now passes. The complete gate remains **red** because six counted
+behavioral mutants survive; its expected-stage requirement is unchanged.
 
-| Kind | Killed / total | Expected stage hits |
-|---|---:|---:|
-| syntax_break | 150/150 | 150/150 (syntax) |
-| unknown_type | 150/150 | 150/150 (syntax) |
-| flipped_comparison | 121/124 | 121/124 (unit) |
-| result_not_assigned | 148/150 | 148/150 (unit) |
-| off_by_one | 49/54 | 49/54 (unit) |
-| wrong_table | 5/5 | 5/5 (syntax) |
-| wrong_field | 3/3 | 3/3 (syntax) |
-
-Survivors: 21.txt (flipped_comparison), 21.txt (result_not_assigned), 34.txt (flipped_comparison), 34.txt (result_not_assigned), 40.txt (off_by_one), 43.txt (off_by_one), 69.txt (off_by_one), 147.txt (off_by_one), 153.txt (flipped_comparison), 160.txt (off_by_one). Task 21 checks values only while iterating over returned rows and omits a cardinality assertion; task 34 contains no assertion at all. Both accept an empty result. Other survivors may be equivalent mutations or insufficient test coverage; they are reported without changing the tests.
-
-Calibration: **4,817 recorded answers, 2,648 unique task/source pairs, 1,800 conversations**. The table uses cumulative stage acceptance; null/unreached is not accepted.
-
-| Stage | Agreement | FALSE REJECT | FALSE ACCEPT |
+| Stage | Agreement before → after | FALSE REJECT before → after | FALSE ACCEPT before → after |
 |---|---:|---:|---:|
-| syntax | 90.907% | 132 | 306 |
-| activation | 91.385% | 139 | 276 |
-| unit_syntax | 84.866% | 252 | 477 |
-| unit | 90.637% | 215 | 236 |
+| syntax | 90.907% → 90.637% | 132 → 129 | 306 → 322 |
+| activation | 91.385% → 91.385% | 139 → 139 | 276 → 276 |
+| unit_syntax | 84.866% → 87.710% | 252 → 96 | 477 → 496 |
+| unit | 90.637% → 93.004% | 215 → 85 | 236 → 252 |
 
 | Oracle/backend | R0 unit pass | Best R0–R5 unit pass |
 |---|---:|---:|
-| SAP | 665/1800 (36.944%) | 1515/1800 (84.167%) |
-| OSG | 672/1800 (37.333%) | 1344/1800 (74.667%) |
+| SAP (unchanged) | 665/1800 (36.944%) | 1515/1800 (84.167%) |
+| OSG before | 672/1800 (37.333%) | 1344/1800 (74.667%) |
+| OSG after | 732/1800 (40.667%) | 1474/1800 (81.889%) |
 
-SAP sources: 317 matching tier entries and 4,500 feedback reconstructions. Recorded-tiers-only comparisons: syntax 276/317 agreement (14 false rejects, 27 false accepts); activation 142/157 (15, 0); unit 79/84 (5, 0). Unit syntax is not separately stored in original tiers. These denominators include only observed saved fields.
+**R0 now exceeds SAP by 3.723 percentage points.** Unit false accepts rise from
+236 to 252 while false rejects fall from 215 to 85. The remaining over-rating is
+as material as the residual under-rating; OSG is not a substitute SAP oracle.
 
-False-reject cause counts (automated heuristics):
+All 4,817 recorded answers (2,648 unique task/source pairs; 1,800 conversations)
+were replayed, including excluded tasks. Saved tiers cover 317 answers; 4,500
+use recorded feedback reconstruction. Unreached/null stages count as not accepted.
+Later rounds followed SAP feedback: this is a per-answer comparison, not a replay
+of model trajectories driven by OSG feedback. No new model or SAP execution was run.
 
-- syntax: DB difference: 104, missing library class/method/type or unresolved name: 28
-- activation: DB difference: 104, missing library class/method/type or unresolved name: 34, runtime or semantic difference (manual review needed): 1
-- unit_syntax: DB difference: 72, missing library class/method/type or unresolved name: 180
-- unit: DB difference: 45, missing library class/method/type or unresolved name: 136, runtime or semantic difference (manual review needed): 34
+Counted mutants: **673/679 killed (99.116%)**, versus 626/636 (98.428%) before. Four unobservable survivors for tasks 21 and 34 are now outside the denominator and listed as dataset weaknesses. All syntax-break and unknown-type mutants die in syntax. Remaining survivors: 40.txt (off_by_one), 43.txt (off_by_one), 69.txt (off_by_one), 147.txt (off_by_one), 153.txt (flipped_comparison), 160.txt (off_by_one). They remain counted and keep the gate red.
 
-All 25 timeout answers (16 unique sources) were rechecked without competing audits/tests; their stages and unit verdicts were unchanged. None of these timeout answers was SAP-unit-accepted. Later rounds came after SAP feedback, so these are per-answer results, not OSG-driven trajectories.
+Subset: **46 unique tasks**, versus 45 before. Take all eligible tasks in short categories: Date & Time 1/10 and Database 5/10; every other category has 10. Shortfalls are printed and informational.
 
-Uncached warm throughput: **1.3742 answers/s** with one worker, 30 fresh runtime/database executions across five regular and five ERP tasks, all passing. Median 0.7188 s; maximum 0.8113 s; first answer including compiler startup 3.8086 s. Immutable compiled library cache was present; verdict cache was not used. Cached gate/replay timings are not uncached throughput measurements.
 
-Subset: **45 unique eligible tasks**, with these unavoidable shortfalls under first-label assignment:
+## Adapter compatibility inventory
 
-- Date & Time Operations: 1/10
-- String Handling: 10/10
-- Database Operations (ABAP): 5/10
-- List & Array Operations: 10/10
-- Logical Checks: 10/10
-- Mathematical Calculations: 9/10
+The adapter supplies clean-room objects in `tools/osg-validator/compat/` after
+open-abap-core. The frozen library and all canonical/test sources are unchanged.
+`compat-inventory.json` records exact task/answer references and occurrence
+counts; regenerate the prior-calibration scan with
+`python tools/osg-validator/inventory.py PATH_TO_PRIOR_REPLAY_JSON`.
 
-The dataset contains only four date/time-labelled tasks before exclusions, and only one survives the canonical gate. Thus ten per category cannot be supplied honestly.
-
-Pinned-toolchain/dataset gaps are listed below; no frozen toolchain, library or canonical solution was changed.
-
-| Task | Failed stage | Observed reason |
+| Object | Supplied contract | Corpus need |
 |---|---|---|
-| 6.txt | unit_syntax | CL_AUNIT_ASSERT missing from the pinned library. |
-| 7.txt | unit_syntax | CL_AUNIT_ASSERT missing from the pinned library. |
-| 10.txt | unit_syntax | CL_AUNIT_ASSERT missing from the pinned library. |
-| 12.txt | unit_syntax | CL_AUNIT_ASSERT missing from the pinned library. |
-| 16.txt | unit_syntax | CL_AUNIT_ASSERT missing from the pinned library. |
-| 17.txt | unit_syntax | CL_AUNIT_ASSERT missing from the pinned library. |
-| 18.txt | unit_syntax | CL_AUNIT_ASSERT missing from the pinned library. |
-| 20.txt | unit_syntax | NUMBERS parameter type rejected as incompatible in unit-test syntax. |
-| 27.txt | unit_syntax | CL_AUNIT_ASSERT missing from the pinned library. |
-| 28.txt | unit_syntax | CL_AUNIT_ASSERT missing from the pinned library. |
-| 29.txt | unit_syntax | CL_AUNIT_ASSERT missing from the pinned library. |
-| 30.txt | unit_syntax | CL_AUNIT_ASSERT missing from the pinned library. |
-| 31.txt | unit_syntax | CL_AUNIT_ASSERT missing from the pinned library. |
-| 32.txt | unit | test_case_1 assert_true fails in the numerical root-finding test; cause needs semantic review. |
-| 53.txt | unit_syntax | QF05_RANDOM_INTEGER function module missing/not released. |
-| 71.txt | unit | Runtime round() raises: todo, handle decimals. |
-| 73.txt | unit | test_case_1 returns 0; expected 4 (arithmetic DO count behavior needs review). |
-| 132.txt | unit | test_case_1 returns false; expected true; reverse STEP -1 loop behavior needs review. |
-| 162.txt | syntax | CALCULATE_HASH_FOR_CHAR missing/not released; HASH160 type missing. |
-| erp_001.txt | unit | SQLite result retains CHAR padding: employee name has trailing spaces; expected unpadded string. |
-| erp_005.txt | syntax | Canonical references ZFS_DATA, absent from the supplied 13 tables (DDL supplies ZFNET_DATA). |
-| erp_006.txt | syntax | Strict SELECT syntax requires @ escaping for MAT_ID at lines 28 and 39. |
-| erp_007.txt | syntax | DATE_COMPUTE_DAY function module missing/not released. |
-| erp_008.txt | syntax | CHAR50 and CHAR100 DDIC types missing from the pinned library. |
-| erp_009.txt | activation | Test transpilation cannot infer # at test line 42 (TypeNameOrInfer). |
-| erp_011.txt | syntax | Configured parser rejects SELECT at canonical line 37. |
-| erp_012.txt | syntax | SCARR and SBOOK tables/types absent from supplied schemas/library. |
-| erp_013.txt | syntax | SFLIGHT table/types absent from supplied schemas/library. |
-| erp_014.txt | syntax | SBOOK absent; IV_CARRID, IV_CONNID and IV_FLDATE also fail strict @ escaping. |
-| erp_015.txt | syntax | SFLIGHT and SPFLI tables/types absent from supplied schemas/library. |
+| CL_AUNIT_ASSERT | ASSERT_EQUALS delegates ACT, EXP, MSG, TOL, QUIT and LEVEL to CL_ABAP_UNIT_ASSERT; also supports inheritance | Tests 6, 7, 10, 12, 16–18, 27–31. Only ASSERT_EQUALS is used, including inherited calls in task 7. No other classic methods were found in tests or recorded answers. |
+| CHAR50 | DDIC CHAR, length 50 | ERP 008 canonical |
+| CHAR100 | DDIC CHAR, length 100 | ERP 008 canonical |
+| DATE_COMPUTE_DAY | DATE (DATS) to DAY (CHAR1), Monday=1 through Sunday=7, for valid Gregorian dates | ERP 007 canonical and recorded answers |
+| QF05_RANDOM_INTEGER | RAN_INT_MIN / RAN_INT_MAX to inclusive random integer RAN_INT, for MIN < MAX | Task 53 unit tests. Equal/reversed bounds fail closed by assertion: their precise SAP exception semantics are outside the documented subset. |
+| ZOSG_COMPAT | Local function group and two include scaffolds housing the preceding function modules | Adapter implementation container, no additional SAP API |
 
-Additional observed gaps: unknown SQL aggregate fields reach SQLite rather than syntax rejection; Cloud/released-API coverage differs from SAP; arithmetic DO counts, reverse loops and numerical assertions require semantic review; some unit tests do not reject empty results.
+The weekday shim uses Gregorian ordinal arithmetic instead of the runtime's date
+epoch conversion. The random shim uses the platform's uniform integer generator;
+its sequence is deliberately not promised to reproduce SAP's PRNG. These legacy
+entry points are compatibility for this corpus, **not evidence that SAP Cloud
+releases them**. The five API/type objects are individually exercised in
+`test.mjs`: each fails in unit syntax with `createEngine({compat:false})`, passes
+with compatibility, and a changed expected value fails in unit execution.
+Task 7 additionally exercises inherited ASSERT_EQUALS.
+
+Public signature/behavior references (no SAP implementation source was used):
+
+- [SAP assertion method semantics](https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/ba879a6e2ea04d9bb94c7ccd7cdac446/49268dc67b6716b4e10000000a42189d.html) and [SAP assertion parameter documentation](https://learning.sap.com/courses/deepening-your-abap-programming-knowledge/implementing-code-tests-with-abap-unit_b23c7a00-c2e8-406d-8969-b00db3f1fd87).
+- [Classic assertion usage on SAP Community](https://community.sap.com/t5/application-development-and-automation-blog-posts/abap-unit-test-initial-few-steps-before-the-sprint/ba-p/13407782).
+- [SAP calendar function documentation](https://help.sap.com/docs/SAP_NETWEAVER_701/6d9532e26c4b10148b87b4b12a95ece6/48dfbc1aab14280fe10000000a42189c.html) and [weekday numbering](https://help.sap.com/docs/SUPPORT_CONTENT/abap/3353524296.html).
+- [Random parameter usage on SAP Community](https://community.sap.com/t5/application-development-and-automation-blog-posts/a-comprehensive-guide-to-generating-random-numbers-in-sap/ba-p/13558581). This documents ordinary ranges, not a complete edge-case contract; unsupported ranges fail closed.
+- [SAP API documentation using CHAR50 and CHAR100](https://help.sap.com/docs/SAP_TRANSPORTATION_RESOURCE_PLANNING/38b8eafc22cf44cfbe2e5eed5631b1b2/ee4dcb504ba94c9a99e059478e501e9e.html).
+
+The scan also found HASH160 in task 162. CALCULATE_HASH_FOR_CHAR and HASH160 remain
+unsupplied together: the located SAP-hosted examples do not establish the full
+ALG/default, character encoding, fixed output and exception contract. Task 162
+stays excluded rather than installing an inferred alias and a possibly incorrect
+hash implementation. The [historical SAP Community discussion](https://community.sap.com/t5/technology-q-a/md5-functionality/qaq-p/917032)
+illustrates why encoding and distinct legacy hashing interfaces matter.
+
+Among prior false rejects, CL_AUNIT_ASSERT occurs in 146 unit-syntax and 120 unit
+comparisons, QF05_RANDOM_INTEGER in 10 of each, and DATE_COMPUTE_DAY in three
+syntax/activation comparisons. Counts overlap across cumulative stages. Other
+frequent names are local TY_/TT_ flight result types (21, 20 and 11 early-stage
+comparisons for different task families), whose unresolved types follow missing
+flight schemas. They are not released SAP API names to stub. DAY_IN_WEEK appears
+once; a complete Cloud-released legacy function contract was not established, so
+it is not added. No additional frequent missing, documented Cloud-released API
+was identified. Existing CHAR1/2/20/40/80 types already come from the pinned core.
+
+## SQL language-version decision
+
+Keep `Version.Cloud` and its strict host-variable escaping. SAP documents that
+[ABAP for Cloud Development uses the strictest SQL syntax check](https://help.sap.com/docs/abap-cloud/abap-keywords/abap-language-versions).
+[SAP's SQL host-variable documentation](https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abapinsert_source.htm)
+requires `@` in strict modes. There were no recorded SAP-syntax-accepted answers
+with an unescaped SELECT in ERP 006, 011 or 014. No canonical SAP execution trace
+was supplied that proves otherwise. Thus there is no evidence to justify weakening
+the parser to Standard ABAP. ERP 006 remains excluded for its unescaped variables;
+ERP 014 additionally requires the absent flight model. ERP 011's current first
+failure is a SELECT parser error, not proof of an escaping mismatch; it also
+references the absent flight model. No flight tables were added.
+
+## OSG runtime gaps
+
+Run `node tools/osg-validator/gaps.mjs` to reproduce the pinned failures. The
+runner exits zero only when every diagnostic reaches its recorded failing stage;
+these are intentionally failing ABAP programs, not passing canonical solutions.
+Each source has a matching tiny ABAP Unit include; compact actual errors are in
+`gaps-summary.json`.
+
+| Gap | Minimal ABAP source under tools/osg-validator/gaps | Observed stage / impact |
+|---|---|---|
+| round with decimal places | z_gap_round.clas.abap | unit: `round(), todo, handle decimals`; task 71 |
+| Arithmetic DO count | z_gap_do_count.clas.abap | unit: `DO length / 2 TIMES` runs zero times instead of four; tasks 73 and newly exposed task 10 |
+| Reverse STEP -1 | z_gap_reverse_step.clas.abap | unit: returns zero rows instead of reversed three; task 132 |
+| SQLite CHAR into STRING table | z_gap_char_padding.clas.abap | unit: `Ada` retains CHAR80 trailing spaces; ERP 001 |
+| INSERT FROM TABLE VALUE # inference | z_gap_infer.clas.abap | activation: TypeNameOrInfer; ERP 009 and newly exposed ERP 007 tests |
+| Unknown aggregate field | z_gap_aggregate.clas.abap | unit: unknown column reaches SQLite instead of syntax rejection |
+| SQL UPPER predicate | z_gap_sql_upper.clas.abap | activation: SQL Condition todo2; newly exposed ERP 008 |
+
+Task 20 remains a parameter-type compatibility exclusion, and task 32 remains an
+unresolved numerical canonical/test discrepancy. These have not been proved to
+be missing library APIs. Their original canonical/test pairs remain the evidence;
+no compatibility object masks them.
+
+## False accepts: observed causes and examples
+
+False accepts can over-rate models and remain a material limitation. Categories
+come from the earliest SAP rejection and propagate to later cumulative stages;
+they are not four independent errors. A fixture discrepancy is still counted as
+a false accept under the recorded oracle. Warning rejection reflects benchmark
+handling, not proof that SAP rejected valid syntax. No release-whitelist parity
+is claimed. The before and after compact summaries supply one representative feedback excerpt per
+cause, plus up to 20 sequential examples per stage/direction.
+
+| Cause (before → after) | syntax | activation | unit_syntax | unit |
+|---|---:|---:|---:|---:|
+| Runtime or assertion difference | 0 → 0 | 0 → 0 | 0 → 0 | 7 → 23 |
+| SAP declaration or activation check | 4 → 4 | 4 → 4 | 4 → 4 | 0 → 0 |
+| SAP fixture missing supplied dataset DDIC object | 267 → 283 | 237 → 237 | 295 → 314 | 104 → 104 |
+| SAP name-resolution check | 4 → 4 | 4 → 4 | 4 → 4 | 3 → 3 |
+| SAP type or conversion check | 2 → 2 | 2 → 2 | 164 → 164 | 114 → 114 |
+| SAP warnings treated as rejection by benchmark | 29 → 29 | 29 → 29 | 10 → 10 | 8 → 8 |
+
+Representative recorded answers (see summary for the actual feedback):
+
+- `erp_000.txt:0:R0`: SAP fixture missing supplied dataset DDIC object.
+- `116.txt:4:R0`: SAP warnings treated as rejection by benchmark.
+- `116.txt:8:R0`: SAP type or conversion check.
+- `erp_004.txt:7:R5`: SAP name-resolution check.
+- `erp_008.txt:5:R4`: SAP declaration or activation check.
+- `17.txt:1:R0`: Runtime or assertion difference.
+
+False-reject cause counts after the adapter changes (automated first-error heuristics):
+
+- syntax: DB difference: 104, missing library class/method/type or unresolved name: 25.
+- activation: DB difference: 104, missing library class/method/type or unresolved name: 34, runtime or semantic difference (manual review needed): 1.
+- unit_syntax: DB difference: 72, missing library class/method/type or unresolved name: 24.
+- unit: DB difference: 45, missing library class/method/type or unresolved name: 6, runtime or semantic difference (manual review needed): 34.
