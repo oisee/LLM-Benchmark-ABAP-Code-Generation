@@ -218,16 +218,19 @@ def worker_main(
     claim prompt -> process -> save results -> mark done.
     """
     # Create a per-worker ADT client
-    client = AdtClient(
-        sap_host=os.environ["SAP_HOST"],
-        username=os.environ["SAP_USERNAME"],
-        password=os.environ["SAP_PASSWORD"],
-        client="001",
-        language="EN",
-    )
-    client.login()
-    # Set module-level _current_client so _retry_adt can re-login
-    abap_interaction._current_client = client
+    from osg_validator import selected_client
+    client = selected_client()
+    if client is None:
+        client = AdtClient(
+            sap_host=os.environ["SAP_HOST"],
+            username=os.environ["SAP_USERNAME"],
+            password=os.environ["SAP_PASSWORD"],
+            client="001",
+            language="EN",
+        )
+        client.login()
+        # Set module-level _current_client so _retry_adt can re-login
+        abap_interaction._current_client = client
 
     lock_file = _lock_path(model_name)
     lock_fd = open(lock_file, "a+")

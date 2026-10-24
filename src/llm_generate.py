@@ -222,7 +222,7 @@ def mode_first(model_name: str, model_info: RunnableModel):
         import generate_llm_answers_openai_direct as gen
 
         api_key = get_provider_api_key(provider)
-        llm_client = openai.AsyncOpenAI(api_key=api_key)
+        llm_client = openai.AsyncOpenAI(api_key=api_key, base_url=os.environ.get("OPENAI_BASE_URL"))
         asyncio.run(gen.generate_first_response(llm_client, model_info))
 
     elif provider == "MISTRAL":
@@ -421,7 +421,7 @@ def mode_next(model_name: str, model_info: RunnableModel):
         import generate_llm_answers_openai_direct as gen
 
         api_key = get_provider_api_key(provider)
-        llm_client = openai.AsyncOpenAI(api_key=api_key)
+        llm_client = openai.AsyncOpenAI(api_key=api_key, base_url=os.environ.get("OPENAI_BASE_URL"))
         asyncio.run(
             gen.generate_next_response(llm_client, model_info, round_num)
         )

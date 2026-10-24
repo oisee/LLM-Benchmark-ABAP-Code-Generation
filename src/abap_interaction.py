@@ -815,6 +815,10 @@ def run_single_prompt(
             - updated_chats: The chats list with any feedback messages appended.
             - tiers_for_prompt: A list of dicts, one per repetition, with tier results.
     """
+    from osg_validator import OsgClient, run_single_prompt as run_osg_prompt
+    if isinstance(client, OsgClient):
+        return run_osg_prompt(client, prompt_file, chats, use_canonicalization, model_name)
+
     # Extract the contract (expected class/method names) for this task
     contract = extract_contract(prompt_file)
 
@@ -1036,18 +1040,10 @@ def run_abap_interaction(
                            If False (default), always proceed to SAP (soft gate).
     """
     global _current_client
-    client: AdtClient = AdtClient(
-        sap_host=os.environ["SAP_HOST"],
-        username=os.environ["SAP_USERNAME"],
-        password=os.environ["SAP_PASSWORD"],
-        client="001",
-        language="EN",
-    )
-    client.login()
-    # Store reference so _retry_adt can re-login on auth errors
-    # without creating new sessions (prevents SM04 session pileup)
-    _current_client = client
-
+    from osg_validator import selected_client
+    client = selected_client()
+    if client is None:
+        client = _create_sap_client()
     filename = f"data/{model_name.replace(':', '_')}.json"
     with open(filename, "r", encoding="utf-8") as file:
         prompt_files = json.load(file)
@@ -1079,3 +1075,19 @@ def run_abap_interaction(
 
         # Cooldown between prompts
         time.sleep(PROMPT_DELAY)
+
+def _create_sap_client():
+    global _current_client
+    client = AdtClient(
+        sap_host=os.environ["SAP_HOST"],
+        username=os.environ["SAP_USERNAME"],
+        password=os.environ["SAP_PASSWORD"],
+        client="001",
+        language="EN",
+    )
+    client.login()
+    # Store reference so _retry_adt can re-login on auth errors
+    # without creating new sessions (prevents SM04 session pileup)
+    _current_client = client
+
+    return client

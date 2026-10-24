@@ -257,6 +257,10 @@ def _save_data(filename: str, prompt_files: dict):
 
 def _create_client() -> AdtClient:
     """Create and login an ADT client (reuses abap_interaction module state)."""
+    from osg_validator import selected_client
+    osg_client = selected_client()
+    if osg_client is not None:
+        return osg_client
     client = AdtClient(
         sap_host=os.environ["SAP_HOST"],
         username=os.environ["SAP_USERNAME"],
@@ -291,7 +295,9 @@ def main():
     parser.add_argument("--use-abaplint", type=str, default="true", help="Run abaplint preflight (true/false, default: true)")
     parser.add_argument("--abaplint-hard-gate", type=str, default="false", help="Hard gate on abaplint parse errors (true/false, default: false)")
 
+    parser.add_argument("--validator", choices=["sap", "osg"], default=os.environ.get("ABAP_VALIDATOR", "sap"))
     args = parser.parse_args()
+    os.environ["ABAP_VALIDATOR"] = args.validator
 
     model_name = args.model
     use_canonicalization = args.use_canonicalization.lower() in ("true", "1", "yes")

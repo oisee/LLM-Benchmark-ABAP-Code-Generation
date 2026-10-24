@@ -218,3 +218,8 @@ Desktop.ini
 
 # Large binary artifacts (link to arXiv instead)
 *.pdf
+# OSG validator dependencies and generated scratch files
+/tools/osg-validator/node_modules/
+/tools/osg-validator/.cache/
+/tools/osg-validator/.runs/
+/osg-results/
