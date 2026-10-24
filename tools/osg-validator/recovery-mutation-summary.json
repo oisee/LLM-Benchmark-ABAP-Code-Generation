@@ -50,7 +50,7 @@
     },
     {
       "mutant": "ignore-ddl-and-lock",
-      "test": "compiled cache changes for every DDL input and dependency lock",
+      "test": "compiled cache changes for canonicalization, every DDL input and dependency lock",
       "control_passed": true,
       "detected": true
     }

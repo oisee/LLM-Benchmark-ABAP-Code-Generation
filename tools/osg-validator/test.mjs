@@ -150,12 +150,14 @@ test('ABAP display values, runtime abort and timeout shapes are stable', async()
 });
 
 
-test('compiled cache changes for every DDL input and dependency lock', async()=>{
+test('compiled cache changes for canonicalization, every DDL input and dependency lock', async()=>{
   const {compiledFingerprint}=await import('./engine.mjs');
   const tableDir=path.resolve(root,'../../dataset/abap_tables');
   const ddl=fs.readdirSync(tableDir).filter(f=>f.endsWith('.abap')).sort().map(f=>[f,fs.readFileSync(path.join(tableDir,f),'utf8')]);
   const lock=fs.readFileSync(path.join(root,'package-lock.json'),'utf8');
-  const baseline=compiledFingerprint([['library','source']],ddl,lock);
+  const canonicalizer=fs.readFileSync(path.resolve(root,'../../src/abap_interaction.py'),'utf8');
+  const baseline=compiledFingerprint([['library','source']],ddl,lock,canonicalizer);
+  assert.notEqual(compiledFingerprint([['library','source']],ddl,lock,canonicalizer+'changed'),baseline);
   assert.equal(ddl.length,13);
   assert.notEqual(compiledFingerprint([['library','source']],ddl,lock+'changed'),baseline);
   for (let i=0;i<ddl.length;i++) {

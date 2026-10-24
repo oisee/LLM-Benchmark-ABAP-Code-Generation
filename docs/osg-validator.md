@@ -464,4 +464,4 @@ joins its readers, and removes its answer scratch directories.
 Assertion values preserve URLs and paths. Scalar values longer than 2,500
 characters have a visible `[truncated]` suffix; execution diagnostics alone undergo
 path scrubbing. Cache keys include the dependency lockfile and every table DDL;
-the verdict cache also includes canonicalization/contract extraction code.
+both caches also include canonicalization/contract extraction code.

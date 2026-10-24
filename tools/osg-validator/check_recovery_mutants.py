@@ -51,9 +51,9 @@ with tempfile.TemporaryDirectory(prefix='osg-recovery-mutants-') as tmp:
     compiled_command=['node','--test','--test-name-pattern=compiled cache','tools/osg-validator/test.mjs']
     control=subprocess.run(compiled_command,cwd=clone,capture_output=True,text=True,timeout=60)
     assert control.returncode==0, control.stdout+control.stderr
-    engine.write_text(originals[engine].replace("return createHash('sha256').update(JSON.stringify([library,ddl,lock,", "return createHash('sha256').update(JSON.stringify([library,[], '',"))
+    engine.write_text(originals[engine].replace("return createHash('sha256').update(JSON.stringify([library,ddl,lock,canonicalizer,", "return createHash('sha256').update(JSON.stringify([library,[], '', '',"))
     result=subprocess.run(compiled_command,cwd=clone,capture_output=True,text=True,timeout=60)
-    results.append({'mutant':'ignore-ddl-and-lock','test':'compiled cache changes for every DDL input and dependency lock','control_passed':True,'detected':result.returncode!=0 and 'AssertionError' in result.stdout+result.stderr})
+    results.append({'mutant':'ignore-ddl-and-lock','test':'compiled cache changes for canonicalization, every DDL input and dependency lock','control_passed':True,'detected':result.returncode!=0 and 'AssertionError' in result.stdout+result.stderr})
     (Path(tempfile.gettempdir())/'osg-recovery-mutant-compiled-key.log').write_text(result.stdout+result.stderr)
 print(json.dumps(results,indent=2))
 (root/'tools/osg-validator/recovery-mutation-summary.json').write_text(json.dumps({'checks':results,'all_detected':all(r['detected'] for r in results)},indent=2)+'\n')

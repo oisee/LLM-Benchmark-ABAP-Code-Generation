@@ -16,8 +16,8 @@ export const clean = safeText;
 function files(dir) {
   return fs.readdirSync(dir,{withFileTypes:true}).flatMap(f=>f.isDirectory()?files(path.join(dir,f.name)):[path.join(dir,f.name)]);
 }
-export function compiledFingerprint(library, ddl, lock) {
-  return createHash('sha256').update(JSON.stringify([library,ddl,lock,
+export function compiledFingerprint(library, ddl, lock, canonicalizer = fs.readFileSync(path.resolve(root,'../../src/abap_interaction.py'),'utf8')) {
+  return createHash('sha256').update(JSON.stringify([library,ddl,lock,canonicalizer,
     fs.readFileSync(new URL('./ddl.mjs',import.meta.url),'utf8'),
     fs.readFileSync(new URL('./engine.mjs',import.meta.url),'utf8')])).digest('hex').slice(0,16);
 }
