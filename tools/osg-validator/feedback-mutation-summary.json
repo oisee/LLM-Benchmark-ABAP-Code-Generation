@@ -1,0 +1,34 @@
+[
+  {
+    "mutation": "unit_kind",
+    "detected": true
+  },
+  {
+    "mutation": "syntax_location",
+    "detected": true
+  },
+  {
+    "mutation": "blank_value",
+    "detected": true
+  },
+  {
+    "mutation": "temperature",
+    "detected": true
+  },
+  {
+    "mutation": "default_budget",
+    "detected": true
+  },
+  {
+    "mutation": "dry_run",
+    "detected": true
+  },
+  {
+    "mutation": "activation_shape",
+    "detected": true
+  },
+  {
+    "mutation": "duration",
+    "detected": true
+  }
+]

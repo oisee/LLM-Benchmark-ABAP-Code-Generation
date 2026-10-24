@@ -44,7 +44,7 @@ class Audit:
         self.db = sqlite3.connect(output / 'answers.sqlite', timeout=120)
         self.db.execute('PRAGMA journal_mode=WAL')
         self.db.execute('CREATE TABLE IF NOT EXISTS answers (key TEXT PRIMARY KEY, value TEXT)')
-        engine_files = ('bootstrap.mjs', 'ddl.mjs', 'engine.mjs', 'worker.mjs')
+        engine_files = ('bootstrap.mjs', 'ddl.mjs', 'engine.mjs', 'worker.mjs', 'feedback.mjs')
         engine = b''.join((ROOT / 'tools/osg-validator' / name).read_bytes() for name in engine_files)
         engine += b''.join(p.read_bytes() for p in sorted((ROOT / 'tools/osg-validator/compat').glob('*')) if p.is_file())
         engine += (ROOT / 'src/osg_validator.py').read_bytes()

@@ -1,0 +1,262 @@
+{
+  "messages": {
+    "The syntax check failed with the following errors:": 1415,
+    "The unittest syntax check failed with the following errors:": 1433,
+    "The unit tests were successful.": 1515,
+    "The unit test failed with the following errors:": 454
+  },
+  "kinds": {
+    "E": 9486,
+    "runtimeAbortion": 180,
+    "exception": 11,
+    "failedAssertion": 499,
+    "warning": 54,
+    "abortion": 374,
+    "W": 45
+  },
+  "shapes": [
+    {
+      "prefix": "The syntax check failed with the following errors:",
+      "kind": "E",
+      "severity": "",
+      "keys": "uri,type,short_text,line,offset",
+      "stack": "absent",
+      "count": 1515
+    },
+    {
+      "prefix": "The syntax check failed with the following errors:",
+      "kind": "E",
+      "severity": "",
+      "keys": "uri,type,short_text",
+      "stack": "absent",
+      "count": 456
+    },
+    {
+      "prefix": "The unittest syntax check failed with the following errors:",
+      "kind": "E",
+      "severity": "",
+      "keys": "uri,type,short_text,line,offset",
+      "stack": "absent",
+      "count": 7515
+    },
+    {
+      "prefix": "The unit test failed with the following errors:",
+      "kind": "runtimeAbortion",
+      "severity": "fatal",
+      "keys": "title,kind,severity,stack,details",
+      "stack": "empty",
+      "count": 180
+    },
+    {
+      "prefix": "The unit test failed with the following errors:",
+      "kind": "exception",
+      "severity": "critical",
+      "keys": "title,kind,severity,stack,details",
+      "stack": "element",
+      "count": 11
+    },
+    {
+      "prefix": "The unit test failed with the following errors:",
+      "kind": "failedAssertion",
+      "severity": "critical",
+      "keys": "title,kind,severity,stack,details",
+      "stack": "element",
+      "count": 499
+    },
+    {
+      "prefix": "The unit test failed with the following errors:",
+      "kind": "warning",
+      "severity": "tolerable",
+      "keys": "title,kind,severity,stack,details",
+      "stack": "empty",
+      "count": 54
+    },
+    {
+      "prefix": "The unit test failed with the following errors:",
+      "kind": "abortion",
+      "severity": "tolerable",
+      "keys": "title,kind,severity,stack,details",
+      "stack": "empty",
+      "count": 374
+    },
+    {
+      "prefix": "The syntax check failed with the following errors:",
+      "kind": "W",
+      "severity": "",
+      "keys": "uri,type,short_text,line,offset",
+      "stack": "absent",
+      "count": 45
+    }
+  ],
+  "entries_per_message": {
+    "The syntax check failed with the following errors:": {
+      "1": 1164,
+      "2": 112,
+      "3": 77,
+      "4": 22,
+      "5": 11,
+      "6": 9,
+      "7": 6,
+      "9": 2,
+      "10": 5,
+      "11": 5,
+      "15": 1,
+      "20": 1
+    },
+    "The unittest syntax check failed with the following errors:": {
+      "1": 258,
+      "3": 254,
+      "4": 176,
+      "5": 97,
+      "6": 158,
+      "7": 165,
+      "8": 86,
+      "9": 82,
+      "10": 20,
+      "11": 74,
+      "12": 56,
+      "13": 7
+    },
+    "The unit test failed with the following errors:": {
+      "1": 262,
+      "2": 84,
+      "3": 17,
+      "4": 8,
+      "5": 22,
+      "6": 24,
+      "8": 24,
+      "11": 5,
+      "13": 8
+    }
+  },
+  "syntax_ordering": {
+    "source_order": 2392
+  },
+  "assertion_detail_families": {
+    "scalar_values": 315,
+    "table": 127,
+    "boolean": 10,
+    "character_prefix": 47
+  },
+  "titles": {
+    "runtimeAbortion": {
+      "Failed due to a runtime abortion": 180
+    },
+    "exception": {
+      "Exception Error <CX_SY_ITAB_LINE_NOT_FOUND>": 11
+    },
+    "failedAssertion": {
+      "Critical Assertion Error: 'Test_Case_3: ASSERT_EQUALS'": 40,
+      "Critical Assertion Error: 'Test_Case_4: ASSERT_EQUALS'": 34,
+      "Critical Assertion Error: 'Test_Case_2: ASSERT_EQUALS'": 38,
+      "Critical Assertion Error: 'Test_Parse_Dots: ASSERT_EQUALS'": 3,
+      "Critical Assertion Error: 'Test_Parse_Empty_String: ASSERT_EQUALS'": 6,
+      "Critical Assertion Error: 'Test_Parse_Mixed_Notes_1: ASSERT_EQUALS'": 3,
+      "Critical Assertion Error: 'Test_Parse_Mixed_Notes_2: ASSERT_EQUALS'": 3,
+      "Critical Assertion Error: 'Test_Parse_Simple_Notes: ASSERT_EQUALS'": 3,
+      "Critical Assertion Error: 'Test_F_3: ASSERT_EQUALS'": 3,
+      "Critical Assertion Error: 'Test_F_5: ASSERT_EQUALS'": 3,
+      "Critical Assertion Error: 'Test_F_7: ASSERT_EQUALS'": 3,
+      "Critical Assertion Error: 'Test 1 failed'": 2,
+      "Critical Assertion Error: 'Test 2 failed'": 2,
+      "Critical Assertion Error: 'Test 3 failed'": 2,
+      "Critical Assertion Error: 'First flight should be earliest date (20250721)'": 27,
+      "Critical Assertion Error: 'Test_Case_1: ASSERT_EQUALS'": 24,
+      "Critical Assertion Error: 'Test_Case_5: ASSERT_EQUALS'": 16,
+      "Critical Assertion Error: 'Test_Multiple_Elements: ASSERT_EQUALS'": 5,
+      "Critical Assertion Error: 'Test_Repeated_Elements: ASSERT_EQUALS'": 5,
+      "Critical Assertion Error: 'Test_Numeric_Key: ASSERT_FALSE'": 10,
+      "Critical Assertion Error: 'This prints if this assert fails 3 (good for debugging!)'": 16,
+      "Critical Assertion Error: 'This prints if this assert fails 4 (good for debugging!)'": 28,
+      "Critical Assertion Error: 'This prints if this assert fails 2 (good for debugging!)'": 16,
+      "Critical Assertion Error: 'Test_Case_7: ASSERT_EQUALS'": 8,
+      "Critical Assertion Error: 'Test_Case_6: ASSERT_EQUALS'": 8,
+      "Critical Assertion Error: 'This prints if this assert fails 1 (good for debugging!)'": 9,
+      "Critical Assertion Error: 'This prints if this assert fails 5 (good for debugging!)'": 14,
+      "Critical Assertion Error: 'Test_Edge_Case: ASSERT_EQUALS'": 7,
+      "Critical Assertion Error: 'Test_Mixed_Array_2: ASSERT_EQUALS'": 7,
+      "Critical Assertion Error: 'Test_Mixed_Array_3: ASSERT_EQUALS'": 7,
+      "Critical Assertion Error: 'Test_Apple_Pi_E: ASSERT_EQUALS'": 8,
+      "Critical Assertion Error: 'Test_Case_8: ASSERT_EQUALS'": 20,
+      "Critical Assertion Error: 'Test_Case_9: ASSERT_EQUALS'": 6,
+      "Critical Assertion Error: 'Test_Case_10: ASSERT_EQUALS'": 4,
+      "Critical Assertion Error: 'Test_Case_11: ASSERT_EQUALS'": 6,
+      "Critical Assertion Error: 'Test_Mixed_Values: ASSERT_EQUALS'": 19,
+      "Critical Assertion Error: 'Test_Multiple_Integers: ASSERT_EQUALS'": 19,
+      "Critical Assertion Error: 'Test_Case_13: ASSERT_EQUALS'": 4,
+      "Critical Assertion Error: 'Test_Flip_Case_Long_Sentence: ASSERT_EQUALS'": 10,
+      "Critical Assertion Error: 'Test_Empty_String: ASSERT_EQUALS'": 10,
+      "Critical Assertion Error: 'Test_Aaabb_Mixed: ASSERT_EQUALS'": 1,
+      "Critical Assertion Error: 'Test_2468: ASSERT_EQUALS'": 10,
+      "Critical Assertion Error: 'Test_5576543: ASSERT_EQUALS'": 10,
+      "Critical Assertion Error: 'Test_Get_Positive_All_Negative: ASSERT_EQUALS'": 10,
+      "Critical Assertion Error: 'Test_Get_Positive_Empty: ASSERT_EQUALS'": 10
+    },
+    "warning": {
+      "Maximum allowed duration of 60 seconds exceeded": 54
+    },
+    "abortion": {
+      "Maximum allowed duration of 60 seconds exceeded": 374
+    }
+  },
+  "examples": {
+    "E": {
+      "uri": "/sap/bc/adt/oo/classes/z_humaneval_erp_000",
+      "type": "E",
+      "short_text": "Type \"ZEMP_MASTER\" is unknown.",
+      "line": 8,
+      "offset": 36
+    },
+    "runtimeAbortion": {
+      "title": "Failed due to a runtime abortion",
+      "kind": "runtimeAbortion",
+      "severity": "fatal",
+      "stack": [],
+      "details": [
+        "[None cannot be interpreted as a number]"
+      ]
+    },
+    "exception": {
+      "title": "Exception Error <CX_SY_ITAB_LINE_NOT_FOUND>",
+      "kind": "exception",
+      "severity": "critical",
+      "stack": "<Element stack>",
+      "details": [
+        "A row with the index 4 is not in the table.",
+        "Test 'Z_HUMANEVAL_129_TEST->TEST_CASE_1' in Main Program 'Z_HUMANEVAL_129===============CP'"
+      ]
+    },
+    "failedAssertion": {
+      "title": "Critical Assertion Error: 'Test_Case_3: ASSERT_EQUALS'",
+      "kind": "failedAssertion",
+      "severity": "critical",
+      "stack": "<Element stack>",
+      "details": [
+        "Different values\nExpected [0b1111001010] Actual [0b1111001011]",
+        "Test 'LTC_TEST_HUMANEVAL_103->TEST_CASE_3' in Main Program 'Z_HUMANEVAL_103===============CP'"
+      ]
+    },
+    "warning": {
+      "title": "Maximum allowed duration of 60 seconds exceeded",
+      "kind": "warning",
+      "severity": "tolerable",
+      "stack": [],
+      "details": []
+    },
+    "abortion": {
+      "title": "Maximum allowed duration of 60 seconds exceeded",
+      "kind": "abortion",
+      "severity": "tolerable",
+      "stack": [],
+      "details": []
+    },
+    "W": {
+      "uri": "/sap/bc/adt/oo/classes/z_humaneval_116",
+      "type": "W",
+      "short_text": "For the result of a computation with type P, the type P(8,0) is used here implicitly because it is not possible to determine the needed length and decimal places in general.",
+      "line": 83,
+      "offset": 6
+    }
+  },
+  "parse_errors": []
+}

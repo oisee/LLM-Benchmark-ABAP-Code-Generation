@@ -87,8 +87,8 @@ class OsgClient:
                 break
             except queue.Empty:
                 reason = None
-                if time.monotonic() - start >= 30:
-                    reason = "Answer exceeded 30 s wall timeout"
+                if time.monotonic() - start >= 90:
+                    reason = "Validator exceeded 90 s wall timeout"
                 try:
                     status = Path(f"/proc/{self.process.pid}/status").read_text()
                     rss = next(int(line.split()[1]) for line in status.splitlines() if line.startswith("VmRSS:"))
@@ -134,10 +134,27 @@ def evaluate(client, prompt_file, source, canonicalize=True):
     uri = f"/sap/bc/adt/oo/classes/{contract['class_name']}"
     if stage == "unit_syntax":
         uri += "/includes/testclasses"
-    errors = [{"uri": uri, "type": "E", "short_text": message} for message in result.get("errors", [])]
+    errors = []
+    for diagnostic in result.get("errors", []):
+        if isinstance(diagnostic, dict):
+            item_uri = f"/sap/bc/adt/oo/classes/{contract['class_name']}"
+            if diagnostic.get("test_include"):
+                item_uri += "/includes/testclasses"
+            errors.append({"uri": item_uri, **{key: diagnostic[key] for key in
+                           ("type", "short_text", "line", "offset") if key in diagnostic}})
+        else:
+            errors.append({"uri": uri, "type": "E", "short_text": diagnostic})
+    if stage == "unit":
+        errors = result.get("unit_feedback") or [{
+            "title": "Failed due to a runtime abortion", "kind": "runtimeAbortion",
+            "severity": "fatal", "stack": [],
+            "details": ["[" + str(message) + "]" for message in result.get("errors", [])],
+        }]
+    activation_text = "\n".join(str(e.get('short_text', '')) if isinstance(e, dict) else str(e)
+                                for e in result.get('errors', []))
     messages = {
         "syntax": f"The syntax check failed with the following errors:\n{errors}",
-        "activation": f"The activation failed with the following error:\n{errors}",
+        "activation": f"The activation failed with the following error:\n{activation_text}",
         "unit_syntax": f"The unittest syntax check failed with the following errors:\n{errors}\nTry to fix the class, not the unit test.",
         "unit": f"The unit test failed with the following errors:\n{errors}\n Try to fix the class, not the unit test.",
     }

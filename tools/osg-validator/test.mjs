@@ -95,3 +95,56 @@ test('each compat object fails without the adapter and preserves assertions', as
   assert.equal((await baseline(request)).unit_syntax,false);
   assert.equal((await adapter(request)).unit,true);
 });
+
+test('SAP feedback reports each failing method without JS objects or paths',async()=>{
+  const validate=await createEngine();
+  const source=`CLASS z_feedback DEFINITION PUBLIC. PUBLIC SECTION. ENDCLASS.
+    CLASS z_feedback IMPLEMENTATION. ENDCLASS.`;
+  const tests=`CLASS ltc DEFINITION FOR TESTING DURATION SHORT RISK LEVEL HARMLESS.
+    PRIVATE SECTION. METHODS test_2 FOR TESTING. METHODS test_1 FOR TESTING.
+    METHODS test_3 FOR TESTING. METHODS test_4 FOR TESTING.
+    ENDCLASS.
+    CLASS ltc IMPLEMENTATION.
+    METHOD test_2. cl_abap_unit_assert=>assert_equals( act = 7 exp = 8 msg = 'custom' ). ENDMETHOD.
+    METHOD test_1. cl_abap_unit_assert=>assert_equals( act = abap_false exp = abap_true ). ENDMETHOD.
+    METHOD test_3. DATA tab TYPE STANDARD TABLE OF i WITH DEFAULT KEY.
+      DATA(value) = tab[ 4 ]. ENDMETHOD.
+    METHOD test_4. DATA n TYPE i. n = 1 / 0. ENDMETHOD.
+    ENDCLASS.`;
+  const result=await validate({name:'z_feedback',source,tests});
+  assert.equal(result.stage,'unit');
+  assert.equal(result.unit_feedback.length,4);
+  const [one,two,three,four]=result.unit_feedback;
+  assert.deepEqual(Object.keys(one),['title','kind','severity','stack','details']);
+  assert.equal(one.kind,'failedAssertion');
+  assert.equal(one.details[0],'Different values\nExpected [X] Actual []');
+  assert.match(one.title,/Test_1: ASSERT_EQUALS/);
+  assert.equal(two.title,"Critical Assertion Error: 'custom'");
+  assert.equal(two.details[0],'Different values\nExpected [8] Actual [7]');
+  assert.equal(three.title,'Exception Error <CX_SY_ITAB_LINE_NOT_FOUND>');
+  assert.equal(three.details[0],'A row with the index 4 is not in the table.');
+  assert.equal(four.kind,'exception');
+  assert.doesNotMatch(JSON.stringify(result.unit_feedback),/\.mjs|FRIENDS_ACCESS|\/home\/|EXTRA_CX|Error:.*\bat /);
+  const syntax=await validate({name:'z_feedback',source:source.replace('PUBLIC SECTION.','PUBLIC SECTION. DATA bad TYPE z_missing_type.'),tests});
+  assert.equal(syntax.stage,'syntax');
+  assert.equal(typeof syntax.errors[0].line,'number');
+  assert.equal(typeof syntax.errors[0].offset,'number');
+  assert.doesNotMatch(syntax.errors[0].short_text,/unknown_types:|check_syntax:/);
+});
+
+test('ABAP display values, runtime abort and timeout shapes are stable', async()=>{
+  const {abapValue,comparison,runtimeEntry,timeoutEntries,safeText}=await import('./feedback.mjs');
+  assert.equal(abapValue({get:()=>({a:{get:()=> '0004'},b:{get:()=> 'X '}})}),'0004, X ');
+  assert.equal(abapValue({array:()=>[{get:()=>1},{get:()=>2}]}),'1, 2');
+  assert.deepEqual(runtimeEntry('bad\n    at file:///internal/run.mjs:4:2'),{
+    title:'Failed due to a runtime abortion',kind:'runtimeAbortion',severity:'fatal',stack:[],details:['[bad]']});
+  assert.equal(timeoutEntries(3).length,4);
+  const {default:runtime}=await import('@abaplint/runtime');
+  assert.equal(abapValue(new runtime.types.Integer().set(-2625)),'2.625-');
+  const a=new runtime.types.Table(new runtime.types.Integer());
+  const e=new runtime.types.Table(new runtime.types.Integer());
+  e.append(new runtime.types.Integer().set(2));
+  assert.equal(comparison(a,e),'Different values\nExpected [S-Table[1x4] of TYPE=I]\nActual [S-Table[0x4] of TYPE=I]\nActual table is empty');
+  assert.deepEqual(timeoutEntries(1).map(e=>[e.kind,e.severity]),[['warning','tolerable'],['abortion','tolerable']]);
+  assert.doesNotMatch(safeText('at /private/tool/engine.js:1:2'),/\/private/);
+});

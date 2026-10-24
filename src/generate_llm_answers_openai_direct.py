@@ -50,12 +50,15 @@ async def ask_openai_direct(
     client: openai.AsyncOpenAI,
     model_info: RunnableModel,
     chat_history: Iterable[ChatCompletionMessageParam],
+    *, request_metadata=None, force_temperature=False,
 ) -> str:
     """
     Send a chat completion request with GPT-5-aware parameter handling.
 
     - GPT-5 family: uses ``max_completion_tokens``, omits ``temperature``
     - Other models: uses ``max_tokens`` and ``temperature``
+    - Explicit compatible runner: force_temperature sends configured parameters
+      regardless of model name; optional request_metadata captures usage/finish reason.
     """
     max_retries = 5
     retry_delay = 60
@@ -65,7 +68,7 @@ async def ask_openai_direct(
         try:
             # GPT-5 family requires max_completion_tokens and does not accept
             # a custom temperature (always 1).
-            if "gpt-5" in model_info["name"]:
+            if "gpt-5" in model_info["name"] and not force_temperature:
                 response = await client.chat.completions.create(
                     model=model_info["name"],
                     messages=messages,
@@ -79,6 +82,12 @@ async def ask_openai_direct(
                     max_tokens=model_info["max_tokens"],
                 )
 
+            if request_metadata is not None:
+                usage = response.usage.model_dump() if response.usage else {}
+                details = usage.get('completion_tokens_details') or {}
+                request_metadata.update(finish_reason=response.choices[0].finish_reason,
+                                        truncated=response.choices[0].finish_reason == 'length',
+                                        usage=usage, reasoning_tokens=details.get('reasoning_tokens'))
             text_response = response.choices[0].message.content or ""
             text_response = remove_code_blocks(text_response)
             return text_response

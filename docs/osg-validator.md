@@ -14,11 +14,17 @@ npm ci --prefix tools/osg-validator
 npm run bootstrap --prefix tools/osg-validator
 npm test --prefix tools/osg-validator
 uv run python tools/osg-validator/test_integration.py
+uv run python tools/osg-validator/check_feedback_mutants.py
 uv run python tools/osg-validator/audit.py gate
 uv run python tools/osg-validator/audit.py calibrate
 uv run python tools/osg-validator/audit.py subset
 uv run python tools/osg-validator/throughput.py
 ```
+
+The mutation check temporarily changes adapter files and restores them in `finally`;
+run it separately from other local tests. It detects eight deliberate feedback,
+configuration, dry-run and timeout regressions; the compact results are in
+`feedback-mutation-summary.json`.
 
 The integration tests use only a loopback Python HTTP server. It returns a
 canonical solution and then a broken solution through the existing direct OpenAI
@@ -80,7 +86,8 @@ For an arbitrary model identifier and the generated subset, use the small runner
 ```sh
 uv run python src/osg_run.py --base-url "$OPENAI_BASE_URL" --model "$MODEL" \
   --api-key "$OPENAI_API_KEY" --output-name osg-experiment \
-  --subset tools/osg-validator/subset.json --repetitions 10 --rounds 6
+  --subset tools/osg-validator/subset.json --repetitions 1 --rounds 6 \
+  --temperature 0.2 --max-tokens 5000
 ```
 
 This command performs model calls when explicitly invoked. It uses the existing
@@ -89,6 +96,27 @@ tier formats. It refuses to overwrite an existing output. Validation and normal
 analysis scripts can read the resulting files unchanged. An API key is passed
 only to the model client; neither compiler nor generated code inherits model or
 SAP credentials. The default runner key is a dummy for local test servers.
+
+Defaults are the checked-in **46-task subset, one repetition, R0 through R5,
+temperature 0.2, max_tokens 5000, and one request at a time**. A passing answer
+stops that conversation early. Temperature is explicitly sent on every request,
+including model names containing `gpt-5`; this runner targets an explicitly
+configured compatible endpoint. The general provider's existing GPT parameter
+handling is unchanged. Both sampling parameters are overridable. For a reasoning
+endpoint with a shared output/reasoning budget, use e.g. `--max-tokens 15000`.
+The runner sends `max_tokens`, so the endpoint must support that parameter and
+the requested temperature; it does not silently substitute server defaults.
+
+Add `--dry-run` to print the full task list, rounds, model, parameters, concurrency
+and maximum request count (276 by default), without starting either client or
+writing output. The run writes `data/NAME_manifest.json` with the same plan,
+`NAME.json` with conversations, `NAME_tiers.json` with verdicts, and
+`NAME_result.json` with per-task, per-repetition, per-round generation metadata.
+The result records `finish_reason`, `truncated` (`finish_reason == "length"`),
+full endpoint usage and a separate nullable `reasoning_tokens` copied from
+`completion_tokens_details.reasoning_tokens`. Null means not supplied, not zero.
+A truncated response is still validated and receives the normal feedback round.
+No API key is saved in the manifest.
 
 The subset parses the BOM-marked, semicolon-separated CSV with Python `csv`,
 including quoted multiline fields. It excludes every red canonical, assigns a
@@ -99,6 +127,63 @@ ties. `shortfalls` records categories that cannot supply ten tasks. Those catego
 all eligible tasks and print the shortfall as information; this is not a gate failure. The source
 CSV has only four date/time tasks even before exclusions; a full 60-task subset
 is impossible without changing the dataset or labels.
+
+## Feedback fidelity and corpus evidence
+
+Run `python tools/osg-validator/corpus_shapes.py` to regenerate
+`corpus-shapes.json`. It scans all recorded user feedback, parses Python literals
+after replacing only the unstable Element repr, and reports every key/stack shape,
+kind, title, assertion-detail family and entries-per-message histogram. All 4,817
+feedback messages parse: 1,415 syntax failures, 1,433 test-syntax failures, 454
+unit failures and 1,515 successes. There are **zero activation-failure messages**;
+activation parity cannot be measured from this corpus.
+
+| SAP entry shape / frequency | OSG source and mapping |
+|---|---|
+| Syntax `uri,type,short_text,line,offset`: 1,515 E + 45 W; `uri,type,short_text`: 456 E | abaplint issue message, source include, one-based row and zero-based column offset; omit internal rule key and file name |
+| Test syntax `uri,type,short_text,line,offset`: 7,515 E | Same mapping, correct class or test-include ADT URI |
+| `failedAssertion`, critical: 499 | Observe the original assertion call and thrown error, render MSG or method/assertion label, comparison detail and ABAP test/program identity |
+| `exception`, critical: 11 | ABAP exception class and `get_text`; table-expression index retained by a delegating adapter to reproduce missing-row text |
+| `runtimeAbortion`, fatal: 180 | Runtime message as a bracketed detail, no JS stack/object dump |
+| `warning`, tolerable: 54; `abortion`, tolerable: 374 | At 60 seconds, one duration warning followed by an abortion entry per unfinished method |
+| Activation: no recorded entries | Preserve SAP wrapper; `activate_class` uses exception text, so OSG supplies a sanitized transpiler message string, not syntax dictionaries |
+
+All five unit kinds use keys in this exact order:
+`title,kind,severity,stack,details`. Assertion and exception `stack` is the stable
+string `'<Element stack>'`; SAP's `<Element 'stack' at 0x...>` is a Python-client
+artifact, not useful stack content. Runtime/timeout stacks remain `[]`. No JS
+stack frames, dependency object fields or internal paths reach feedback.
+
+Unit execution catches each failing test method and continues, returning one
+entry per failure. Test methods are ordered by name, matching the corpus; setup
+and teardown retain the transpiler lifecycle. Runtime failures during global
+initialization/setup can only yield a run-level abort. Timeout also lists methods
+that could not start, as the recorded SAP output does. Syntax diagnostics are
+returned individually, ordered by source include, line and offset, without an
+invented error cap. All 2,392 corpus messages with positions are in source order;
+syntax lists range from 1–20 entries, test syntax from 1–13, unit lists from 1–13.
+OSG returns all actual diagnostics rather than forcing those observed maxima.
+
+ABAP display preserves character content/NUMC zeroes, renders an all-blank value
+as empty, uses X/empty booleans, numeric grouping dots, decimal commas and trailing
+minus, and table/type summaries and row differences rather than JavaScript repr.
+Comparison details use scalar `Different values`, long-string differing-position,
+and table empty/missing/reordered-row templates found in the corpus. The pinned
+assertion implementation still decides failure; observers only format errors.
+
+Remaining differences: abaplint/transpiler **wording remains their own**, and
+abaplint can report a different number of errors. Activation is a transpiler
+exception, without SAP's full activation transport/HTTP text (no corpus evidence).
+The exact SAP DDIC/class-pool qualified type names, byte lengths of all composite
+and Unicode types, packed/floating numeric locale edge cases, string-diagnostic
+selection threshold and table duplicate/type-mismatch comparison details are not
+fully exposed by this runtime. Their display is a deterministic approximation;
+we do not invent a SAP type-error verdict. Generic ABAP exceptions use available
+runtime text (class plus a stable fallback if no meaningful text exists); only the
+recorded missing-row exception has an exactly reconstructed message. Runtime-gap
+messages remain OSG's. Parent wall/memory guards are additional infrastructure
+limits, reported as runtime abortions. These limits still constrain feedback
+comparability despite matching the recorded outer shapes.
 
 ## Toolchain, stages and isolation
 
@@ -121,9 +206,10 @@ local registry operations rather than ADT operations.
 
 All generated answer code executes in a fresh Node child, with a new ABAP runtime
 and in-memory SQLite database. Compilation/parsing stays in the supervised warm
-worker and never evaluates generated code. The parent enforces a 30-second total
-answer deadline, kills the process group on timeout, and records a unit failure
-with a timeout message. Linux resident-memory watchdogs cap the compiler at
+worker and never evaluates generated code. The runtime child has a 60-second
+limit for the entire ABAP Unit run, matching the recorded SAP duration (not 60
+seconds per method). The Python parent retains a separate 90-second total-answer
+guard, including worker startup/compilation, and kills the process group on expiry. Linux resident-memory watchdogs cap the compiler at
 1536 MiB and each runtime child at 384 MiB; V8 heap limits are 1024 and 256 MiB,
 respectively. A V8 heap exhaustion can appear as `SIGABRT`. Limits are per process,
 not a security sandbox against hostile JavaScript. Runtime children inherit only
