@@ -1,0 +1,32 @@
+[
+  {
+    "mutation": "zero_prompt_changed",
+    "control_passed": true,
+    "detected": true
+  },
+  {
+    "mutation": "repair_disabled",
+    "control_passed": true,
+    "detected": true
+  },
+  {
+    "mutation": "budget_exceeded",
+    "control_passed": true,
+    "detected": true
+  },
+  {
+    "mutation": "retry_disabled",
+    "control_passed": true,
+    "detected": true
+  },
+  {
+    "mutation": "unit_stages_in_lint",
+    "control_passed": true,
+    "detected": true
+  },
+  {
+    "mutation": "round_feedback_missing",
+    "control_passed": true,
+    "detected": true
+  }
+]
