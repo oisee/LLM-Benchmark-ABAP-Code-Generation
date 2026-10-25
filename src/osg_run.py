@@ -29,7 +29,8 @@ async def run(args):
     temperature = getattr(args, 'temperature', 0.2)
     plan = {'tasks': tasks, 'task_count': len(tasks), 'rounds': [f'R{r}' for r in range(args.rounds)],
             'repetitions': args.repetitions, 'model': args.model, 'temperature': temperature,
-            'max_tokens': args.max_tokens, 'concurrency': 1, 'validator': 'osg',
+            'max_tokens': args.max_tokens, 'request_timeout_s': getattr(args, 'request_timeout', 600.0),
+            'concurrency': 1, 'validator': 'osg',
             'maximum_requests': len(tasks) * args.repetitions * args.rounds}
     if getattr(args, 'dry_run', False):
         print(json.dumps(plan, indent=2))
@@ -45,7 +46,8 @@ async def run(args):
     conversations, tiers, results = {}, {}, {}
     validator = OsgClient()
     try:
-        async with openai.AsyncOpenAI(base_url=args.base_url, api_key=args.api_key, max_retries=0) as client:
+        async with openai.AsyncOpenAI(base_url=args.base_url, api_key=args.api_key, max_retries=0,
+                                      timeout=plan['request_timeout_s']) as client:
             for task in tasks:
                 if not re.fullmatch(r'(?:\d+|erp_\d+)\.txt', task):
                     raise ValueError('Invalid task identifier')
@@ -94,9 +96,11 @@ def main():
     parser.add_argument('--rounds',type=int,choices=range(1,7),default=6)
     parser.add_argument('--max-tokens',type=int,default=5000)
     parser.add_argument('--temperature',type=float,default=0.2)
+    parser.add_argument('--request-timeout',type=float,default=600.0,help='Seconds per model request (openai client default 600); raise it for long local generations')
     parser.add_argument('--dry-run',action='store_true',help='Print tasks, rounds and request parameters without starting a client')
     args=parser.parse_args()
     if args.max_tokens<1:parser.error('--max-tokens must be positive')
+    if args.request_timeout<=0:parser.error('--request-timeout must be positive')
     if args.repetitions<1:parser.error('--repetitions must be positive')
     asyncio.run(run(args))
 

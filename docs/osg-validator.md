@@ -114,6 +114,10 @@ handling is unchanged. Both sampling parameters are overridable. For a reasoning
 endpoint with a shared output/reasoning budget, use e.g. `--max-tokens 15000`.
 The runner sends `max_tokens`, so the endpoint must support that parameter and
 the requested temperature; it does not silently substitute server defaults.
+`--request-timeout` (seconds, default 600 like the openai client) bounds each model
+request; a long local generation needs it raised together with the server's own
+request timeout, or the slower of the two cuts the answer. A timed-out request is
+retried by `ask_openai_direct` (up to 5 times, 60 s apart) and is not a round.
 
 Add `--dry-run` to print the full task list, rounds, model, parameters, concurrency
 and maximum request count (276 by default), without starting either client or
