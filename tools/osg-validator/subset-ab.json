@@ -1,0 +1,44 @@
+{
+  "seed": 20261025,
+  "source": "tools/osg-validator/subset.json",
+  "per_category": 2,
+  "note": "A/B subset for sampling settings: 2 tasks per category of the main subset (Date & Time has 1 eligible)",
+  "categories": {
+    "Date & Time Operations": [
+      "124.txt"
+    ],
+    "String Handling": [
+      "107.txt",
+      "15.txt"
+    ],
+    "Database Operations (ABAP)": [
+      "erp_004.txt",
+      "erp_010.txt"
+    ],
+    "List & Array Operations": [
+      "100.txt",
+      "90.txt"
+    ],
+    "Logical Checks": [
+      "127.txt",
+      "13.txt"
+    ],
+    "Mathematical Calculations": [
+      "2.txt",
+      "49.txt"
+    ]
+  },
+  "tasks": [
+    "124.txt",
+    "107.txt",
+    "15.txt",
+    "erp_004.txt",
+    "erp_010.txt",
+    "100.txt",
+    "90.txt",
+    "127.txt",
+    "13.txt",
+    "2.txt",
+    "49.txt"
+  ]
+}

@@ -9,6 +9,7 @@ import asyncio
 import json
 from pathlib import Path
 import re
+import time
 
 from generate_llm_answers import SYSTEM_PROMPT
 from generate_llm_answers_openai_direct import ask_openai_direct
@@ -30,6 +31,7 @@ async def run(args):
     plan = {'tasks': tasks, 'task_count': len(tasks), 'rounds': [f'R{r}' for r in range(args.rounds)],
             'repetitions': args.repetitions, 'model': args.model, 'temperature': temperature,
             'max_tokens': args.max_tokens, 'request_timeout_s': getattr(args, 'request_timeout', 600.0),
+            'extra_body': getattr(args, 'extra_body', None) or {},
             'concurrency': 1, 'validator': 'osg',
             'maximum_requests': len(tasks) * args.repetitions * args.rounds}
     if getattr(args, 'dry_run', False):
@@ -41,7 +43,8 @@ async def run(args):
     result_out = out.with_name(args.output_name + '_result.json')
     if any(p.exists() for p in (out, tiers_out, manifest_out, result_out)):
         raise ValueError('Output already exists; use abap_test/llm_generate to resume it')
-    model = {'name': args.model, 'provider': 'OPENAI_DIRECT', 'max_tokens': args.max_tokens, 'temperature': temperature}
+    model = {'name': args.model, 'provider': 'OPENAI_DIRECT', 'max_tokens': args.max_tokens, 'temperature': temperature,
+             'extra_body': plan['extra_body']}
     manifest_out.write_text(json.dumps(plan, indent=2) + '\n')
     conversations, tiers, results = {}, {}, {}
     validator = OsgClient()
@@ -59,7 +62,9 @@ async def run(args):
                     conversations[task].append(chat); tiers[task].append(result)
                     for round_number in range(args.rounds):
                         metadata = {}
+                        started = time.monotonic()
                         code = await ask_openai_direct(client, model, chat, request_metadata=metadata, force_temperature=True)
+                        metadata['elapsed_s'] = round(time.monotonic() - started, 3)
                         round_results[f'round_{round_number}'] = metadata
                         chat.append({'role':'assistant','content':code})
                         try:
@@ -97,9 +102,11 @@ def main():
     parser.add_argument('--max-tokens',type=int,default=5000)
     parser.add_argument('--temperature',type=float,default=0.2)
     parser.add_argument('--request-timeout',type=float,default=600.0,help='Seconds per model request (openai client default 600); raise it for long local generations')
+    parser.add_argument('--extra-body',type=json.loads,default=None,help='JSON object of extra request fields, e.g. {"top_k":20,"chat_template_kwargs":{"enable_thinking":false}}')
     parser.add_argument('--dry-run',action='store_true',help='Print tasks, rounds and request parameters without starting a client')
     args=parser.parse_args()
     if args.max_tokens<1:parser.error('--max-tokens must be positive')
+    if args.extra_body is not None and not isinstance(args.extra_body,dict):parser.error('--extra-body must be a JSON object')
     if args.request_timeout<=0:parser.error('--request-timeout must be positive')
     if args.repetitions<1:parser.error('--repetitions must be positive')
     asyncio.run(run(args))

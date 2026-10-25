@@ -80,6 +80,8 @@ async def ask_openai_direct(
                     messages=messages,
                     temperature=model_info["temperature"],
                     max_tokens=model_info["max_tokens"],
+                    # explicit runner only: endpoint-specific fields (e.g. top_k, chat_template_kwargs)
+                    **({"extra_body": model_info["extra_body"]} if force_temperature and model_info.get("extra_body") else {}),
                 )
 
             if request_metadata is not None:

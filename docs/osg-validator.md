@@ -118,6 +118,10 @@ the requested temperature; it does not silently substitute server defaults.
 request; a long local generation needs it raised together with the server's own
 request timeout, or the slower of the two cuts the answer. A timed-out request is
 retried by `ask_openai_direct` (up to 5 times, 60 s apart) and is not a round.
+`--extra-body` adds endpoint-specific request fields (for example `top_k` or
+`chat_template_kwargs`); it is written into the manifest, and each round records
+its wall time as `elapsed_s` in the result file. `subset-ab.json` is a small
+subset (2 tasks per category, seed 20261025) for comparing sampling settings.
 
 Add `--dry-run` to print the full task list, rounds, model, parameters, concurrency
 and maximum request count (276 by default), without starting either client or
