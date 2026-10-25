@@ -88,13 +88,16 @@ class OsgClient:
         for thread in self.threads:
             thread.start()
 
-    def _validate_once(self, name, source, tests):
+    def _validate_once(self, name, source, tests, lint_only=False):
         start = time.monotonic()
         try:
             if self.process is None or self.process.poll() is not None:
                 self._start()
             self.progress.clear()
-            self.process.stdin.write(json.dumps({"name": name, "source": source, "tests": tests}) + "\n")
+            request = {"name": name, "source": source, "tests": tests}
+            if lint_only:
+                request["lint_only"] = True
+            self.process.stdin.write(json.dumps(request) + "\n")
             self.process.stdin.flush()
             while True:
                 try:
@@ -106,7 +109,7 @@ class OsgClient:
                     stage = result.get("stage")
                     if stage not in (None, "syntax", "activation", "unit_syntax", "unit") or not all(
                         result.get(key) in (True, False, None) for key in ("syntax", "activation", "unit_syntax", "unit")
-                    ) or (stage is None and result.get("unit") is not True) or (
+                    ) or (stage is None and (result.get("activation") if lint_only else result.get("unit")) is not True) or (
                         stage is not None and result.get(stage) is not False
                     ):
                         raise InfrastructureError("Invalid validator verdict protocol")
@@ -126,11 +129,11 @@ class OsgClient:
             self.close()
             raise InfrastructureError(str(exc), self.progress) from exc
 
-    def validate(self, name, source, tests):
+    def validate(self, name, source, tests, lint_only=False):
         known = {}
         for attempt in range(self.retries + 1):
             try:
-                return self._validate_once(name, source, tests)
+                return self._validate_once(name, source, tests, lint_only=True) if lint_only else self._validate_once(name, source, tests)
             except InfrastructureError as exc:
                 known.update({k: v for k, v in exc.progress.items() if v is not None})
                 if attempt == self.retries:
@@ -139,7 +142,7 @@ class OsgClient:
                     ) from exc
 
 
-def evaluate(client, prompt_file, source, canonicalize=True):
+def evaluate(client, prompt_file, source, canonicalize=True, *, lint_only=False):
     # Reuse the benchmark's extraction/canonicalization contract exactly.
     from abap_interaction import canonicalize_code, create_tier_result, extract_contract
     contract = extract_contract(prompt_file)
@@ -159,7 +162,10 @@ def evaluate(client, prompt_file, source, canonicalize=True):
         if match:
             source = re.sub(rf"\b{re.escape(match[1])}\b", contract["class_name"], source, flags=re.I)
     try:
-        result = client.validate(contract["class_name"], source, (ROOT / contract["unittest_file"]).read_text())
+        if lint_only:
+            result = client.validate(contract["class_name"], source, "", lint_only=True)
+        else:
+            result = client.validate(contract["class_name"], source, (ROOT / contract["unittest_file"]).read_text())
     except InfrastructureError as exc:
         for key, field in (("syntax", "sap_syntax_pass"), ("activation", "sap_activation_pass"),
                            ("unit_syntax", "unit_syntax_pass"), ("unit", "unit_pass")):
@@ -173,7 +179,7 @@ def evaluate(client, prompt_file, source, canonicalize=True):
                 test_count=result.get("test_count", 0))
     stage = result.get("stage")
     if stage is None:
-        return tier, "The unit tests were successful."
+        return tier, "The activation was successful." if lint_only else "The unit tests were successful."
     uri = f"/sap/bc/adt/oo/classes/{contract['class_name']}"
     if stage == "unit_syntax":
         uri += "/includes/testclasses"

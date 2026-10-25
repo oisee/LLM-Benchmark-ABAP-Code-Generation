@@ -487,3 +487,69 @@ Assertion values preserve URLs and paths. Scalar values longer than 2,500
 characters have a visible `[truncated]` suffix; execution diagnostics alone undergo
 path scrubbing. Cache keys include the dependency lockfile and every table DDL;
 both caches also include canonicalization/contract extraction code.
+
+## R-lint mode
+
+`src/osg_run.py --lint-rounds N` allows up to N correction requests before
+**each** graded round. The default is zero: prompts, model request bodies and
+normal R0..R5 behavior stay identical. Negative budgets are rejected.
+For a positive budget, the system prompt appends exactly this instruction:
+
+> Before you answer, your code is checked and activated; fix every reported error, then answer with the full class.
+
+The first draft is evaluated fully for measurement, but its grading feedback is
+never sent to the model. A separate lint evaluation performs canonicalization,
+class syntax checking and activation only. It does not load or syntax-check unit
+tests, discover test methods or run tests. A rejection uses the existing code
+structure, SAP syntax or SAP activation feedback template verbatim. The model
+then returns another full class. This repeats until activation passes or N
+correction requests have been used. A draft that already activates uses zero
+corrections, even if its unit tests fail.
+
+The last answer receives the normal full evaluation and R-feedback, including
+unit-test feedback. That ends R0 (or the current round); a failed final answer can
+proceed to R1..R5 as usual. Lint corrections are internal to a round and do not
+consume those round numbers. The persisted conversation contains the final
+assistant answer and graded feedback for each round. Lint inputs, answers and
+feedback are retained in the result trace. Lint requests use the same model
+parameters, truncation capture, timeout and retry helper as ordinary requests.
+
+Existing tier fields describe the final answer so the existing statistics code
+continues to work. With lint enabled, each tier additionally contains
+`draft_verdict`, `lint_loops_used` and `lint_stages`. Each result round records
+`draft_unit_pass`, `final_unit_pass`, `final_stage`, `lint_loops_used` and
+`lint_loops`. Each loop includes its rejected input's stage and verdict, feedback,
+answer, finish reason, `truncated`, usage and request duration. The original
+round request metadata describes the draft. A missing unit verdict is null,
+not a pass. The manifest records `lint_rounds`, `lint_instruction` and the maximum
+number of logical requests (transport retries can increase HTTP attempts).
+The draft score measures pass@1 **under the lint instruction**, without lint
+correction; it is not a separate experiment using the original system prompt.
+
+Summarize one or more result files with:
+
+```sh
+python src/osg_lint_summary.py data/example_result.json
+```
+
+The JSON reports the fraction of task/repetition conversations passing on the R0
+draft, R0 after lint, and any final answer in R0..R5, plus total correction
+requests and repaired canonicalization/syntax rejects. A reject counts as
+repaired when the next checked answer clears that stage, even if a later stage
+or unit test fails. Rates include all recorded conversations in the denominator;
+incomplete or missing verdicts do not count as passes. A partial run therefore
+is not a completed benchmark score. Pre-feature result files lack draft/final
+fields and should not be used with this summary script.
+
+Offline verification and deliberate regression checks:
+
+```sh
+python tools/osg-validator/test_lint.py
+python tools/osg-validator/check_lint_mutants.py
+```
+
+The tests compare raw request bodies against the original runner, repair a
+pseudo-ABAP draft, exhaust a correction budget, retry a timed-out lint request,
+verify activation-only stopping, and preserve unit feedback between graded
+rounds. Each has a passing control and a detected mutant, recorded in
+`lint-mutation-summary.json`. The fake model runs only on the loopback interface.

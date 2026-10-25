@@ -17,7 +17,14 @@ from osg_validator import InfrastructureError, OsgClient, ROOT, evaluate
 import openai
 
 
+LINT_INSTRUCTION = ("Before you answer, your code is checked and activated; fix every reported error, "
+                    "then answer with the full class.")
+
+
 async def run(args):
+    lint_rounds = getattr(args, "lint_rounds", 0)
+    if lint_rounds < 0:
+        raise ValueError("lint_rounds must be nonnegative")
     if not re.fullmatch(r'[\w.-]+', args.output_name):
         raise ValueError('Output name must contain only letters, digits, underscore, dot or hyphen')
     subset = json.loads(Path(args.subset).read_text())
@@ -33,7 +40,8 @@ async def run(args):
             'max_tokens': args.max_tokens, 'request_timeout_s': getattr(args, 'request_timeout', 600.0),
             'extra_body': getattr(args, 'extra_body', None) or {},
             'concurrency': 1, 'validator': 'osg',
-            'maximum_requests': len(tasks) * args.repetitions * args.rounds}
+            'lint_rounds': lint_rounds, 'lint_instruction': LINT_INSTRUCTION if lint_rounds else '',
+            'maximum_requests': len(tasks) * args.repetitions * args.rounds * (1 + lint_rounds)}
     if getattr(args, 'dry_run', False):
         print(json.dumps(plan, indent=2))
         return plan
@@ -56,7 +64,7 @@ async def run(args):
                     raise ValueError('Invalid task identifier')
                 conversations[task], tiers[task], results[task] = [], [], []
                 for _ in range(args.repetitions):
-                    chat = [{'role':'system','content':SYSTEM_PROMPT}, {'role':'user','content':(ROOT/'dataset/prompts'/task).read_text()}]
+                    chat = [{'role':'system','content':SYSTEM_PROMPT + ('\n' + LINT_INSTRUCTION if lint_rounds else '')}, {'role':'user','content':(ROOT/'dataset/prompts'/task).read_text()}]
                     result, round_results = {}, {}
                     results[task].append(round_results)
                     conversations[task].append(chat); tiers[task].append(result)
@@ -68,7 +76,34 @@ async def run(args):
                         round_results[f'round_{round_number}'] = metadata
                         chat.append({'role':'assistant','content':code})
                         try:
+                            if lint_rounds:
+                                draft, _ = evaluate(validator, task, code)
+                                metadata.update(draft_unit_pass=draft['unit_pass'], lint_loops=[])
+                                lint_chat = list(chat)
+                                for _ in range(lint_rounds):
+                                    checked, lint_feedback = evaluate(validator, task, code, lint_only=True)
+                                    if checked['sap_activation_pass']:
+                                        break
+                                    loop = {'stage': checked['error_stage'], 'verdict': checked,
+                                            'feedback': lint_feedback, 'input': code}
+                                    metadata['lint_loops'].append(loop)
+                                    lint_chat.append({'role': 'user', 'content': lint_feedback})
+                                    loop_started = time.monotonic()
+                                    code = await ask_openai_direct(client, model, lint_chat,
+                                                                  request_metadata=loop, force_temperature=True)
+                                    loop['elapsed_s'] = round(time.monotonic() - loop_started, 3)
+                                    loop['answer'] = code
+                                    lint_chat.append({'role': 'assistant', 'content': code})
+                                    chat[-1] = {'role': 'assistant', 'content': code}
+                                metadata['lint_loops_used'] = len(metadata['lint_loops'])
                             tier, feedback = evaluate(validator, task, code)
+                            if lint_rounds:
+                                tier.update(draft_verdict=draft, lint_loops_used=metadata['lint_loops_used'],
+                                            lint_stages=[loop['stage'] for loop in metadata['lint_loops']])
+                            else:
+                                metadata.update(draft_unit_pass=tier['unit_pass'], lint_loops=[], lint_loops_used=0)
+                            metadata['final_unit_pass'] = tier['unit_pass']
+                            metadata['final_stage'] = tier.get('error_stage')
                         except InfrastructureError as exc:
                             # Save the answer and observed stages, with no model feedback.
                             # Its assistant tail remains NeedsSAPTest for the resume CLI.
@@ -99,12 +134,14 @@ def main():
     parser.add_argument('--output-name',required=True)
     parser.add_argument('--repetitions',type=int,default=1)
     parser.add_argument('--rounds',type=int,choices=range(1,7),default=6)
+    parser.add_argument('--lint-rounds',type=int,default=0,help='Maximum activation-only correction requests per graded round')
     parser.add_argument('--max-tokens',type=int,default=5000)
     parser.add_argument('--temperature',type=float,default=0.2)
     parser.add_argument('--request-timeout',type=float,default=600.0,help='Seconds per model request (openai client default 600); raise it for long local generations')
     parser.add_argument('--extra-body',type=json.loads,default=None,help='JSON object of extra request fields, e.g. {"top_k":20,"chat_template_kwargs":{"enable_thinking":false}}')
     parser.add_argument('--dry-run',action='store_true',help='Print tasks, rounds and request parameters without starting a client')
     args=parser.parse_args()
+    if args.lint_rounds<0:parser.error('--lint-rounds must be nonnegative')
     if args.max_tokens<1:parser.error('--max-tokens must be positive')
     if args.extra_body is not None and not isinstance(args.extra_body,dict):parser.error('--extra-body must be a JSON object')
     if args.request_timeout<=0:parser.error('--request-timeout must be positive')

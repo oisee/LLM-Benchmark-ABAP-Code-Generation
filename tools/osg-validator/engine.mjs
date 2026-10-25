@@ -59,6 +59,7 @@ export async function createEngine({compat = true} = {}) {
     try {compiled = new HandleABAP({addCommonJS:true}).runObject(reg.getObject('CLAS',name),reg);}
     catch(e) {return fail('activation',[e.message]);}
     result.activation=true;notify(result);
+    if (input.lint_only === true) return result;
     add('testclasses.abap',input.tests);
     errors=check();if(errors.length)return fail('unit_syntax',errors);
     result.unit_syntax=true;notify(result);
